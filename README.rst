@@ -1,62 +1,73 @@
-A Simple Python Project Skeleton
-================================
-This repo attempts to standardize the structure of the Python-based project's
-repositories using modern Python packaging and configuration techniques.
-Using this `blog post`_ as inspiration, this repository serves as the base for
-all new Python projects and is mergeable in existing repositories as well.
+MatchCode toolkit
+=================
+MatchCode toolkit is a Python library that provides the directory fingerprinting
+functionality for `ScanCode toolkit <https://github.com/nexB/scancode-toolkit>`_
+and `ScanCode.io <https://github.com/nexB/scancode.io>`_ by implementing the
+HaloHash algorithm and using it in ScanCode toolkit and ScanCode.io plugins and
+pipelines.
 
-.. _blog post: https://blog.jaraco.com/a-project-skeleton-for-python-projects/
+
+Installation
+------------
+
+MatchCode toolkit must be installed in the same environment as ScanCode toolkit
+or ScanCode.io.
+
+From PyPI:
+::
+
+  pip install matchcode-toolkit
+
+A checkout of this repo can also be installed into an environment using pip's
+``--editable`` option,
+::
+
+  # Activate the virtual environment you want to install MatchCode-toolkit into,
+  # change directories to the ``matchcode-toolkit`` directory
+  pip install --editable .
+
+or built into a wheel and then installed:
+::
+
+  pip install flot
+  flot --wheel --sdist # The built wheel will be in the dist/ directory
+  pip install matchcode_toolkit-*-py3-none-any.whl
 
 
 Usage
-=====
+-----
 
-A brand new project
--------------------
-.. code-block:: bash
+MatchCode toolkit provides the ``--fingerprint`` option for ScanCode toolkit.
+This is a post-scan plugin that adds the fields
+``directory_content_fingerprint`` and ``directory_structure_fingerprint`` to
+Resources and computes those values for directories.
+::
 
-    git init my-new-repo
-    cd my-new-repo
-    git pull git@github.com:nexB/skeleton
-
-    # Create the new repo on GitHub, then update your remote
-    git remote set-url origin git@github.com:nexB/your-new-repo.git
-
-From here, you can make the appropriate changes to the files for your specific project.
-
-Update an existing project
----------------------------
-.. code-block:: bash
-
-    cd my-existing-project
-    git remote add skeleton git@github.com:nexB/skeleton
-    git fetch skeleton
-    git merge skeleton/main --allow-unrelated-histories
-
-This is also the workflow to use when updating the skeleton files in any given repository.
-
-More usage instructions can be found in ``docs/skeleton-usage.rst``.
+  scancode --info --fingerprint <scan target location> --json-pp <output location>
 
 
-Release Notes
-=============
+MatchCode toolkit provides the ``scan_and_fingerprint_package`` pipeline for
+ScanCode.io. This is the same as the ``scan_single_package`` pipeline, but has the
+added step of computing fingerprints for directories.
 
-- 2023-07-18:
-    - Add macOS-13 job in azure-pipelines.yml
 
-- 2022-03-04:
-    - Synchronize configure and configure.bat scripts for sanity
-    - Update CI operating system support with latest Azure OS images
-    - Streamline utility scripts in etc/scripts/ to create, fetch and manage third-party dependencies
-      There are now fewer scripts. See etc/scripts/README.rst for details
+License
+-------
 
-- 2021-09-03:
-    - ``configure`` now requires pinned dependencies via the use of ``requirements.txt`` and ``requirements-dev.txt``
-    - ``configure`` can now accept multiple options at once
-    - Add utility scripts from scancode-toolkit/etc/release/ for use in generating project files
-    - Rename virtual environment directory from ``tmp`` to ``venv``
-    - Update README.rst with instructions for generating ``requirements.txt`` and ``requirements-dev.txt``,
-      as well as collecting dependencies as wheels and generating ABOUT files for them.
+SPDX-License-Identifier: Apache-2.0
 
-- 2021-05-11:
-    - Adopt new configure scripts from ScanCode TK that allows correct configuration of which Python version is used.
+The ScanCode.io software is licensed under the Apache License version 2.0.
+Data generated with ScanCode.io is provided as-is without warranties.
+ScanCode is a trademark of nexB Inc.
+
+You may not use this software except in compliance with the License.
+You may obtain a copy of the License at: http://apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+
+Data Generated with ScanCode.io is provided on an "AS IS" BASIS, WITHOUT WARRANTIES
+OR CONDITIONS OF ANY KIND, either express or implied. No content created from
+ScanCode.io should be considered or used as legal advice. Consult an Attorney
+for any legal advice.

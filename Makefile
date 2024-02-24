@@ -15,7 +15,7 @@ ACTIVATE?=. ${VENV}/bin/activate;
 
 dev:
 	@echo "-> Configure the development envt."
-	./configure --dev
+	@PYTHON_EXECUTABLE=${PYTHON_EXE} ./configure --dev
 
 isort:
 	@echo "-> Apply isort changes to ensure proper imports ordering"
@@ -35,17 +35,17 @@ check:
 	@echo "-> Run pycodestyle (PEP8) validation"
 	@${ACTIVATE} pycodestyle --max-line-length=100 --exclude=.eggs,venv,lib,thirdparty,docs,migrations,settings.py,.cache .
 	@echo "-> Run isort imports ordering validation"
-	@${ACTIVATE} isort --sl --check-only -l 100 setup.py src tests . 
+	@${ACTIVATE} isort --sl --check-only -l 100 setup.py src tests .
 	@echo "-> Run black validation"
 	@${ACTIVATE} black --check --check -l 100 src tests setup.py
 
 clean:
 	@echo "-> Clean the Python env"
-	./configure --clean
+	@PYTHON_EXECUTABLE=${PYTHON_EXE} ./configure --clean
 
 test:
 	@echo "-> Run the test suite"
-	${VENV}/bin/pytest -vvs
+	${VENV}/bin/pytest -vvs --ignore src/matchcode_toolkit/pipelines
 
 docs:
 	rm -rf docs/_build/
