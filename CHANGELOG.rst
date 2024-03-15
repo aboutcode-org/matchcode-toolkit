@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v3.1.0
+------
+
+*2024-03-14* -- Create ``FingerprintPackage`` addon pipeline for scancode.io
+
 v3.0.0
 ------
 
