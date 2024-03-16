@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v4.0.0
+------
+
+*2024-03-15* -- Rename ``FingerprintPackage`` pipeline to ``FingerprintCodebase``
+
 v3.1.0
 ------
 
