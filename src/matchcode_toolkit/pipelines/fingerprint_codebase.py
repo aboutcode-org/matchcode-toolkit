@@ -24,7 +24,7 @@ from scanpipe.pipelines import Pipeline
 from scanpipe.pipes import matchcode
 
 
-class FingerprintPackage(Pipeline):
+class FingerprintCodebase(Pipeline):
     """
     Calculate the directory fingerprints of a Project codebase
     """
