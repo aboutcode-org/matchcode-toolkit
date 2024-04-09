@@ -8,6 +8,12 @@
 #
 
 import binascii
+import codecs
+import re
+
+from commoncode import filetype
+from licensedcode.tokenize import ngrams
+from typecode.contenttype import get_type
 
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
@@ -158,3 +164,122 @@ def create_halohash_chunks(bah128):
     chunk4 = hexstring_to_binarray(chunk4)
 
     return chunk1, chunk2, chunk3, chunk4
+
+
+def select_windows(windows):
+    """
+    Return an iterable of selected windows using the hailstorm algorithm. A
+    window is a list of ngram bytestrings.
+
+    Definition from the paper: http://www2009.eprints.org/7/1/p61.pdf
+
+      The algorithm first fingerprints every token and then selects a shingle s
+      if the minimum fingerprint value of all k tokens in s occurs at the first
+      or the last position of s (and potentially also in between). Due to the
+      probabilistic properties of Rabin fingerprints the probability that a
+      shingle is chosen is 2/k if all tokens in the shingle are different
+    """
+    last = None
+    window = None
+    for pos, window in enumerate(windows):
+        nghs = []
+        for ngram in window:
+            # TODO: use different algorithm?
+            nghs.append(binascii.crc32(ngram) & 0xffffffff)
+        min_hash = min(nghs)
+        if min_hash in (nghs[0], nghs[-1]):
+            yield window
+            last = window
+        else:
+            # always yield the first or last window too.
+            if pos == 0:
+                yield window
+                last = window
+    if last != window:
+        yield window
+
+
+# Split on whitespace and punctuations: keep only characters and numbers
+query_pattern = '[^_\\W]+'
+word_splitter = re.compile(query_pattern, re.UNICODE).findall
+
+
+def _tokenizer(text):
+    """
+    Return an list of tokens from a unicode text.
+    """
+    if not text:
+        return []
+    return [token for token in word_splitter(text) if token]
+
+
+def tokenizer(text):
+    """
+    Return an list of tokens from a unicode text.
+
+    For example::
+    >>> list(tokenizer(''))
+    []
+    >>> x = list(tokenizer('some Text with   spAces! + _ -'))
+    >>> assert x == ['some', 'text', 'with', 'spaces']
+
+    >>> x = list(tokenizer('{{}some }}Text with   spAces! + _ -'))
+    >>> assert x == ['some', 'text', 'with', 'spaces']
+
+    >>> x = list(tokenizer('{{Hi}}some {{}}Text with{{noth+-_!@ing}}   {{junk}}spAces! + _ -{{}}'))
+    >>> assert x == ['hi', 'some', 'text', 'with', 'noth', 'ing', 'junk', 'spaces']
+
+    """
+    return _tokenizer(text.lower())
+
+
+def get_file_fingerprint_hashes(location, **kwargs):
+    """
+    Return a mapping of fingerprint hashes for the file at `location`
+
+    The `halo1` hash is the hex digest of the fingerprint of the file.
+    `halo1` is empty if the file is empty.
+
+    'chunks_halo1` is a list of fingerprints foreach chunk in the file at
+    `location`
+
+    - We start by breaking the file into words (tokens)
+    - We compute ngrams over the list of tokens
+    - The list of ngrams is then broken into chunks
+    - We compute a fingerprint for each chunk
+
+    Return an empty list if `location` is not a text file
+    """
+    # TODO: Make these values global
+    ngram_length = 8
+    # window_length is the sliding window we have over the ngrams list
+    window_length = 64
+
+    # Do not process `location` if it's not a text file
+    if not filetype.is_file(location):
+        return {}
+    ft = get_type(location)
+    if not ft.is_text:
+        return {}
+
+    # TODO: Check for robust text-reading code in license and copyright detection
+    with codecs.open(location, encoding='utf-8') as f:
+        content = f.read()
+
+    # break content into words, then create ngrams from words
+    words = tokenizer(content)
+    ngs = ngrams(words, ngram_length)
+    # We convert each list of ngrams to a sequence of bytes
+    ngs = [' '.join(ng).encode('utf-8') for ng in ngs]
+
+    # compute and select sliding windows on ngrams
+    windows = ngrams(ngs, window_length)
+    selected_windows = select_windows(windows)
+
+    # Create fingerprints and return fingerprint hashes
+    file_fingerprint = BitAverageHaloHash(ngs) if ngs else None
+    chunk_fingerprints = [BitAverageHaloHash(window) for window in selected_windows]
+    return dict(
+        halo1=file_fingerprint.hexdigest().decode('utf-8') if file_fingerprint else '',
+        chunks_halo1=[chunk_fingerprint.hexdigest().decode('utf-8') for chunk_fingerprint in chunk_fingerprints]
+    )

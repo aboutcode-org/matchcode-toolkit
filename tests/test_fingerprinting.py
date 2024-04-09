@@ -18,6 +18,7 @@ from matchcode_toolkit.fingerprinting import compute_codebase_directory_fingerpr
 from matchcode_toolkit.fingerprinting import create_content_fingerprint
 from matchcode_toolkit.fingerprinting import create_halohash_chunks
 from matchcode_toolkit.fingerprinting import create_structure_fingerprint
+from matchcode_toolkit.fingerprinting import get_file_fingerprint_hashes
 from matchcode_toolkit.fingerprinting import split_fingerprint
 
 
@@ -124,3 +125,17 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual({}, empty_dir_1.extra_data)
         self.assertEqual({}, empty_dir_2.extra_data)
         self.assertEqual({}, empty_dir_2.extra_data)
+
+    def test_get_file_fingerprint_hashes_same_halo1_with_exact_repetition(self):
+        """
+        The test files contain the string 'z1 z2 z3 z4 z5 z6 z7 z8' repeated
+        some number of times.
+
+        In the case of test_file1, the string is repeated twice in a row. In the
+        case of test_file2, the string is repeated 8 times.
+        """
+        test_file1 = self.get_test_loc('16words')
+        test_file2 = self.get_test_loc('64words')
+        result1 = get_file_fingerprint_hashes(test_file1)
+        result2 = get_file_fingerprint_hashes(test_file2)
+        assert result1.get('halo1') == result2.get('halo1')
