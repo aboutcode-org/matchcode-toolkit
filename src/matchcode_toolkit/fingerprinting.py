@@ -226,11 +226,18 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     # break content into words, then create ngrams from words
     words = tokenizer(content)
     ngs = ngrams(words, ngram_length)
+
     # We convert each list of ngrams to a sequence of bytes
-    ngs = [b''.join(ng).encode('utf-8') for ng in ngs]
+    ngs_bytes = []
+    for ng in ngs:
+        ng_bytes = []
+        for g in ng:
+            ng_bytes.append(g.encode('utf-8'))
+        ngs_bytes.append(ng_bytes)
+    ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
 
     # Create fingerprints and return fingerprint hashes
-    file_fingerprint = BitAverageHaloHash(ngs) if ngs else None
+    file_fingerprint = BitAverageHaloHash(ngs_bytes) if ngs_bytes else None
 
     return dict(
         halo1=file_fingerprint.hexdigest().decode('utf-8') if file_fingerprint else ''
