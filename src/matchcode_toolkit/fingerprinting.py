@@ -13,7 +13,6 @@ import re
 
 from commoncode import filetype
 from licensedcode.tokenize import ngrams
-from typecode.contenttype import get_type
 
 from matchcode_toolkit.halohash import BitAverageHaloHash
 

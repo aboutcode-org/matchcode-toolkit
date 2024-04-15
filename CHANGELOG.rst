@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v4.1.0
+------
+
+*2024-04-15* -- Add new functions to compute fingerprints on text resources for approximate file matching (https://github.com/nexB/matchcode-toolkit/issues/5)
+
 v4.0.0
 ------
 
