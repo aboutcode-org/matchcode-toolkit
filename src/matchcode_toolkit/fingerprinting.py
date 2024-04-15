@@ -8,11 +8,11 @@
 #
 
 import binascii
-import codecs
 import re
 
 from commoncode import filetype
 from licensedcode.tokenize import ngrams
+from typecode.contenttype import get_type
 
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
@@ -212,11 +212,11 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     Return an empty mapping if `location` is not a text file
     """
     # Do not process `location` if it's not a text file
-    if not filetype.is_file(location):
+    ft = get_type(location)
+    if not (filetype.is_file(location) and ft.is_text):
         return {}
 
-    # TODO: Check for robust text-reading code in license and copyright detection
-    with codecs.open(location, encoding='utf-8') as f:
+    with open(location, encoding='utf-8') as f:
         content = f.read()
 
     # Break content into words, then create ngrams from words
