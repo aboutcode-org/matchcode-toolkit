@@ -215,25 +215,19 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     # Do not process `location` if it's not a text file
     if not filetype.is_file(location):
         return {}
-    ft = get_type(location)
-    if not ft.is_text:
-        return {}
 
     # TODO: Check for robust text-reading code in license and copyright detection
     with codecs.open(location, encoding='utf-8') as f:
         content = f.read()
 
-    # break content into words, then create ngrams from words
+    # Break content into words, then create ngrams from words
     words = tokenizer(content)
     ngs = ngrams(words, ngram_length)
 
-    # We convert each list of ngrams to a sequence of bytes
-    ngs_bytes = []
-    for ng in ngs:
-        ng_bytes = []
-        for g in ng:
-            ng_bytes.append(g.encode('utf-8'))
-        ngs_bytes.append(ng_bytes)
+    # Convert each list of ngrams to a sequence of bytes
+    ngs_bytes = [[g.encode('utf-8') for g in ng] for ng in ngs]
+
+    # Join all ngrams into a single bytearray
     ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
 
     # Create fingerprints and return fingerprint hashes
