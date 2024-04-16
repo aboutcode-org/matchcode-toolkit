@@ -18,7 +18,9 @@ from matchcode_toolkit.fingerprinting import compute_codebase_directory_fingerpr
 from matchcode_toolkit.fingerprinting import create_content_fingerprint
 from matchcode_toolkit.fingerprinting import create_halohash_chunks
 from matchcode_toolkit.fingerprinting import create_structure_fingerprint
+from matchcode_toolkit.fingerprinting import get_file_fingerprint_hashes
 from matchcode_toolkit.fingerprinting import split_fingerprint
+from matchcode_toolkit.halohash import byte_hamming_distance
 
 
 class Resource():
@@ -124,3 +126,29 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual({}, empty_dir_1.extra_data)
         self.assertEqual({}, empty_dir_2.extra_data)
         self.assertEqual({}, empty_dir_2.extra_data)
+
+    def test_get_file_fingerprint_hashes_one_line_removed(self):
+        test_file1 = self.get_test_loc('inflate.c')
+        test_file2 = self.get_test_loc('inflate-mod.c')
+        result1 = get_file_fingerprint_hashes(test_file1)
+        result2 = get_file_fingerprint_hashes(test_file2)
+        result1 = result1.get('halo1')
+        result2 = result2.get('halo1')
+        expected_result1 = 'a23a49e4cd40718d1297be719e6564a4'
+        expected_result2 = 'aa3a49e4cd40718d1297be519e6564a4'
+        assert result1 == expected_result1
+        assert result2 == expected_result2
+        assert byte_hamming_distance(result1, result2) == 2
+
+    def test_get_file_fingerprint_hashes_one_line_added(self):
+        test_file1 = self.get_test_loc('inflate.c')
+        test_file2 = self.get_test_loc('inflate-mod2.c')
+        result1 = get_file_fingerprint_hashes(test_file1)
+        result2 = get_file_fingerprint_hashes(test_file2)
+        result1 = result1.get('halo1')
+        result2 = result2.get('halo1')
+        expected_result1 = 'a23a49e4cd40718d1297be719e6564a4'
+        expected_result2 = 'a23b49e4cd40708d1297be719c6564a4'
+        assert result1 == expected_result1
+        assert result2 == expected_result2
+        assert byte_hamming_distance(result1, result2) == 3

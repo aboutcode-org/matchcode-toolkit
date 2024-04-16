@@ -38,6 +38,7 @@ class FingerprintCodebase(Pipeline):
 
     def fingerprint_codebase(self):
         """
-        Compute directory fingerprints for matching purposes
+        Compute directory and resource fingerprints for matching purposes
         """
         matchcode.fingerprint_codebase_directories(self.project)
+        matchcode.fingerprint_codebase_resources(self.project)

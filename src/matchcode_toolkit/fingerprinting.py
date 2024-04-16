@@ -8,6 +8,7 @@
 #
 
 import binascii
+import re
 
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
@@ -158,3 +159,79 @@ def create_halohash_chunks(bah128):
     chunk4 = hexstring_to_binarray(chunk4)
 
     return chunk1, chunk2, chunk3, chunk4
+
+
+# Split on whitespace and punctuations: keep only characters and numbers
+query_pattern = '[^_\\W]+'
+word_splitter = re.compile(query_pattern, re.UNICODE).findall
+
+
+def _tokenizer(text):
+    """
+    Return an list of tokens from a unicode text.
+    """
+    if not text:
+        return []
+    return [token for token in word_splitter(text) if token]
+
+
+def tokenizer(text):
+    """
+    Return an list of tokens from a unicode text.
+
+    For example::
+    >>> list(tokenizer(''))
+    []
+    >>> x = list(tokenizer('some Text with   spAces! + _ -'))
+    >>> assert x == ['some', 'text', 'with', 'spaces']
+
+    >>> x = list(tokenizer('{{}some }}Text with   spAces! + _ -'))
+    >>> assert x == ['some', 'text', 'with', 'spaces']
+
+    >>> x = list(tokenizer('{{Hi}}some {{}}Text with{{noth+-_!@ing}}   {{junk}}spAces! + _ -{{}}'))
+    >>> assert x == ['hi', 'some', 'text', 'with', 'noth', 'ing', 'junk', 'spaces']
+
+    """
+    return _tokenizer(text.lower())
+
+
+def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
+    """
+    Return a mapping of fingerprint hashes for the file at `location`
+
+    The `halo1` hash is the hex digest of the fingerprint of the file.
+    `halo1` is empty if the file is empty.
+
+    - We start by breaking the file into words (tokens)
+    - We compute ngrams over the list of tokens
+
+    Return an empty mapping if `location` is not a text file
+    """
+    from commoncode import filetype
+    from licensedcode.tokenize import ngrams
+    from typecode.contenttype import get_type
+
+    # Do not process `location` if it's not a text file
+    ft = get_type(location)
+    if not (filetype.is_file(location) and ft.is_text):
+        return {}
+
+    with open(location, encoding='utf-8') as f:
+        content = f.read()
+
+    # Break content into words, then create ngrams from words
+    words = tokenizer(content)
+    ngs = ngrams(words, ngram_length)
+
+    # Convert each list of ngrams to a sequence of bytes
+    ngs_bytes = [[g.encode('utf-8') for g in ng] for ng in ngs]
+
+    # Join all ngrams into a single bytearray
+    ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
+
+    # Create fingerprints and return fingerprint hashes
+    file_fingerprint = BitAverageHaloHash(ngs_bytes) if ngs_bytes else None
+
+    return dict(
+        halo1=file_fingerprint.hexdigest().decode('utf-8') if file_fingerprint else ''
+    )
