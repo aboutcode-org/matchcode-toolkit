@@ -10,10 +10,6 @@
 import binascii
 import re
 
-from commoncode import filetype
-from licensedcode.tokenize import ngrams
-from typecode.contenttype import get_type
-
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
 
@@ -211,6 +207,10 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
 
     Return an empty mapping if `location` is not a text file
     """
+    from commoncode import filetype
+    from licensedcode.tokenize import ngrams
+    from typecode.contenttype import get_type
+
     # Do not process `location` if it's not a text file
     ft = get_type(location)
     if not (filetype.is_file(location) and ft.is_text):
