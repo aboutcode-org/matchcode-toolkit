@@ -227,9 +227,10 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     )
 
 
-def create_file_fingerprint(content, ngram_length=8):
+def create_content_hash(content, ngram_length=8):
     """
-    Return a 128-bit BitAverageHaloHash fingerprint in hex from file `content`
+    Return a 128-bit BitAverageHaloHash from file `content` and the number of
+    ngrams inserted into the hash
     """
     from licensedcode.tokenize import ngrams
 
@@ -245,11 +246,22 @@ def create_file_fingerprint(content, ngram_length=8):
 
     # Create fingerprints and return fingerprint hashes
     if ngs_bytes:
-        content_fingerprint = BitAverageHaloHash(ngs_bytes).hexdigest().decode('utf-8')
+        return BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
     else:
-        return ''
+        return None, 0
 
-    ngs_count = len(ngs_bytes)
-    ngs_count_hex_str = '%08x' % ngs_count
-    file_fingerprint = ngs_count_hex_str + content_fingerprint
-    return file_fingerprint
+
+def create_file_fingerprint(content, ngram_length=8):
+    """
+    Return a 128-bit BitAverageHaloHash fingerprint in hex from file `content`
+    """
+    # Create fingerprint
+    content_hash, ngs_count = create_content_hash(
+        content,
+        ngram_length=ngram_length
+    )
+    if content_hash:
+        content_fingerprint = content_hash.hexdigest().decode('utf-8')
+        ngs_count_hex_str = '%08x' % ngs_count
+        file_fingerprint = ngs_count_hex_str + content_fingerprint
+        return file_fingerprint
