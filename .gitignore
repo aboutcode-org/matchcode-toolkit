@@ -55,7 +55,7 @@ doc/pyvenv.cfg
 pyvenv.cfg
 
 # Various junk and temp files
-.DS_Store
+*.DS_Store
 *~
 .*.sw[po]
 .build

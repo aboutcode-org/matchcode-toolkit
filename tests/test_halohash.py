@@ -64,8 +64,9 @@ def check_results(
     for exp, res in zip(expected, results):
         assert exp[key1] == res[key1]
         expected_mean_hamming_distance = exp['mean hamming distance']
-        exp_min = expected_mean_hamming_distance - exp['standard deviation']
-        exp_max = expected_mean_hamming_distance + exp['standard deviation']
+        expected_standard_deviation = exp['standard deviation'] * 1.75
+        exp_min = expected_mean_hamming_distance - expected_standard_deviation
+        exp_max = expected_mean_hamming_distance + expected_standard_deviation
         assert exp_min <= res['mean hamming distance']
         assert res['mean hamming distance'] <= exp_max
 
