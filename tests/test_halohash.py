@@ -60,14 +60,14 @@ def check_results(
 
     field_names, expected = load_csv(expected_file)
     key1 = field_names[0]
-    key2 = field_names[-1]
     # then check results line by line for more compact results
     for exp, res in zip(expected, results):
         assert exp[key1] == res[key1]
-        expected_average_hamming_distance = exp[key2]
-        exp_min = expected_average_hamming_distance - 5
-        exp_max = expected_average_hamming_distance + 5
-        assert exp_min <= res[key2] <= exp_max
+        expected_mean_hamming_distance = exp['mean hamming distance']
+        exp_min = expected_mean_hamming_distance - exp['standard deviation']
+        exp_max = expected_mean_hamming_distance + exp['standard deviation']
+        assert exp_min <= res['mean hamming distance']
+        assert res['mean hamming distance'] <= exp_max
 
 
 class TestHalohash(FileBasedTesting):
@@ -85,6 +85,7 @@ class TestHalohash(FileBasedTesting):
         input_similarity = (number_of_ngrams_content / number_of_ngrams_original) * 100
         return fingerprint_similarity, input_similarity
 
+    # TODO: calculate standard deviation
     def test_halohash_random_delete(self, regen=False):
         for number_of_words in [300, 1000]:
             content = copy.copy(self.original_content[:number_of_words])
@@ -111,18 +112,36 @@ class TestHalohash(FileBasedTesting):
                     input_similarity_by_number_of_elements[number_of_elements].append(input_similarity)
                     modified_content.pop(random.randint(0, len(modified_content) - 1))
 
+            # Take mean and standard deviation
             results = []
             for number_of_elements, hamming_distances in hamming_distance_by_number_of_elements.items():
-                average_hamming_distance = sum(hamming_distances) / len(hamming_distances)
+                number_of_hamming_distances = len(hamming_distances)
+
+                # 1: Find the mean.
+                mean_hamming_distance = sum(hamming_distances) / number_of_hamming_distances
+
+                # 2: For each data point, find the square of its distance to the mean, then sum the values.
+                s0 = sum(
+                    (hamming_distance - mean_hamming_distance) ** 2
+                    for hamming_distance in hamming_distances
+                )
+
+                # 3: Divide by the number of data points.
+                s1 = s0 / number_of_hamming_distances
+
+                # 4: Take the square root.
+                standard_deviation = math.sqrt(s1)
+
                 results.append(
                     {
                         'number of hashed elements': int(number_of_elements),
-                        'average hamming distance': average_hamming_distance
+                        'mean hamming distance': round(mean_hamming_distance, 1),
+                        'standard deviation': round(standard_deviation, 1)
                     }
                 )
 
             expected_results_loc = self.get_test_loc(f'{number_of_words}-delete-expected-results.csv')
-            check_results(results, expected_results_loc, ['number of hashed elements', 'average hamming distance'], regen=regen)
+            check_results(results, expected_results_loc, ['number of hashed elements', 'mean hamming distance', 'standard deviation'], regen=regen)
 
     def test_halohash_random_replace(self, regen=False):
         for number_of_words in [300, 1000]:
@@ -154,15 +173,34 @@ class TestHalohash(FileBasedTesting):
                     modified_content[random.randint(0, len(modified_content) - 1)] = bytes(new_word, 'utf-8')
                     words_replaced += 1
 
+
+            # Take mean and standard deviation
             results = []
             for words_replaced, hamming_distances in hamming_distance_by_number_of_words_replaced.items():
-                average_hamming_distance = sum(hamming_distances) / len(hamming_distances)
+                number_of_hamming_distances = len(hamming_distances)
+
+                # 1: Find the mean.
+                mean_hamming_distance = sum(hamming_distances) / number_of_hamming_distances
+
+                # 2: For each data point, find the square of its distance to the mean, then sum the values.
+                s0 = sum(
+                    (hamming_distance - mean_hamming_distance) ** 2
+                    for hamming_distance in hamming_distances
+                )
+
+                # 3: Divide by the number of data points.
+                s1 = s0 / number_of_hamming_distances
+
+                # 4: Take the square root.
+                standard_deviation = math.sqrt(s1)
+
                 results.append(
                     {
-                        'words replaced': words_replaced,
-                        'average hamming distance': average_hamming_distance
+                        'words replaced': int(words_replaced),
+                        'mean hamming distance': round(mean_hamming_distance, 1),
+                        'standard deviation': round(standard_deviation, 1)
                     }
                 )
 
             expected_results_loc = self.get_test_loc(f'{number_of_words}-replaced-expected-results.csv')
-            check_results(results, expected_results_loc, ['words replaced', 'average hamming distance'], regen=regen)
+            check_results(results, expected_results_loc, ['words replaced', 'mean hamming distance', 'standard deviation'], regen=regen)
