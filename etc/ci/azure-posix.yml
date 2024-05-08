@@ -30,6 +30,10 @@ jobs:
                 displayName: '${{ pyver }} - Install Python'
 
               - script: |
+                    sudo apt-get install wamerican
+                displayName: '${{ pyver }} - Install wamerican dictionary package'
+
+              - script: |
                     python${{ pyver }} --version
                     echo "python${{ pyver }}" > PYTHON_EXECUTABLE
                     ./configure --clean && ./configure --dev
