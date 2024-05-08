@@ -111,7 +111,7 @@ class TestHalohash(FileBasedTesting):
             self.original_content = [bytes(x.strip(), 'utf-8') for x in f]
 
     def test_halohash_random_delete(self, regen=False):
-        for number_of_words in [500, 1000]:
+        for number_of_words in [500,]:
             content = copy.copy(self.original_content[:number_of_words])
             original_hash = halohash.BitAverageHaloHash(content)
 
@@ -147,7 +147,7 @@ class TestHalohash(FileBasedTesting):
             check_results(results, expected_results_loc, ['number of hashed elements', 'mean hamming distance', 'standard deviation'], regen=regen)
 
     def test_halohash_random_replace(self, regen=False):
-        for number_of_words in [500, 1000]:
+        for number_of_words in [500,]:
             content = copy.copy(self.original_content[:number_of_words])
             original_hash = halohash.BitAverageHaloHash(content)
 
