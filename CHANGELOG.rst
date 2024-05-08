@@ -1,6 +1,11 @@
 Changelog
 =========
 
+vNext
+-----
+
+*2024-04-30* -- Update file fingerprint to include number of ngrams hashed in it.
+
 v4.1.0
 ------
 

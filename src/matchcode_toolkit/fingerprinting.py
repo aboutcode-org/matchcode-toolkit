@@ -125,14 +125,14 @@ def compute_codebase_directory_fingerprints(codebase):
     return codebase
 
 
-def split_fingerprint(directory_fingerprint):
+def split_fingerprint(fingerprint):
     """
-    Given a string `directory_fingerprint`, return the indexed elements count as
-    an integer and the bah128 fingerprint string
+    Given a string `fingerprint`, return the indexed elements count as an
+    integer and the bah128 fingerprint string
     """
-    indexed_elements_count_hash = directory_fingerprint[0:8]
+    indexed_elements_count_hash = fingerprint[0:8]
     indexed_elements_count = int(indexed_elements_count_hash, 16)
-    bah128 = directory_fingerprint[8:]
+    bah128 = fingerprint[8:]
     return indexed_elements_count, bah128
 
 
@@ -208,7 +208,6 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     Return an empty mapping if `location` is not a text file
     """
     from commoncode import filetype
-    from licensedcode.tokenize import ngrams
     from typecode.contenttype import get_type
 
     # Do not process `location` if it's not a text file
@@ -218,6 +217,22 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
 
     with open(location, encoding='utf-8') as f:
         content = f.read()
+
+    file_fingerprint = create_file_fingerprint(
+        content,
+        ngram_length=ngram_length
+    )
+    return dict(
+        halo1=file_fingerprint
+    )
+
+
+def create_content_hash(content, ngram_length=8):
+    """
+    Return a 128-bit BitAverageHaloHash from file `content` and the number of
+    ngrams inserted into the hash
+    """
+    from licensedcode.tokenize import ngrams
 
     # Break content into words, then create ngrams from words
     words = tokenizer(content)
@@ -230,8 +245,23 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
 
     # Create fingerprints and return fingerprint hashes
-    file_fingerprint = BitAverageHaloHash(ngs_bytes) if ngs_bytes else None
+    if ngs_bytes:
+        return BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
+    else:
+        return None, 0
 
-    return dict(
-        halo1=file_fingerprint.hexdigest().decode('utf-8') if file_fingerprint else ''
+
+def create_file_fingerprint(content, ngram_length=8):
+    """
+    Return a 128-bit BitAverageHaloHash fingerprint in hex from file `content`
+    """
+    # Create fingerprint
+    content_hash, ngs_count = create_content_hash(
+        content,
+        ngram_length=ngram_length
     )
+    if content_hash:
+        content_fingerprint = content_hash.hexdigest().decode('utf-8')
+        ngs_count_hex_str = '%08x' % ngs_count
+        file_fingerprint = ngs_count_hex_str + content_fingerprint
+        return file_fingerprint
