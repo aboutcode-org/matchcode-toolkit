@@ -121,8 +121,8 @@ class TestHalohash(FileBasedTesting):
             fingerprint_similarity_by_number_of_elements = defaultdict(list)
             input_similarity_by_number_of_elements = defaultdict(list)
 
-            # Run test 30 times
-            for _ in range(30):
+            # Run test 40 times
+            for _ in range(40):
                 modified_content = copy.copy(content)
                 # Do not remove more than 10% of words for this test
                 # we are moving towards unrelated files past that
@@ -165,8 +165,8 @@ class TestHalohash(FileBasedTesting):
             fingerprint_similarity_by_number_of_words_replaced = defaultdict(list)
             input_similarity_by_number_of_words_replaced = defaultdict(list)
 
-            # Run test 30 times
-            for _ in range(30):
+            # Run test 40 times
+            for _ in range(40):
                 modified_content = copy.copy(content)
                 words_replaced = 0
                 # Do not remove more than 10% of words for this test
