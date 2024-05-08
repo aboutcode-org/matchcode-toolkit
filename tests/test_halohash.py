@@ -59,10 +59,11 @@ def check_results(
             writer.writerows(results)
 
     field_names, expected = load_csv(expected_file)
-    key1 = field_names[0]
-    # then check results line by line for more compact results
+    # The column name is different in the two  files
+    column1_name = field_names[0]
+    # check results line by line for more compact results
     for exp, res in zip(expected, results):
-        assert exp[key1] == res[key1]
+        assert exp[column1_name] == res[column1_name]
         expected_mean_hamming_distance = exp['mean hamming distance']
         expected_standard_deviation = exp['standard deviation']
         exp_min = expected_mean_hamming_distance - expected_standard_deviation
@@ -70,12 +71,10 @@ def check_results(
         assert exp_min <= res['mean hamming distance'] <= exp_max
 
 
-def calculate_similarity(content_hash, content_set, modified_content, number_of_words):
+def calculate_hamming_distance(content_hash, modified_content):
     modified_content_hash = halohash.BitAverageHaloHash(modified_content)
     hamming_distance = content_hash.distance(modified_content_hash)
-    fingerprint_similarity = ((SIZE_IN_BITS - hamming_distance) / SIZE_IN_BITS) * 100
-    input_similarity = (len(set(modified_content).intersection(content_set)) / number_of_words) * 100
-    return hamming_distance, fingerprint_similarity, input_similarity
+    return hamming_distance
 
 
 def calculate_mean_and_standard_deviation(hamming_distances):
@@ -114,13 +113,9 @@ class TestHalohash(FileBasedTesting):
     def test_halohash_random_delete(self, regen=False):
         for number_of_words in [500, 1000]:
             content = copy.copy(self.original_content[:number_of_words])
-            content_set = set(content)
             original_hash = halohash.BitAverageHaloHash(content)
 
             hamming_distance_by_number_of_elements = defaultdict(list)
-            fingerprint_similarity_by_number_of_elements = defaultdict(list)
-            input_similarity_by_number_of_elements = defaultdict(list)
-
             # Run test 40 times
             for _ in range(40):
                 modified_content = copy.copy(content)
@@ -128,16 +123,12 @@ class TestHalohash(FileBasedTesting):
                 # we are moving towards unrelated files past that
                 n = int(math.floor(len(modified_content) * 0.10))
                 for _ in range(n):
-                    hamming_distance, fingerprint_similarity, input_similarity = calculate_similarity(
+                    hamming_distance = calculate_hamming_distance(
                         original_hash,
-                        content_set,
-                        modified_content,
-                        number_of_words
+                        modified_content
                     )
                     number_of_elements = len(modified_content)
                     hamming_distance_by_number_of_elements[number_of_elements].append(hamming_distance)
-                    fingerprint_similarity_by_number_of_elements[number_of_elements].append(fingerprint_similarity)
-                    input_similarity_by_number_of_elements[number_of_elements].append(input_similarity)
                     modified_content.pop(random.randint(0, len(modified_content) - 1))
 
             # Take mean and standard deviation
@@ -158,12 +149,9 @@ class TestHalohash(FileBasedTesting):
     def test_halohash_random_replace(self, regen=False):
         for number_of_words in [500, 1000]:
             content = copy.copy(self.original_content[:number_of_words])
-            content_set = set(content)
             original_hash = halohash.BitAverageHaloHash(content)
 
             hamming_distance_by_number_of_words_replaced = defaultdict(list)
-            fingerprint_similarity_by_number_of_words_replaced = defaultdict(list)
-            input_similarity_by_number_of_words_replaced = defaultdict(list)
 
             # Run test 40 times
             for _ in range(40):
@@ -173,15 +161,11 @@ class TestHalohash(FileBasedTesting):
                 # we are moving towards unrelated files past that
                 n = int(math.floor(len(modified_content) * 0.10))
                 for _ in range(n):
-                    hamming_distance, fingerprint_similarity, input_similarity = calculate_similarity(
+                    hamming_distance = calculate_hamming_distance(
                         original_hash,
-                        content_set,
-                        modified_content,
-                        number_of_words
+                        modified_content
                     )
                     hamming_distance_by_number_of_words_replaced[words_replaced].append(hamming_distance)
-                    fingerprint_similarity_by_number_of_words_replaced[words_replaced].append(fingerprint_similarity)
-                    input_similarity_by_number_of_words_replaced[words_replaced].append(input_similarity)
 
                     modified_content.pop(random.randint(0, len(modified_content) - 1))
                     new_word = (
