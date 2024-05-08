@@ -134,6 +134,7 @@ class TestHalohash(FileBasedTesting):
                         modified_content,
                         number_of_words
                     )
+                    number_of_elements = len(modified_content)
                     hamming_distance_by_number_of_elements[number_of_elements].append(hamming_distance)
                     fingerprint_similarity_by_number_of_elements[number_of_elements].append(fingerprint_similarity)
                     input_similarity_by_number_of_elements[number_of_elements].append(input_similarity)
