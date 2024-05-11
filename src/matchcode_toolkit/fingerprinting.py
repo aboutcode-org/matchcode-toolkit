@@ -215,7 +215,7 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     if not (filetype.is_file(location) and ft.is_text):
         return {}
 
-    with open(location, encoding='utf-8') as f:
+    with open(location) as f:
         content = f.read()
 
     file_fingerprint = create_file_fingerprint(
