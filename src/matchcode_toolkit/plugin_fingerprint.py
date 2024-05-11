@@ -10,20 +10,21 @@
 import attr
 
 from commoncode.cliutils import PluggableCommandLineOption
-from commoncode.cliutils import POST_SCAN_GROUP
+from commoncode.cliutils import SCAN_GROUP
 from matchcode_toolkit.fingerprinting import compute_codebase_directory_fingerprints
-from plugincode.post_scan import post_scan_impl
-from plugincode.post_scan import PostScanPlugin
+from matchcode_toolkit.fingerprinting import get_file_fingerprint_hashes
+from plugincode.scan import ScanPlugin
+from plugincode.scan import scan_impl
 
 
-@post_scan_impl
-class Fingerprint(PostScanPlugin):
+@scan_impl
+class FingerprintScanner(ScanPlugin):
     resource_attributes = dict(
         directory_content_fingerprint=attr.ib(default=None, repr=False),
         directory_structure_fingerprint=attr.ib(default=None, repr=False),
+        halo1=attr.ib(default=None, repr=False),
     )
     sort_order = 6
-
     options = [
         PluggableCommandLineOption(
             (
@@ -31,14 +32,17 @@ class Fingerprint(PostScanPlugin):
             ),
             is_flag=True,
             default=False,
-            help='Compute directory fingerprints that are used for matching',
-            help_group=POST_SCAN_GROUP,
+            help='Compute directory and resource fingerprints that are used for matching',
+            help_group=SCAN_GROUP,
             sort_order=20,
         )
     ]
 
     def is_enabled(self, fingerprint, **kwargs):
         return fingerprint
+        
+    def get_scanner(self, **kwargs):
+        return get_file_fingerprint_hashes
 
     def process_codebase(self, codebase, **kwargs):
         codebase = compute_codebase_directory_fingerprints(codebase)

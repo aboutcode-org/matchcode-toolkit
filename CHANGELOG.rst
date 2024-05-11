@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v5.1.0
+-----
+
+*2024-05-10* -- Update scancode-toolkit fingerprint plugin to get file fingerprints for text files.
+
 v5.0.0
 -----
 
