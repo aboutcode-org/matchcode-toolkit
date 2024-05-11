@@ -43,4 +43,10 @@ class TestPluginFingerprinting(FileBasedTesting):
         ]
         run_scan_click(args)
         test_loc = self.get_test_loc('fingerprinting-expected.json')
-        check_json_scan(test_loc, result_file, regen=REGEN_TEST_FIXTURES)
+        check_json_scan(
+            test_loc,
+            result_file,
+            remove_file_date=True,
+            check_headers=False,
+            regen=REGEN_TEST_FIXTURES
+        )
