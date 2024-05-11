@@ -37,9 +37,9 @@ Usage
 -----
 
 MatchCode toolkit provides the ``--fingerprint`` option for ScanCode toolkit.
-This is a post-scan plugin that adds the fields
-``directory_content_fingerprint`` and ``directory_structure_fingerprint`` to
-Resources and computes those values for directories.
+This is a scan plugin that adds the fields
+``directory_content_fingerprint``, ``directory_structure_fingerprint``, and
+``halo1`` to Resources and computes those values.
 ::
 
   scancode --info --fingerprint <scan target location> --json-pp <output location>
