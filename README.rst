@@ -1,7 +1,3 @@
-MATCHCODE TOOLKIT HAS BEEN MOVED TO https://github.com/aboutcode-org/matchcode-toolkit 
-======================================================================================
-
-
 MatchCode toolkit
 =================
 MatchCode toolkit is a Python library that provides the file and directory
