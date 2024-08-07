@@ -3,7 +3,7 @@
 # purldb is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/purldb for support or download.
+# See https://github.com/aboutcode-org/purldb for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -85,7 +85,8 @@ def calculate_mean_and_standard_deviation(hamming_distances):
     number_of_hamming_distances = len(hamming_distances)
 
     # 1: Find the mean.
-    mean_hamming_distance = sum(hamming_distances) / number_of_hamming_distances
+    mean_hamming_distance = sum(hamming_distances) / \
+        number_of_hamming_distances
 
     # 2: For each data point, find the square of its distance to the mean, then sum the values.
     s0 = sum(
@@ -103,7 +104,8 @@ def calculate_mean_and_standard_deviation(hamming_distances):
 
 
 class TestHalohash(FileBasedTesting):
-    test_data_dir = os.path.join(os.path.dirname(__file__), 'testfiles/halohash')
+    test_data_dir = os.path.join(
+        os.path.dirname(__file__), 'testfiles/halohash')
 
     def setUp(self):
         words_loc = self.get_test_loc('words.txt')
@@ -128,13 +130,16 @@ class TestHalohash(FileBasedTesting):
                         modified_content
                     )
                     number_of_elements = len(modified_content)
-                    hamming_distance_by_number_of_elements[number_of_elements].append(hamming_distance)
-                    modified_content.pop(random.randint(0, len(modified_content) - 1))
+                    hamming_distance_by_number_of_elements[number_of_elements].append(
+                        hamming_distance)
+                    modified_content.pop(random.randint(
+                        0, len(modified_content) - 1))
 
             # Take mean and standard deviation
             results = []
             for number_of_elements, hamming_distances in hamming_distance_by_number_of_elements.items():
-                mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(hamming_distances)
+                mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(
+                    hamming_distances)
                 results.append(
                     {
                         'number of hashed elements': int(number_of_elements),
@@ -143,8 +148,10 @@ class TestHalohash(FileBasedTesting):
                     }
                 )
 
-            expected_results_loc = self.get_test_loc(f'{number_of_words}-delete-expected-results.csv')
-            check_results(results, expected_results_loc, ['number of hashed elements', 'mean hamming distance', 'standard deviation'], regen=regen)
+            expected_results_loc = self.get_test_loc(
+                f'{number_of_words}-delete-expected-results.csv')
+            check_results(results, expected_results_loc, [
+                          'number of hashed elements', 'mean hamming distance', 'standard deviation'], regen=regen)
 
     def test_halohash_random_replace(self, regen=False):
         for number_of_words in [500,]:
@@ -165,9 +172,11 @@ class TestHalohash(FileBasedTesting):
                         original_hash,
                         modified_content
                     )
-                    hamming_distance_by_number_of_words_replaced[words_replaced].append(hamming_distance)
+                    hamming_distance_by_number_of_words_replaced[words_replaced].append(
+                        hamming_distance)
 
-                    modified_content.pop(random.randint(0, len(modified_content) - 1))
+                    modified_content.pop(random.randint(
+                        0, len(modified_content) - 1))
                     new_word = (
                         subprocess.run(
                             ['shuf', '-n', '1', '/usr/share/dict/american-english'],
@@ -178,14 +187,15 @@ class TestHalohash(FileBasedTesting):
                         .strip()
                         .replace('"', '')
                     )
-                    modified_content[random.randint(0, len(modified_content) - 1)] = bytes(new_word, 'utf-8')
+                    modified_content[random.randint(
+                        0, len(modified_content) - 1)] = bytes(new_word, 'utf-8')
                     words_replaced += 1
-
 
             # Take mean and standard deviation
             results = []
             for words_replaced, hamming_distances in hamming_distance_by_number_of_words_replaced.items():
-                mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(hamming_distances)
+                mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(
+                    hamming_distances)
                 results.append(
                     {
                         'words replaced': int(words_replaced),
@@ -194,5 +204,7 @@ class TestHalohash(FileBasedTesting):
                     }
                 )
 
-            expected_results_loc = self.get_test_loc(f'{number_of_words}-replaced-expected-results.csv')
-            check_results(results, expected_results_loc, ['words replaced', 'mean hamming distance', 'standard deviation'], regen=regen)
+            expected_results_loc = self.get_test_loc(
+                f'{number_of_words}-replaced-expected-results.csv')
+            check_results(results, expected_results_loc, [
+                          'words replaced', 'mean hamming distance', 'standard deviation'], regen=regen)

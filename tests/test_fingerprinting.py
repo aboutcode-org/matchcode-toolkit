@@ -3,7 +3,7 @@
 # purldb is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/purldb for support or download.
+# See https://github.com/aboutcode-org/purldb for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -31,7 +31,8 @@ class Resource():
 
 
 class TestFingerprintingFunctions(FileBasedTesting):
-    test_data_dir = os.path.join(os.path.dirname(__file__), 'testfiles/fingerprinting')
+    test_data_dir = os.path.join(os.path.dirname(
+        __file__), 'testfiles/fingerprinting')
 
     def test__create_directory_fingerprint(self):
         test_input = [
@@ -48,10 +49,12 @@ class TestFingerprintingFunctions(FileBasedTesting):
 
     def test_split_fingerprint(self):
         directory_fingerprint = '0000000410d24471969646cb5402032288493126'
-        indexed_elements_count, bah128 = split_fingerprint(directory_fingerprint)
+        indexed_elements_count, bah128 = split_fingerprint(
+            directory_fingerprint)
 
         expected_indexed_elements_count = 4
-        self.assertEqual(expected_indexed_elements_count, indexed_elements_count)
+        self.assertEqual(expected_indexed_elements_count,
+                         indexed_elements_count)
 
         expected_bah128 = '10d24471969646cb5402032288493126'
         self.assertEqual(expected_bah128, bah128)
@@ -81,7 +84,8 @@ class TestFingerprintingFunctions(FileBasedTesting):
             Resource(path='package/index.js', size=608),
             Resource(path='package/package.json', size=677),
         ]
-        fingerprint = create_structure_fingerprint(test_top_resource, test_child_resources)
+        fingerprint = create_structure_fingerprint(
+            test_top_resource, test_child_resources)
         expected_fingerprint = '00000003ce72f4308a1bc1afb0fb47ed590b5c53'
         self.assertEqual(expected_fingerprint, fingerprint)
 
@@ -134,8 +138,10 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result2 = get_file_fingerprint_hashes(test_file2)
         result1 = result1.get('halo1')
         result2 = result2.get('halo1')
-        result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
-        result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
+        result1_indexed_elements_count, result1_fingerprint = split_fingerprint(
+            result1)
+        result2_indexed_elements_count, result2_fingerprint = split_fingerprint(
+            result2)
 
         expected_result1_indexed_elements_count = 6395
         expected_result2_indexed_elements_count = 6388
@@ -147,7 +153,8 @@ class TestFingerprintingFunctions(FileBasedTesting):
         assert result1_fingerprint == expected_result1_fingerprint
         assert result2_fingerprint == expected_result2_fingerprint
 
-        assert byte_hamming_distance(result1_fingerprint, result2_fingerprint) == 2
+        assert byte_hamming_distance(
+            result1_fingerprint, result2_fingerprint) == 2
 
     def test_get_file_fingerprint_hashes_one_line_added(self):
         test_file1 = self.get_test_loc('inflate.c')
@@ -156,8 +163,10 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result2 = get_file_fingerprint_hashes(test_file2)
         result1 = result1.get('halo1')
         result2 = result2.get('halo1')
-        result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
-        result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
+        result1_indexed_elements_count, result1_fingerprint = split_fingerprint(
+            result1)
+        result2_indexed_elements_count, result2_fingerprint = split_fingerprint(
+            result2)
 
         expected_result1_indexed_elements_count = 6395
         expected_result2_indexed_elements_count = 6398
@@ -169,4 +178,5 @@ class TestFingerprintingFunctions(FileBasedTesting):
         assert result1_fingerprint == expected_result1_fingerprint
         assert result2_fingerprint == expected_result2_fingerprint
 
-        assert byte_hamming_distance(result1_fingerprint, result2_fingerprint) == 3
+        assert byte_hamming_distance(
+            result1_fingerprint, result2_fingerprint) == 3
