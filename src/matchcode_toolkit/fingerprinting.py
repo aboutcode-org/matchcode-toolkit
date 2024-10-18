@@ -195,7 +195,7 @@ def tokenizer(text):
     return _tokenizer(text.lower())
 
 
-def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
+def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kwargs):
     """
     Return a mapping of fingerprint hashes for the file at `location`
 
@@ -218,50 +218,43 @@ def get_file_fingerprint_hashes(location, ngram_length=8, **kwargs):
     with open(location) as f:
         content = f.read()
 
-    file_fingerprint = create_file_fingerprint(
+    return create_file_fingerprints(
         content,
-        ngram_length=ngram_length
-    )
-    return dict(
-        halo1=file_fingerprint
+        ngram_length=ngram_length,
+        window_length=window_length,
     )
 
 
-def create_content_hash(content, ngram_length=8):
+def create_file_fingerprints(content, ngram_length=8, window_length=64):
     """
-    Return a 128-bit BitAverageHaloHash from file `content` and the number of
-    ngrams inserted into the hash
+    Return a mapping of halo1 and hailstorm hashes from content
     """
     from licensedcode.tokenize import ngrams
+    from licensedcode.tokenize import select_ngrams
 
-    # Break content into words, then create ngrams from words
+    fingerprints = {
+        "halo1": "",
+        "hailstorm": [],
+    }
+
+    # Create fingerprint
     words = tokenizer(content)
     ngs = ngrams(words, ngram_length)
-
-    # Convert each list of ngrams to a sequence of bytes
     ngs_bytes = [[g.encode('utf-8') for g in ng] for ng in ngs]
-
-    # Join all ngrams into a single bytearray
-    ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
-
-    # Create fingerprints and return fingerprint hashes
-    if ngs_bytes:
-        return BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
-    else:
-        return None, 0
-
-
-def create_file_fingerprint(content, ngram_length=8):
-    """
-    Return a 128-bit BitAverageHaloHash fingerprint in hex from file `content`
-    """
-    # Create fingerprint
-    content_hash, ngs_count = create_content_hash(
-        content,
-        ngram_length=ngram_length
-    )
+    content_hash, ngs_count = BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
     if content_hash:
         content_fingerprint = content_hash.hexdigest().decode('utf-8')
         ngs_count_hex_str = '%08x' % ngs_count
         file_fingerprint = ngs_count_hex_str + content_fingerprint
-        return file_fingerprint
+        fingerprints['halo1'] = file_fingerprint
+
+    windows = ngrams(ngs, window_length)
+    selected_windows = select_ngrams(windows)
+    hailstorm_hashes = [
+        BitAverageHaloHash(window).hexdigest().decode('utf-8')
+        for window in selected_windows
+    ]
+    if hailstorm_hashes:
+        fingerprints['hailstorm'] = hailstorm_hashes
+
+    return fingerprints
