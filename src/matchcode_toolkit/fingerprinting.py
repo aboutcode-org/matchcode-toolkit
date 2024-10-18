@@ -241,6 +241,7 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
     words = tokenizer(content)
     ngs = ngrams(words, ngram_length)
     ngs_bytes = [[g.encode('utf-8') for g in ng] for ng in ngs]
+    ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
     content_hash, ngs_count = BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
     if content_hash:
         content_fingerprint = content_hash.hexdigest().decode('utf-8')
@@ -248,11 +249,14 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         file_fingerprint = ngs_count_hex_str + content_fingerprint
         fingerprints['halo1'] = file_fingerprint
 
-    windows = ngrams(ngs, window_length)
+    words = tokenizer(content)
+    windows = ngrams(words, window_length)
     selected_windows = select_ngrams(windows)
+    selected_windows_bytes = [[g.encode('utf-8') for g in window] for window in selected_windows]
+    selected_windows_bytes = [b''.join(window) for window in selected_windows_bytes]
     hailstorm_hashes = [
         BitAverageHaloHash(window).hexdigest().decode('utf-8')
-        for window in selected_windows
+        for window in selected_windows_bytes
     ]
     if hailstorm_hashes:
         fingerprints['hailstorm'] = hailstorm_hashes

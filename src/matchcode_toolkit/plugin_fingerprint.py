@@ -23,6 +23,7 @@ class FingerprintScanner(ScanPlugin):
         directory_content_fingerprint=attr.ib(default=None, repr=False),
         directory_structure_fingerprint=attr.ib(default=None, repr=False),
         halo1=attr.ib(default=None, repr=False),
+        hailstorm=attr.ib(default=None, repr=False),
     )
     sort_order = 6
     options = [
