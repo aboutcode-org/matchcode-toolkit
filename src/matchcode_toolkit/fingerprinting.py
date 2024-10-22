@@ -12,12 +12,11 @@ import re
 
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
-
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [
     # This is both the directory content and directory structure fingerprint for
     # an empty directory.
-    '0000000000000000000000000000000000000000',
+    "0000000000000000000000000000000000000000",
 ]
 
 
@@ -25,11 +24,11 @@ def _create_directory_fingerprint(inputs):
     """
     Return a 128-bit BitAverageHaloHash fingerprint in hex from `inputs`
     """
-    inputs = [i.encode('utf-8') for i in inputs if i]
+    inputs = [i.encode("utf-8") for i in inputs if i]
     bah128 = BitAverageHaloHash(inputs, size_in_bits=128).hexdigest()
     inputs_count = len(inputs)
-    inputs_count_hex_str = '%08x' % inputs_count
-    bah128 = bah128.decode('utf-8')
+    inputs_count_hex_str = "%08x" % inputs_count
+    bah128 = bah128.decode("utf-8")
     directory_fingerprint = inputs_count_hex_str + bah128
     return directory_fingerprint
 
@@ -55,7 +54,7 @@ def _get_resource_subpath(resource, top):
     The subpath returned would be 'baz.c'
     """
     _, _, subpath = resource.path.partition(top.path)
-    subpath = subpath.lstrip('/')
+    subpath = subpath.lstrip("/")
     return subpath
 
 
@@ -88,16 +87,16 @@ def _compute_directory_fingerprints(directory, codebase):
         return
 
     directory_content_fingerprint = create_content_fingerprint(children)
-    if hasattr(directory, 'directory_content_fingerprint'):
+    if hasattr(directory, "directory_content_fingerprint"):
         directory.directory_content_fingerprint = directory_content_fingerprint
     else:
-        directory.extra_data['directory_content'] = directory_content_fingerprint
+        directory.extra_data["directory_content"] = directory_content_fingerprint
 
     directory_structure_fingerprint = create_structure_fingerprint(directory, children)
-    if hasattr(directory, 'directory_structure_fingerprint'):
+    if hasattr(directory, "directory_structure_fingerprint"):
         directory.directory_structure_fingerprint = directory_structure_fingerprint
     else:
-        directory.extra_data['directory_structure'] = directory_structure_fingerprint
+        directory.extra_data["directory_structure"] = directory_structure_fingerprint
 
     directory.save(codebase)
     return directory
@@ -162,7 +161,7 @@ def create_halohash_chunks(bah128):
 
 
 # Split on whitespace and punctuations: keep only characters and numbers
-query_pattern = '[^_\\W]+'
+query_pattern = "[^_\\W]+"
 word_splitter = re.compile(query_pattern, re.UNICODE).findall
 
 
@@ -237,28 +236,30 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         "hailstorm": [],
     }
 
-    # Create fingerprint
-    words = tokenizer(content)
+    # tokenize content intow words
+    words = list(tokenizer(content))
+
+    # Create a file fingerprint from the number of elements in the content hash
+    # and the content hash digest iteself.
     ngs = ngrams(words, ngram_length)
-    ngs_bytes = [[g.encode('utf-8') for g in ng] for ng in ngs]
-    ngs_bytes = [b''.join(ng) for ng in ngs_bytes]
+    ngs_bytes = [[g.encode("utf-8") for g in ng] for ng in ngs]
+    ngs_bytes = [b"".join(ng) for ng in ngs_bytes]
     content_hash, ngs_count = BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
     if content_hash:
-        content_fingerprint = content_hash.hexdigest().decode('utf-8')
-        ngs_count_hex_str = '%08x' % ngs_count
+        content_fingerprint = content_hash.hexdigest().decode("utf-8")
+        ngs_count_hex_str = "%08x" % ngs_count
         file_fingerprint = ngs_count_hex_str + content_fingerprint
-        fingerprints['halo1'] = file_fingerprint
+        fingerprints["halo1"] = file_fingerprint
 
-    words = tokenizer(content)
+    # Select windows from the content to find snippet similarities
     windows = ngrams(words, window_length)
     selected_windows = select_ngrams(windows)
-    selected_windows_bytes = [[g.encode('utf-8') for g in window] for window in selected_windows]
-    selected_windows_bytes = [b''.join(window) for window in selected_windows_bytes]
+    selected_windows_bytes = [[g.encode("utf-8") for g in window] for window in selected_windows]
+    selected_windows_bytes = [b"".join(window) for window in selected_windows_bytes]
     hailstorm_hashes = [
-        BitAverageHaloHash(window).hexdigest().decode('utf-8')
-        for window in selected_windows_bytes
+        BitAverageHaloHash(window).hexdigest().decode("utf-8") for window in selected_windows_bytes
     ]
     if hailstorm_hashes:
-        fingerprints['hailstorm'] = hailstorm_hashes
+        fingerprints["hailstorm"] = hailstorm_hashes
 
     return fingerprints

@@ -7,19 +7,17 @@
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
-from collections import defaultdict
-
+import copy
 import csv
 import math
-import copy
 import os
 import random
 import subprocess
+from collections import defaultdict
 
 from commoncode.testcase import FileBasedTesting
 
 from matchcode_toolkit import halohash
-
 
 SIZE_IN_BITS = 128
 
@@ -30,10 +28,7 @@ def load_csv(location):
     mappings field->value).
     """
     with open(location) as csvin:
-        reader = csv.DictReader(
-            csvin,
-            quoting=csv.QUOTE_NONNUMERIC
-        )
+        reader = csv.DictReader(csvin, quoting=csv.QUOTE_NONNUMERIC)
         fields = reader.fieldnames
         values = sorted(reader, key=lambda d: d.items())
         return fields, values
@@ -49,12 +44,8 @@ def check_results(
     Load and compare the CSV at `expected_file` against `results`.
     """
     if regen:
-        with open(expected_file, 'w') as f:
-            writer = csv.DictWriter(
-                f,
-                fieldnames=fieldnames,
-                quoting=csv.QUOTE_NONNUMERIC
-            )
+        with open(expected_file, "w") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_NONNUMERIC)
             writer.writeheader()
             writer.writerows(results)
 
@@ -64,11 +55,11 @@ def check_results(
     # check results line by line for more compact results
     for exp, res in zip(expected, results):
         assert exp[column1_name] == res[column1_name]
-        expected_mean_hamming_distance = exp['mean hamming distance']
-        expected_standard_deviation = exp['standard deviation']
+        expected_mean_hamming_distance = exp["mean hamming distance"]
+        expected_standard_deviation = exp["standard deviation"]
         exp_min = expected_mean_hamming_distance - expected_standard_deviation
         exp_max = expected_mean_hamming_distance + expected_standard_deviation
-        assert exp_min <= res['mean hamming distance'] <= exp_max
+        assert exp_min <= res["mean hamming distance"] <= exp_max
 
 
 def calculate_hamming_distance(content_hash, modified_content):
@@ -85,13 +76,11 @@ def calculate_mean_and_standard_deviation(hamming_distances):
     number_of_hamming_distances = len(hamming_distances)
 
     # 1: Find the mean.
-    mean_hamming_distance = sum(hamming_distances) / \
-        number_of_hamming_distances
+    mean_hamming_distance = sum(hamming_distances) / number_of_hamming_distances
 
     # 2: For each data point, find the square of its distance to the mean, then sum the values.
     s0 = sum(
-        (hamming_distance - mean_hamming_distance) ** 2
-        for hamming_distance in hamming_distances
+        (hamming_distance - mean_hamming_distance) ** 2 for hamming_distance in hamming_distances
     )
 
     # 3: Divide by the number of data points.
@@ -104,16 +93,17 @@ def calculate_mean_and_standard_deviation(hamming_distances):
 
 
 class TestHalohash(FileBasedTesting):
-    test_data_dir = os.path.join(
-        os.path.dirname(__file__), 'testfiles/halohash')
+    test_data_dir = os.path.join(os.path.dirname(__file__), "testfiles/halohash")
 
     def setUp(self):
-        words_loc = self.get_test_loc('words.txt')
+        words_loc = self.get_test_loc("words.txt")
         with open(words_loc) as f:
-            self.original_content = [bytes(x.strip(), 'utf-8') for x in f]
+            self.original_content = [bytes(x.strip(), "utf-8") for x in f]
 
     def test_halohash_random_delete(self, regen=False):
-        for number_of_words in [500,]:
+        for number_of_words in [
+            500,
+        ]:
             content = copy.copy(self.original_content[:number_of_words])
             original_hash = halohash.BitAverageHaloHash(content)
 
@@ -125,36 +115,44 @@ class TestHalohash(FileBasedTesting):
                 # we are moving towards unrelated files past that
                 n = int(math.floor(len(modified_content) * 0.10))
                 for _ in range(n):
-                    hamming_distance = calculate_hamming_distance(
-                        original_hash,
-                        modified_content
-                    )
+                    hamming_distance = calculate_hamming_distance(original_hash, modified_content)
                     number_of_elements = len(modified_content)
                     hamming_distance_by_number_of_elements[number_of_elements].append(
-                        hamming_distance)
-                    modified_content.pop(random.randint(
-                        0, len(modified_content) - 1))
+                        hamming_distance
+                    )
+                    modified_content.pop(random.randint(0, len(modified_content) - 1))
 
             # Take mean and standard deviation
             results = []
-            for number_of_elements, hamming_distances in hamming_distance_by_number_of_elements.items():
+            for (
+                number_of_elements,
+                hamming_distances,
+            ) in hamming_distance_by_number_of_elements.items():
                 mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(
-                    hamming_distances)
+                    hamming_distances
+                )
                 results.append(
                     {
-                        'number of hashed elements': int(number_of_elements),
-                        'mean hamming distance': round(mean_hamming_distance, 1),
-                        'standard deviation': round(standard_deviation, 1)
+                        "number of hashed elements": int(number_of_elements),
+                        "mean hamming distance": round(mean_hamming_distance, 1),
+                        "standard deviation": round(standard_deviation, 1),
                     }
                 )
 
             expected_results_loc = self.get_test_loc(
-                f'{number_of_words}-delete-expected-results.csv')
-            check_results(results, expected_results_loc, [
-                          'number of hashed elements', 'mean hamming distance', 'standard deviation'], regen=regen)
+                f"{number_of_words}-delete-expected-results.csv"
+            )
+            check_results(
+                results,
+                expected_results_loc,
+                ["number of hashed elements", "mean hamming distance", "standard deviation"],
+                regen=regen,
+            )
 
     def test_halohash_random_replace(self, regen=False):
-        for number_of_words in [500,]:
+        for number_of_words in [
+            500,
+        ]:
             content = copy.copy(self.original_content[:number_of_words])
             original_hash = halohash.BitAverageHaloHash(content)
 
@@ -168,43 +166,49 @@ class TestHalohash(FileBasedTesting):
                 # we are moving towards unrelated files past that
                 n = int(math.floor(len(modified_content) * 0.10))
                 for _ in range(n):
-                    hamming_distance = calculate_hamming_distance(
-                        original_hash,
-                        modified_content
-                    )
+                    hamming_distance = calculate_hamming_distance(original_hash, modified_content)
                     hamming_distance_by_number_of_words_replaced[words_replaced].append(
-                        hamming_distance)
+                        hamming_distance
+                    )
 
-                    modified_content.pop(random.randint(
-                        0, len(modified_content) - 1))
+                    modified_content.pop(random.randint(0, len(modified_content) - 1))
                     new_word = (
                         subprocess.run(
-                            ['shuf', '-n', '1', '/usr/share/dict/american-english'],
-                            stdout=subprocess.PIPE
+                            ["shuf", "-n", "1", "/usr/share/dict/american-english"],
+                            stdout=subprocess.PIPE,
                         )
-                        .stdout
-                        .decode('utf-8')
+                        .stdout.decode("utf-8")
                         .strip()
-                        .replace('"', '')
+                        .replace('"', "")
                     )
-                    modified_content[random.randint(
-                        0, len(modified_content) - 1)] = bytes(new_word, 'utf-8')
+                    modified_content[random.randint(0, len(modified_content) - 1)] = bytes(
+                        new_word, "utf-8"
+                    )
                     words_replaced += 1
 
             # Take mean and standard deviation
             results = []
-            for words_replaced, hamming_distances in hamming_distance_by_number_of_words_replaced.items():
+            for (
+                words_replaced,
+                hamming_distances,
+            ) in hamming_distance_by_number_of_words_replaced.items():
                 mean_hamming_distance, standard_deviation = calculate_mean_and_standard_deviation(
-                    hamming_distances)
+                    hamming_distances
+                )
                 results.append(
                     {
-                        'words replaced': int(words_replaced),
-                        'mean hamming distance': round(mean_hamming_distance, 1),
-                        'standard deviation': round(standard_deviation, 1)
+                        "words replaced": int(words_replaced),
+                        "mean hamming distance": round(mean_hamming_distance, 1),
+                        "standard deviation": round(standard_deviation, 1),
                     }
                 )
 
             expected_results_loc = self.get_test_loc(
-                f'{number_of_words}-replaced-expected-results.csv')
-            check_results(results, expected_results_loc, [
-                          'words replaced', 'mean hamming distance', 'standard deviation'], regen=regen)
+                f"{number_of_words}-replaced-expected-results.csv"
+            )
+            check_results(
+                results,
+                expected_results_loc,
+                ["words replaced", "mean hamming distance", "standard deviation"],
+                regen=regen,
+            )

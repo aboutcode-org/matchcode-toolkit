@@ -176,8 +176,10 @@ class BitAverageHaloHash(object):
             # TODO: pick one hash algorithm
             self.hashmodule = commoncode_hash.get_hasher(size_in_bits)
         except:
-            raise Exception('No available hash module for the requested '
-                            'hash size in bits: %(size_in_bits)d' % locals())
+            raise Exception(
+                "No available hash module for the requested "
+                "hash size in bits: %(size_in_bits)d" % locals()
+            )
         self.update(msg)
 
     @property
@@ -190,7 +192,13 @@ class BitAverageHaloHash(object):
         """
         if not msg:
             return
-        if isinstance(msg, (list, tuple,)):
+        if isinstance(
+            msg,
+            (
+                list,
+                tuple,
+            ),
+        ):
             for m in msg:
                 self.__hashup(m)
         else:
@@ -242,7 +250,9 @@ class BitAverageHaloHash(object):
         """
         size_in_bits = hashes[0].size_in_bits
         for h in hashes:
-            assert isinstance(hash, cls), 'all hashes should be a BitAverageHaloHash, not {}'.format(type(h))
+            assert isinstance(
+                hash, cls
+            ), "all hashes should be a BitAverageHaloHash, not {}".format(type(h))
             assert h.size_in_bits == size_in_bits
 
         all_columns = [h.columns for h in hashes]
@@ -313,7 +323,9 @@ def slices(s, size):
     ...    pass
     """
     length = len(s)
-    assert length % size == 0, 'Invalid slice size: len(%(s)r) is not a multiple of %(size)r' % locals()
+    assert length % size == 0, (
+        "Invalid slice size: len(%(s)r) is not a multiple of %(size)r" % locals()
+    )
     # TODO: time alternative
     # return [s[index:index + size] for index in range(0, length, size)]
     chunks = [iter(s)] * size
