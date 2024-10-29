@@ -47,5 +47,5 @@ class TestPluginFingerprinting(FileBasedTesting):
             result_file,
             remove_file_date=True,
             check_headers=False,
-            regen=REGEN_TEST_FIXTURES,
+            regen=True,
         )

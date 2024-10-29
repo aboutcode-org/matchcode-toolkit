@@ -171,14 +171,14 @@ class TestFingerprintingFunctions(FileBasedTesting):
 
         self.assertEqual(3, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
 
-    def test_hailstorm_similarity(self):
+    def test_snippets_similarity(self):
         # 1 function from adler32.c has been added to zutil.c
-        test_file1 = self.get_test_loc("hailstorm/adler32.c")
-        test_file2 = self.get_test_loc("hailstorm/zutil.c")
+        test_file1 = self.get_test_loc("snippets/adler32.c")
+        test_file2 = self.get_test_loc("snippets/zutil.c")
         results1 = get_file_fingerprint_hashes(test_file1)
         results2 = get_file_fingerprint_hashes(test_file2)
-        result1 = results1.get("hailstorm")
-        result2 = results2.get("hailstorm")
+        result1 = results1.get("snippets")
+        result2 = results2.get("snippets")
         expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
         result = set(result1).intersection(result2)
         self.assertEqual(expected_result, result)

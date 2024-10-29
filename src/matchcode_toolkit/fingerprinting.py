@@ -226,14 +226,14 @@ def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kw
 
 def create_file_fingerprints(content, ngram_length=8, window_length=64):
     """
-    Return a mapping of halo1 and hailstorm hashes from content
+    Return a mapping of halo1 and snippet hashes from content
     """
     from licensedcode.tokenize import ngrams
     from licensedcode.tokenize import select_ngrams
 
     fingerprints = {
         "halo1": "",
-        "hailstorm": [],
+        "snippets": [],
     }
 
     # tokenize content intow words
@@ -256,10 +256,10 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
     selected_windows = select_ngrams(windows)
     selected_windows_bytes = [[g.encode("utf-8") for g in window] for window in selected_windows]
     selected_windows_bytes = [b"".join(window) for window in selected_windows_bytes]
-    hailstorm_hashes = [
+    snippets = [
         BitAverageHaloHash(window).hexdigest().decode("utf-8") for window in selected_windows_bytes
     ]
-    if hailstorm_hashes:
-        fingerprints["hailstorm"] = hailstorm_hashes
+    if snippets:
+        fingerprints["snippets"] = snippets
 
     return fingerprints
