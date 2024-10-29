@@ -1,11 +1,15 @@
 Changelog
 =========
 
+vNext
+-----
+
+*2024-10-29* -- Collect snippet hashes in fingerprint plugin.
+
 v5.1.1
 ------
 
 *2024-08-07* -- Update link references of ownership from nexB to aboutcode-org.
-
 
 v5.1.0
 ------
