@@ -182,3 +182,21 @@ class TestFingerprintingFunctions(FileBasedTesting):
         expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
         result = set(result1).intersection(result2)
         self.assertEqual(expected_result, result)
+
+    def test_snippets_similarity_ai_gen_code(self):
+        test_file1 = self.get_test_loc("snippets/ai-gen-code/Original_Solution.java")
+        results1 = get_file_fingerprint_hashes(test_file1, ngram_length=2, window_length=4)
+        result1_halo1 = results1.get("halo1")
+        result1_snippets = results1.get("snippets")
+
+        for i in range(1, 21):
+            ai_gen_solution = self.get_test_loc(f"snippets/ai-gen-code/generated_{i}.java")
+            results2 = get_file_fingerprint_hashes(ai_gen_solution, ngram_length=8, window_length=4)
+            result2_halo1 = results2.get("halo1")
+            result2_snippets = results2.get("snippets")
+
+            distance = byte_hamming_distance(result1_halo1, result2_halo1)
+            snippet_results = set(result1_snippets).intersection(result2_snippets)
+            print(f"generated file {i}")
+            print(f"distance: {distance}")
+            print(f"matched_snippets: {snippet_results}")
