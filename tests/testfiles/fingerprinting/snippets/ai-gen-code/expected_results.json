@@ -1,29 +1,29 @@
 [
   {
-    "generated_1.java": {
+    "snippets/ai-gen-code/generated_1.java": {
       "distance": 64,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_2.java": {
+    "snippets/ai-gen-code/generated_2.java": {
       "distance": 58,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
+        "2a3c2c25bfd1f4e3bb935eb66450e9e3",
         "60719858a4469a7fbdd559d8606c3250",
         "64eb57c0e05375bf1ff4fcf53d64b9da",
-        "a172f9fd9e865ccf17ac9d73fff44afe",
-        "2a3c2c25bfd1f4e3bb935eb66450e9e3"
+        "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_3.java": {
+    "snippets/ai-gen-code/generated_3.java": {
       "distance": 63,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2"
@@ -31,7 +31,7 @@
     }
   },
   {
-    "generated_4.java": {
+    "snippets/ai-gen-code/generated_4.java": {
       "distance": 67,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2"
@@ -39,18 +39,18 @@
     }
   },
   {
-    "generated_5.java": {
+    "snippets/ai-gen-code/generated_5.java": {
       "distance": 60,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_6.java": {
+    "snippets/ai-gen-code/generated_6.java": {
       "distance": 62,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2"
@@ -58,41 +58,41 @@
     }
   },
   {
-    "generated_7.java": {
+    "snippets/ai-gen-code/generated_7.java": {
       "distance": 55,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_8.java": {
+    "snippets/ai-gen-code/generated_8.java": {
       "distance": 60,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
+        "2a3c2c25bfd1f4e3bb935eb66450e9e3",
         "60719858a4469a7fbdd559d8606c3250",
         "64eb57c0e05375bf1ff4fcf53d64b9da",
-        "a172f9fd9e865ccf17ac9d73fff44afe",
-        "2a3c2c25bfd1f4e3bb935eb66450e9e3"
-      ]
-    }
-  },
-  {
-    "generated_9.java": {
-      "distance": 65,
-      "matching_snippets": [
-        "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
-        "2a3c2c25bfd1f4e3bb935eb66450e9e3",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_10.java": {
+    "snippets/ai-gen-code/generated_9.java": {
+      "distance": 65,
+      "matching_snippets": [
+        "11640cb7945e30f2c30dc1dbc7b039e2",
+        "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
+        "a172f9fd9e865ccf17ac9d73fff44afe"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/generated_10.java": {
       "distance": 68,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2"
@@ -100,111 +100,111 @@
     }
   },
   {
-    "generated_11.java": {
+    "snippets/ai-gen-code/generated_11.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_12.java": {
+    "snippets/ai-gen-code/generated_12.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_13.java": {
+    "snippets/ai-gen-code/generated_13.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_14.java": {
+    "snippets/ai-gen-code/generated_14.java": {
       "distance": 64,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_15.java": {
+    "snippets/ai-gen-code/generated_15.java": {
       "distance": 64,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_16.java": {
+    "snippets/ai-gen-code/generated_16.java": {
       "distance": 64,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_17.java": {
+    "snippets/ai-gen-code/generated_17.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_18.java": {
+    "snippets/ai-gen-code/generated_18.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_19.java": {
+    "snippets/ai-gen-code/generated_19.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }
   },
   {
-    "generated_20.java": {
+    "snippets/ai-gen-code/generated_20.java": {
       "distance": 65,
       "matching_snippets": [
         "11640cb7945e30f2c30dc1dbc7b039e2",
-        "60719858a4469a7fbdd559d8606c3250",
         "2a3c2c25bfd1f4e3bb935eb66450e9e3",
+        "60719858a4469a7fbdd559d8606c3250",
         "a172f9fd9e865ccf17ac9d73fff44afe"
       ]
     }

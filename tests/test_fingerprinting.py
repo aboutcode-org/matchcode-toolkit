@@ -204,7 +204,7 @@ class TestFingerprintingFunctions(FileBasedTesting):
                 {
                     ai_gen_file_loc: {
                         "distance": distance,
-                        "matching_snippets": list(snippet_results)
+                        "matching_snippets": sorted(list(snippet_results))
                     }
                 }
             )
