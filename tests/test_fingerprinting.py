@@ -11,6 +11,7 @@ import os
 
 from commoncode.resource import VirtualCodebase
 from commoncode.testcase import FileBasedTesting
+from commoncode.testcase import check_against_expected_json_file
 
 from matchcode_toolkit.fingerprinting import _create_directory_fingerprint
 from matchcode_toolkit.fingerprinting import _get_resource_subpath
@@ -185,18 +186,28 @@ class TestFingerprintingFunctions(FileBasedTesting):
 
     def test_snippets_similarity_ai_gen_code(self):
         test_file1 = self.get_test_loc("snippets/ai-gen-code/Original_Solution.java")
-        results1 = get_file_fingerprint_hashes(test_file1, ngram_length=2, window_length=4)
-        result1_halo1 = results1.get("halo1")
-        result1_snippets = results1.get("snippets")
+        original_results = get_file_fingerprint_hashes(test_file1, ngram_length=2, window_length=4)
+        original_halo1 = original_results.get("halo1")
+        original_snippets = original_results.get("snippets")
 
+        results = []
         for i in range(1, 21):
-            ai_gen_solution = self.get_test_loc(f"snippets/ai-gen-code/generated_{i}.java")
-            results2 = get_file_fingerprint_hashes(ai_gen_solution, ngram_length=8, window_length=4)
-            result2_halo1 = results2.get("halo1")
-            result2_snippets = results2.get("snippets")
+            ai_gen_file_loc = f"snippets/ai-gen-code/generated_{i}.java"
+            ai_gen_solution = self.get_test_loc(ai_gen_file_loc)
+            ai_gen_results = get_file_fingerprint_hashes(ai_gen_solution, ngram_length=2, window_length=4)
+            ai_gen_halo1 = ai_gen_results.get("halo1")
+            ai_gen_snippets = ai_gen_results.get("snippets")
 
-            distance = byte_hamming_distance(result1_halo1, result2_halo1)
-            snippet_results = set(result1_snippets).intersection(result2_snippets)
-            print(f"generated file {i}")
-            print(f"distance: {distance}")
-            print(f"matched_snippets: {snippet_results}")
+            distance = byte_hamming_distance(original_halo1, ai_gen_halo1)
+            snippet_results = set(original_snippets).intersection(ai_gen_snippets)
+            results.append(
+                {
+                    ai_gen_file_loc: {
+                        "distance": distance,
+                        "matching_snippets": list(snippet_results)
+                    }
+                }
+            )
+
+        expected_results_loc = self.get_test_loc("snippets/ai-gen-code/expected_results.json")
+        check_against_expected_json_file(results, expected_results_loc, regen=False)
