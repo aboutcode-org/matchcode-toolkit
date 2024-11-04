@@ -1,0 +1,10 @@
+about_resource: ai-gen-code
+download_url: https://zenodo.org/records/11398703/files/data.zip?download=1
+
+name: Analyzing the Dependability of Large Language Models for Code Clone Generation
+home_url: https://zenodo.org/records/11398703
+owner: Zenodo
+dje_license: cc-by-4.0
+license_text_file: cc-by-4.0.LICENSE
+
+notes: test files are from data.zip/data/find_equalindromic/
