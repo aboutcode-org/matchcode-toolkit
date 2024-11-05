@@ -1,0 +1,340 @@
+[
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_1.java": {
+      "distance": 52,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "3f0975f8a607cd1ddd5a319eed42953b",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "be1b2f30b32af66806a5fc18cb0acc60",
+        "d30824e25d22626780bd9bda93468ad3",
+        "f8ec6dbbeb5bd8f231d0c0ed667c1efe"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_2.java": {
+      "distance": 55,
+      "matching_snippets": [
+        "1761701eb219f872ec6126e46282c1d2",
+        "17d1b38ad37db41068427c5856fb581f",
+        "1c2d951ad69e6f131d80c2a4f383c2f4",
+        "254e7fa40788e291c6d3888bc71e87f3",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "38f8706301ff4d871078337252afaff9",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9f7ae8d413d87377571ed02422522c8c",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa2baf6ef1707e78c2ed9940c041a17d",
+        "b95fd221b4084fd59cd1c37ee37e23d7"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_3.java": {
+      "distance": 54,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_4.java": {
+      "distance": 53,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_5.java": {
+      "distance": 40,
+      "matching_snippets": [
+        "1c2d951ad69e6f131d80c2a4f383c2f4",
+        "254e7fa40788e291c6d3888bc71e87f3",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_6.java": {
+      "distance": 48,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "38f8706301ff4d871078337252afaff9",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9f7ae8d413d87377571ed02422522c8c",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa2baf6ef1707e78c2ed9940c041a17d"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_7.java": {
+      "distance": 49,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "d30824e25d22626780bd9bda93468ad3",
+        "e238c7dcfd4d05aead0c1418f2cb5287"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_8.java": {
+      "distance": 47,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3",
+        "ed05031a15212aa6cde7e4f8925f29a3",
+        "f8ec6dbbeb5bd8f231d0c0ed667c1efe"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_9.java": {
+      "distance": 50,
+      "matching_snippets": [
+        "1761701eb219f872ec6126e46282c1d2",
+        "1c2d951ad69e6f131d80c2a4f383c2f4",
+        "254e7fa40788e291c6d3888bc71e87f3",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "b95fd221b4084fd59cd1c37ee37e23d7"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_10.java": {
+      "distance": 47,
+      "matching_snippets": [
+        "2defa02c47754b84ea21cca2173fca8c",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "38f8706301ff4d871078337252afaff9",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "9f7ae8d413d87377571ed02422522c8c",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa2baf6ef1707e78c2ed9940c041a17d",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_11.java": {
+      "distance": 56,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "3f0975f8a607cd1ddd5a319eed42953b",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_12.java": {
+      "distance": 44,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "b95fd221b4084fd59cd1c37ee37e23d7"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_13.java": {
+      "distance": 54,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "32127af5acc9274cd9a56a23cfeab3a7",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_14.java": {
+      "distance": 49,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "38f8706301ff4d871078337252afaff9",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa2baf6ef1707e78c2ed9940c041a17d",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_15.java": {
+      "distance": 47,
+      "matching_snippets": [
+        "1761701eb219f872ec6126e46282c1d2",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_16.java": {
+      "distance": 46,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "38f8706301ff4d871078337252afaff9",
+        "3f0975f8a607cd1ddd5a319eed42953b",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9f7ae8d413d87377571ed02422522c8c",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa2baf6ef1707e78c2ed9940c041a17d",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_17.java": {
+      "distance": 47,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_18.java": {
+      "distance": 45,
+      "matching_snippets": [
+        "1305f75e8b21cea1e950967555020ba7",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "3f0975f8a607cd1ddd5a319eed42953b",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_19.java": {
+      "distance": 48,
+      "matching_snippets": [
+        "1761701eb219f872ec6126e46282c1d2",
+        "1c2d951ad69e6f131d80c2a4f383c2f4",
+        "254e7fa40788e291c6d3888bc71e87f3",
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c",
+        "aa3b6a3f42b71d916f4e107525363103",
+        "b95fd221b4084fd59cd1c37ee37e23d7",
+        "d30824e25d22626780bd9bda93468ad3"
+      ]
+    }
+  },
+  {
+    "snippets/ai-gen-code/data/find_equalindromic/1/gpt4/pythonToJava/repeated/llm_generated/generated_20.java": {
+      "distance": 51,
+      "matching_snippets": [
+        "3029200c9fdbfaaacc77a750eae6436d",
+        "3a7089de9b2c07f362a7b0e72e8defeb",
+        "80201276c8215923e6b44351897eb287",
+        "830fa5e89405a1b66b28d988db9ed482",
+        "9dbb913749b7530efe1501296adc577f",
+        "a6aaa28da01e9c5dd400e3633fff5f52",
+        "a7f8dd2cc5433cfa896390be41a9506c"
+      ]
+    }
+  }
+]

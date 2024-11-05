@@ -184,33 +184,52 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result = set(result1).intersection(result2)
         self.assertEqual(expected_result, result)
 
-    def test_snippets_similarity_find_equalindromic(self):
-        solution_loc = self.get_test_loc("snippets/ai-gen-code/find_equalindromic/Solution.java")
-        solution_results = get_file_fingerprint_hashes(solution_loc, ngram_length=2, window_length=4)
+    def _test_snippets_similarity_ai_gen_code(self, problem, regen=False):
+        temps = [1]
+        llms = ["gpt4"]
+        code_gen_types = ["pythonToJava"]
+        solution_loc = self.get_test_loc(f"snippets/ai-gen-code/data/{problem}/Solution.java")
+        solution_results = get_file_fingerprint_hashes(
+            solution_loc, ngram_length=2, window_length=4
+        )
         solution_halo1 = solution_results.get("halo1")
         solution_snippets = solution_results.get("snippets")
-
+        _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
         results = []
-        for temp in [0, 0.5, 1]:
-            for llm in ["gpt4", "gpt_3.5_turbo"]:
-                for code_type in ["cppToJava", "java", "java_regular", "pythonToJava"]:
+        for temp in temps:
+            for llm in llms:
+                for code_gen_type in code_gen_types:
                     for i in range(1, 21):
-                        test_file_loc = f"snippets/ai-gen-code/find_equalindromic/{temp}/{llm}/{code_type}/repeated/llm_generated/generated_{i}.java"
+                        test_file_loc = (
+                            f"snippets/ai-gen-code/data/{problem}/{temp}/{llm}/{code_gen_type}/"
+                            f"repeated/llm_generated/generated_{i}.java"
+                        )
                         gen_solution = self.get_test_loc(test_file_loc)
-                        gen_results = get_file_fingerprint_hashes(gen_solution, ngram_length=2, window_length=4)
+                        gen_results = get_file_fingerprint_hashes(
+                            gen_solution, ngram_length=2, window_length=4
+                        )
                         gen_halo1 = gen_results.get("halo1")
                         gen_snippets = gen_results.get("snippets")
 
-                        distance = byte_hamming_distance(solution_halo1, gen_halo1)
+                        _, gen_fingerprint_hash = split_fingerprint(gen_halo1)
+                        distance = byte_hamming_distance(
+                            solution_fingerprint_hash, gen_fingerprint_hash
+                        )
                         snippet_results = set(solution_snippets).intersection(gen_snippets)
+                        # TODO: fingerprint = (value, pos)
                         results.append(
                             {
                                 test_file_loc: {
                                     "distance": distance,
-                                    "matching_snippets": sorted(list(snippet_results))
+                                    "matching_snippets": sorted(list(snippet_results)),
                                 }
                             }
                         )
 
-        expected_results_loc = self.get_test_loc("snippets/ai-gen-code/expected_results.json")
-        check_against_expected_json_file(results, expected_results_loc, regen=False)
+        expected_results_loc = self.get_test_loc(
+            f"snippets/ai-gen-code/data/{problem}/expected_results.json"
+        )
+        check_against_expected_json_file(results, expected_results_loc, regen=regen)
+
+    def test_snippets_similarity_ai_gen_code_find_equalindromic(self):
+        self._test_snippets_similarity_ai_gen_code("find_equalindromic", regen=False)
