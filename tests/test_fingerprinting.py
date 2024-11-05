@@ -184,30 +184,33 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result = set(result1).intersection(result2)
         self.assertEqual(expected_result, result)
 
-    def test_snippets_similarity_ai_gen_code(self):
-        test_file1 = self.get_test_loc("snippets/ai-gen-code/Original_Solution.java")
-        original_results = get_file_fingerprint_hashes(test_file1, ngram_length=2, window_length=4)
-        original_halo1 = original_results.get("halo1")
-        original_snippets = original_results.get("snippets")
+    def test_snippets_similarity_find_equalindromic(self):
+        solution_loc = self.get_test_loc("snippets/ai-gen-code/find_equalindromic/Solution.java")
+        solution_results = get_file_fingerprint_hashes(solution_loc, ngram_length=2, window_length=4)
+        solution_halo1 = solution_results.get("halo1")
+        solution_snippets = solution_results.get("snippets")
 
         results = []
-        for i in range(1, 21):
-            ai_gen_file_loc = f"snippets/ai-gen-code/generated_{i}.java"
-            ai_gen_solution = self.get_test_loc(ai_gen_file_loc)
-            ai_gen_results = get_file_fingerprint_hashes(ai_gen_solution, ngram_length=2, window_length=4)
-            ai_gen_halo1 = ai_gen_results.get("halo1")
-            ai_gen_snippets = ai_gen_results.get("snippets")
+        for temp in [0, 0.5, 1]:
+            for llm in ["gpt4", "gpt_3.5_turbo"]:
+                for code_type in ["cppToJava", "java", "java_regular", "pythonToJava"]:
+                    for i in range(1, 21):
+                        test_file_loc = f"snippets/ai-gen-code/find_equalindromic/{temp}/{llm}/{code_type}/repeated/llm_generated/generated_{i}.java"
+                        gen_solution = self.get_test_loc(test_file_loc)
+                        gen_results = get_file_fingerprint_hashes(gen_solution, ngram_length=2, window_length=4)
+                        gen_halo1 = gen_results.get("halo1")
+                        gen_snippets = gen_results.get("snippets")
 
-            distance = byte_hamming_distance(original_halo1, ai_gen_halo1)
-            snippet_results = set(original_snippets).intersection(ai_gen_snippets)
-            results.append(
-                {
-                    ai_gen_file_loc: {
-                        "distance": distance,
-                        "matching_snippets": sorted(list(snippet_results))
-                    }
-                }
-            )
+                        distance = byte_hamming_distance(solution_halo1, gen_halo1)
+                        snippet_results = set(solution_snippets).intersection(gen_snippets)
+                        results.append(
+                            {
+                                test_file_loc: {
+                                    "distance": distance,
+                                    "matching_snippets": sorted(list(snippet_results))
+                                }
+                            }
+                        )
 
         expected_results_loc = self.get_test_loc("snippets/ai-gen-code/expected_results.json")
         check_against_expected_json_file(results, expected_results_loc, regen=False)
