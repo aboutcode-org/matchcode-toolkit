@@ -181,24 +181,24 @@ class TestFingerprintingFunctions(FileBasedTesting):
             snippet_mappings_by_snippet[snippet].append(s)
         return snippet_mappings_by_snippet
 
-    def test_snippets_similarity(self):
+    def test_snippets_similarity(self, regen=False):
         # 1 function from adler32.c has been added to zutil.c
         test_file1 = self.get_test_loc("snippets/adler32.c")
         test_file2 = self.get_test_loc("snippets/zutil.c")
-        results1 = get_file_fingerprint_hashes(test_file1)
-        results2 = get_file_fingerprint_hashes(test_file2)
-        solution_snippets = results1.get("snippets")
-        gen_snippets = results2.get("snippets")
+        results1 = get_file_fingerprint_hashes(test_file1, include_ngrams=True)
+        results2 = get_file_fingerprint_hashes(test_file2, include_ngrams=True)
+        results1_snippets = results1.get("snippets")
+        results2_snippets = results2.get("snippets")
 
-        solution_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
-            solution_snippets
+        results1_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            results1_snippets
         )
-        gen_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(gen_snippets)
+        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(results2_snippets)
 
-        result = (
-            solution_snippet_mappings_by_snippets.keys() & gen_snippet_mappings_by_snippets.keys()
+        matching_snippets = (
+            results1_snippet_mappings_by_snippets.keys() & results2_snippet_mappings_by_snippets.keys()
         )
-        expected_result = {
+        expected_matching_snippets = {
             "33b1d50de7e1701bd4beb706bf25970e",
             "0dcb44bfa9a7c7e310ea9d4a921b777b",
             "9bc102ceddabba9c1dc31140500e6c6c",
@@ -219,76 +219,22 @@ class TestFingerprintingFunctions(FileBasedTesting):
             "ba34fbe4e05f3f28641958ecc5eb9af9",
             "de43d78e467331cc3bcbf87fdb3c90c3",
         }
-        self.assertEqual(expected_result, result)
-
-    def _test_snippets_similarity_ai_gen_code(self, problem, regen=False):
-        def create_snippet_mappings_by_snippets(snippets):
-            snippet_mappings_by_snippet = defaultdict(list)
-            for s in snippets:
-                snippet = s["snippet"]
-                snippet_mappings_by_snippet[snippet].append(s)
-            return snippet_mappings_by_snippet
-
-        temps = [1]
-        llms = ["gpt4"]
-        code_gen_types = ["pythonToJava"]
-        solution_loc = self.get_test_loc(f"snippets/ai-gen-code/data/{problem}/Solution.java")
-        solution_results = get_file_fingerprint_hashes(solution_loc, include_ngrams=True)
-        solution_halo1 = solution_results.get("halo1")
-        solution_snippets = solution_results.get("snippets")
-        _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
-        solution_snippet_mappings_by_snippets = create_snippet_mappings_by_snippets(
-            solution_snippets
-        )
-
+        self.assertEqual(expected_matching_snippets, matching_snippets)
+        snippets_matched_to_results1 = [
+            results1_snippet_mappings_by_snippets[snippet]
+            for snippet in matching_snippets
+        ]
+        snippets_matched_to_results2 = [
+            results2_snippet_mappings_by_snippets[snippet] for snippet in matching_snippets
+        ]
         results = []
-        for temp in temps:
-            for llm in llms:
-                for code_gen_type in code_gen_types:
-                    for i in range(1, 11):
-                        test_file_loc = (
-                            f"snippets/ai-gen-code/data/{problem}/{temp}/{llm}/{code_gen_type}/"
-                            f"repeated/llm_generated/generated_{i}.java"
-                        )
-                        gen_solution = self.get_test_loc(test_file_loc)
-                        gen_results = get_file_fingerprint_hashes(gen_solution, include_ngrams=True)
-                        gen_halo1 = gen_results.get("halo1")
-                        gen_snippets = gen_results.get("snippets")
-
-                        _, gen_fingerprint_hash = split_fingerprint(gen_halo1)
-                        gen_snippet_mappings_by_snippets = create_snippet_mappings_by_snippets(
-                            gen_snippets
-                        )
-
-                        distance = byte_hamming_distance(
-                            solution_fingerprint_hash, gen_fingerprint_hash
-                        )
-                        snippet_results = (
-                            solution_snippet_mappings_by_snippets.keys()
-                            & gen_snippet_mappings_by_snippets.keys()
-                        )
-                        snippets_matched_to_solution = [
-                            solution_snippet_mappings_by_snippets[snippet]
-                            for snippet in snippet_results
-                        ]
-                        snippets_matched_to_gen = [
-                            gen_snippet_mappings_by_snippets[snippet] for snippet in snippet_results
-                        ]
-
-                        results.append(
-                            {
-                                test_file_loc: {
-                                    "distance": distance,
-                                    "snippets_matched_to_solution": snippets_matched_to_solution,
-                                    "snippets_matched_to_gen": snippets_matched_to_gen,
-                                }
-                            }
-                        )
-
-        expected_results_loc = self.get_test_loc(
-            f"snippets/ai-gen-code/data/{problem}/expected_results.json"
-        )
+        for snippet in matching_snippets:
+            results.append(
+                {
+                    "snippet": snippet,
+                    "snippet_matched_to_results1": results1_snippet_mappings_by_snippets[snippet],
+                    "snippet_matched_to_results2": results2_snippet_mappings_by_snippets[snippet],
+                }
+            )
+        expected_results_loc = self.get_test_loc("snippets/snippet-similarity-expected.json")
         check_against_expected_json_file(results, expected_results_loc, regen=regen)
-
-    def test_snippets_similarity_ai_gen_code_find_equalindromic(self):
-        self._test_snippets_similarity_ai_gen_code("find_equalindromic", regen=True)
