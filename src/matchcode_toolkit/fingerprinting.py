@@ -194,7 +194,7 @@ def tokenizer(text):
     return _tokenizer(text.lower())
 
 
-def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kwargs):
+def get_file_fingerprint_hashes(location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs):
     """
     Return a mapping of fingerprint hashes for the file at `location`
 
@@ -221,10 +221,11 @@ def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kw
         content,
         ngram_length=ngram_length,
         window_length=window_length,
+        include_ngrams=include_ngrams,
     )
 
 
-def create_file_fingerprints(content, ngram_length=8, window_length=64):
+def create_file_fingerprints(content, ngram_length=5, window_length=16, include_ngrams=False):
     """
     Return a mapping of halo1 and snippet hashes from content string
     """
@@ -262,13 +263,13 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
     selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
     snippets = []
     for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
-        snippets.append(
-            {
-                "position": pos,
-                "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
-                "ngrams": list(window),
-            }
-        )
+        s = {
+            "position": pos,
+            "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
+        }
+        if include_ngrams:
+            s["ngrams"] = list(window)
+        snippets.append(s)
     if snippets:
         fingerprints["snippets"] = snippets
 

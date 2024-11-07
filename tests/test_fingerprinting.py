@@ -139,13 +139,13 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
         result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
 
-        expected_result1_indexed_elements_count = 6395
-        expected_result2_indexed_elements_count = 6388
+        expected_result1_indexed_elements_count = 6398
+        expected_result2_indexed_elements_count = 6391
         self.assertEqual(expected_result1_indexed_elements_count, result1_indexed_elements_count)
         self.assertEqual(expected_result2_indexed_elements_count, result2_indexed_elements_count)
 
-        expected_result1_fingerprint = "a23a49e4cd40718d1297be719e6564a4"
-        expected_result2_fingerprint = "aa3a49e4cd40718d1297be519e6564a4"
+        expected_result1_fingerprint = "dc025ae7ebb104419e5314c665a08919"
+        expected_result2_fingerprint = "dc025ae7ebb104419e5354c665a0891d"
         self.assertEqual(expected_result1_fingerprint, result1_fingerprint)
         self.assertEqual(expected_result2_fingerprint, result2_fingerprint)
 
@@ -161,17 +161,17 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
         result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
 
-        expected_result1_indexed_elements_count = 6395
-        expected_result2_indexed_elements_count = 6398
+        expected_result1_indexed_elements_count = 6398
+        expected_result2_indexed_elements_count = 6401
         self.assertEqual(expected_result1_indexed_elements_count, result1_indexed_elements_count)
         self.assertEqual(expected_result2_indexed_elements_count, result2_indexed_elements_count)
 
-        expected_result1_fingerprint = "a23a49e4cd40718d1297be719e6564a4"
-        expected_result2_fingerprint = "a23b49e4cd40708d1297be719c6564a4"
+        expected_result1_fingerprint = "dc025ae7ebb104419e5314c665a08919"
+        expected_result2_fingerprint = "dc025ae7ebb104419e5314c665a1891d"
         self.assertEqual(expected_result1_fingerprint, result1_fingerprint)
         self.assertEqual(expected_result2_fingerprint, result2_fingerprint)
 
-        self.assertEqual(3, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
+        self.assertEqual(2, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
 
     @classmethod
     def _create_snippet_mappings_by_snippets(cls, snippets):
@@ -198,7 +198,27 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result = (
             solution_snippet_mappings_by_snippets.keys() & gen_snippet_mappings_by_snippets.keys()
         )
-        expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
+        expected_result = {
+            "33b1d50de7e1701bd4beb706bf25970e",
+            "0dcb44bfa9a7c7e310ea9d4a921b777b",
+            "9bc102ceddabba9c1dc31140500e6c6c",
+            "310e6e530d4bda6977774b34515101ab",
+            "cd50d59e9cd0df93ef6b8dfbf0f7d311",
+            "5af889295c942ecb75189c86df62e201",
+            "0057152e3b1795b6befd36a4412c21a5",
+            "c09e0b1020b5265ccac6d03439dff2dc",
+            "ecbedbeebd47e4a24210bfb8419c9f8e",
+            "3c866b47965d9cc62c4640e3ae132d2b",
+            "2b74fe7dde58dfa20bf75a6b4e589a10",
+            "07a7b1300fb58b5f9b9b3e56df23e003",
+            "72a86996522cfb9f83cf388d8010b7ab",
+            "d45f0d54c32b2d884919665c65c65638",
+            "cac65171e0f01c57e1af7a5b99929d12",
+            "8571422ee6dec38705bcdb8c12496473",
+            "b9db06731d27c61a56600e74d145e814",
+            "ba34fbe4e05f3f28641958ecc5eb9af9",
+            "de43d78e467331cc3bcbf87fdb3c90c3",
+        }
         self.assertEqual(expected_result, result)
 
     def _test_snippets_similarity_ai_gen_code(self, problem, regen=False):
@@ -213,7 +233,7 @@ class TestFingerprintingFunctions(FileBasedTesting):
         llms = ["gpt4"]
         code_gen_types = ["pythonToJava"]
         solution_loc = self.get_test_loc(f"snippets/ai-gen-code/data/{problem}/Solution.java")
-        solution_results = get_file_fingerprint_hashes(solution_loc, window_length=5)
+        solution_results = get_file_fingerprint_hashes(solution_loc, include_ngrams=True)
         solution_halo1 = solution_results.get("halo1")
         solution_snippets = solution_results.get("snippets")
         _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
@@ -231,7 +251,7 @@ class TestFingerprintingFunctions(FileBasedTesting):
                             f"repeated/llm_generated/generated_{i}.java"
                         )
                         gen_solution = self.get_test_loc(test_file_loc)
-                        gen_results = get_file_fingerprint_hashes(gen_solution, window_length=5)
+                        gen_results = get_file_fingerprint_hashes(gen_solution, include_ngrams=True)
                         gen_halo1 = gen_results.get("halo1")
                         gen_snippets = gen_results.get("snippets")
 
@@ -271,4 +291,4 @@ class TestFingerprintingFunctions(FileBasedTesting):
         check_against_expected_json_file(results, expected_results_loc, regen=regen)
 
     def test_snippets_similarity_ai_gen_code_find_equalindromic(self):
-        self._test_snippets_similarity_ai_gen_code("find_equalindromic", regen=False)
+        self._test_snippets_similarity_ai_gen_code("find_equalindromic", regen=True)
