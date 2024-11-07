@@ -1,8 +1,13 @@
 Changelog
 =========
 
+v6.0.1
+------
+
+*2024-11-07* -- Remove dependency on scancode-toolkit branch in testing extra_requires.
+
 v6.0.0
------
+------
 
 *2024-10-29* -- Collect snippet hashes in fingerprint plugin.
 
