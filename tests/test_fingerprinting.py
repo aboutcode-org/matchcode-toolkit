@@ -220,20 +220,16 @@ class TestFingerprintingFunctions(FileBasedTesting):
             "de43d78e467331cc3bcbf87fdb3c90c3",
         }
         self.assertEqual(expected_matching_snippets, matching_snippets)
-        snippets_matched_to_results1 = [
-            results1_snippet_mappings_by_snippets[snippet]
-            for snippet in matching_snippets
-        ]
-        snippets_matched_to_results2 = [
-            results2_snippet_mappings_by_snippets[snippet] for snippet in matching_snippets
-        ]
+
         results = []
-        for snippet in matching_snippets:
+        for snippet in sorted(matching_snippets):
+            sorted_results1 = results1_snippet_mappings_by_snippets[snippet]
+            sorted_results2 = results2_snippet_mappings_by_snippets[snippet]
             results.append(
                 {
                     "snippet": snippet,
-                    "snippet_matched_to_results1": results1_snippet_mappings_by_snippets[snippet],
-                    "snippet_matched_to_results2": results2_snippet_mappings_by_snippets[snippet],
+                    "snippet_matched_to_results1": sorted_results1,
+                    "snippet_matched_to_results2": sorted_results2,
                 }
             )
         expected_results_loc = self.get_test_loc("snippets/snippet-similarity-expected.json")
