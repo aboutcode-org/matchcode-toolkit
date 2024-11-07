@@ -11,7 +11,7 @@ jobs:
       parameters:
           job_name: ubuntu20_cpython
           image_name: ubuntu-20.04
-          python_versions: ['3.8', '3.9', '3.10', '3.11', '3.12']
+          python_versions: ['3.9', '3.10', '3.11', '3.12']
           test_suites:
               all: venv/bin/pytest -n 2 -vvs --ignore src/matchcode_toolkit/pipelines
 
@@ -19,6 +19,6 @@ jobs:
       parameters:
           job_name: ubuntu22_cpython
           image_name: ubuntu-22.04
-          python_versions: ['3.8', '3.9', '3.10', '3.11', '3.12']
+          python_versions: ['3.9', '3.10', '3.11', '3.12']
           test_suites:
               all: venv/bin/pytest -n 2 -vvs --ignore src/matchcode_toolkit/pipelines

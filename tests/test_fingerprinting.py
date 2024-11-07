@@ -8,9 +8,11 @@
 #
 
 import os
+from collections import defaultdict
 
 from commoncode.resource import VirtualCodebase
 from commoncode.testcase import FileBasedTesting
+from commoncode.testcase import check_against_expected_json_file
 
 from matchcode_toolkit.fingerprinting import _create_directory_fingerprint
 from matchcode_toolkit.fingerprinting import _get_resource_subpath
@@ -137,13 +139,13 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
         result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
 
-        expected_result1_indexed_elements_count = 6395
-        expected_result2_indexed_elements_count = 6388
+        expected_result1_indexed_elements_count = 6398
+        expected_result2_indexed_elements_count = 6391
         self.assertEqual(expected_result1_indexed_elements_count, result1_indexed_elements_count)
         self.assertEqual(expected_result2_indexed_elements_count, result2_indexed_elements_count)
 
-        expected_result1_fingerprint = "a23a49e4cd40718d1297be719e6564a4"
-        expected_result2_fingerprint = "aa3a49e4cd40718d1297be519e6564a4"
+        expected_result1_fingerprint = "dc025ae7ebb104419e5314c665a08919"
+        expected_result2_fingerprint = "dc025ae7ebb104419e5354c665a0891d"
         self.assertEqual(expected_result1_fingerprint, result1_fingerprint)
         self.assertEqual(expected_result2_fingerprint, result2_fingerprint)
 
@@ -159,26 +161,76 @@ class TestFingerprintingFunctions(FileBasedTesting):
         result1_indexed_elements_count, result1_fingerprint = split_fingerprint(result1)
         result2_indexed_elements_count, result2_fingerprint = split_fingerprint(result2)
 
-        expected_result1_indexed_elements_count = 6395
-        expected_result2_indexed_elements_count = 6398
+        expected_result1_indexed_elements_count = 6398
+        expected_result2_indexed_elements_count = 6401
         self.assertEqual(expected_result1_indexed_elements_count, result1_indexed_elements_count)
         self.assertEqual(expected_result2_indexed_elements_count, result2_indexed_elements_count)
 
-        expected_result1_fingerprint = "a23a49e4cd40718d1297be719e6564a4"
-        expected_result2_fingerprint = "a23b49e4cd40708d1297be719c6564a4"
+        expected_result1_fingerprint = "dc025ae7ebb104419e5314c665a08919"
+        expected_result2_fingerprint = "dc025ae7ebb104419e5314c665a1891d"
         self.assertEqual(expected_result1_fingerprint, result1_fingerprint)
         self.assertEqual(expected_result2_fingerprint, result2_fingerprint)
 
-        self.assertEqual(3, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
+        self.assertEqual(2, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
 
-    def test_snippets_similarity(self):
+    @classmethod
+    def _create_snippet_mappings_by_snippets(cls, snippets):
+        snippet_mappings_by_snippet = defaultdict(list)
+        for s in snippets:
+            snippet = s["snippet"]
+            snippet_mappings_by_snippet[snippet].append(s)
+        return snippet_mappings_by_snippet
+
+    def test_snippets_similarity(self, regen=False):
         # 1 function from adler32.c has been added to zutil.c
         test_file1 = self.get_test_loc("snippets/adler32.c")
         test_file2 = self.get_test_loc("snippets/zutil.c")
-        results1 = get_file_fingerprint_hashes(test_file1)
-        results2 = get_file_fingerprint_hashes(test_file2)
-        result1 = results1.get("snippets")
-        result2 = results2.get("snippets")
-        expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
-        result = set(result1).intersection(result2)
-        self.assertEqual(expected_result, result)
+        results1 = get_file_fingerprint_hashes(test_file1, include_ngrams=True)
+        results2 = get_file_fingerprint_hashes(test_file2, include_ngrams=True)
+        results1_snippets = results1.get("snippets")
+        results2_snippets = results2.get("snippets")
+
+        results1_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            results1_snippets
+        )
+        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(results2_snippets)
+
+        matching_snippets = (
+            results1_snippet_mappings_by_snippets.keys() & results2_snippet_mappings_by_snippets.keys()
+        )
+        expected_matching_snippets = {
+            "33b1d50de7e1701bd4beb706bf25970e",
+            "0dcb44bfa9a7c7e310ea9d4a921b777b",
+            "9bc102ceddabba9c1dc31140500e6c6c",
+            "310e6e530d4bda6977774b34515101ab",
+            "cd50d59e9cd0df93ef6b8dfbf0f7d311",
+            "5af889295c942ecb75189c86df62e201",
+            "0057152e3b1795b6befd36a4412c21a5",
+            "c09e0b1020b5265ccac6d03439dff2dc",
+            "ecbedbeebd47e4a24210bfb8419c9f8e",
+            "3c866b47965d9cc62c4640e3ae132d2b",
+            "2b74fe7dde58dfa20bf75a6b4e589a10",
+            "07a7b1300fb58b5f9b9b3e56df23e003",
+            "72a86996522cfb9f83cf388d8010b7ab",
+            "d45f0d54c32b2d884919665c65c65638",
+            "cac65171e0f01c57e1af7a5b99929d12",
+            "8571422ee6dec38705bcdb8c12496473",
+            "b9db06731d27c61a56600e74d145e814",
+            "ba34fbe4e05f3f28641958ecc5eb9af9",
+            "de43d78e467331cc3bcbf87fdb3c90c3",
+        }
+        self.assertEqual(expected_matching_snippets, matching_snippets)
+
+        results = []
+        for snippet in sorted(matching_snippets):
+            sorted_results1 = results1_snippet_mappings_by_snippets[snippet]
+            sorted_results2 = results2_snippet_mappings_by_snippets[snippet]
+            results.append(
+                {
+                    "snippet": snippet,
+                    "snippet_matched_to_results1": sorted_results1,
+                    "snippet_matched_to_results2": sorted_results2,
+                }
+            )
+        expected_results_loc = self.get_test_loc("snippets/snippet-similarity-expected.json")
+        check_against_expected_json_file(results, expected_results_loc, regen=regen)

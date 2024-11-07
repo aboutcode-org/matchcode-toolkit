@@ -194,7 +194,7 @@ def tokenizer(text):
     return _tokenizer(text.lower())
 
 
-def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kwargs):
+def get_file_fingerprint_hashes(location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs):
     """
     Return a mapping of fingerprint hashes for the file at `location`
 
@@ -221,12 +221,13 @@ def get_file_fingerprint_hashes(location, ngram_length=8, window_length=64, **kw
         content,
         ngram_length=ngram_length,
         window_length=window_length,
+        include_ngrams=include_ngrams,
     )
 
 
-def create_file_fingerprints(content, ngram_length=8, window_length=64):
+def create_file_fingerprints(content, ngram_length=5, window_length=16, include_ngrams=False):
     """
-    Return a mapping of halo1 and snippet hashes from content
+    Return a mapping of halo1 and snippet hashes from content string
     """
     from licensedcode.tokenize import ngrams
     from licensedcode.tokenize import select_ngrams
@@ -236,12 +237,13 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         "snippets": [],
     }
 
-    # tokenize content intow words
+    # tokenize content into words
     words = list(tokenizer(content))
 
     # Create a file fingerprint from the number of elements in the content hash
     # and the content hash digest iteself.
     ngs = ngrams(words, ngram_length)
+    # TODO: consider using itertools.chain.from_iterable()
     ngs_bytes = [[g.encode("utf-8") for g in ng] for ng in ngs]
     ngs_bytes = [b"".join(ng) for ng in ngs_bytes]
     content_hash, ngs_count = BitAverageHaloHash(ngs_bytes), len(ngs_bytes)
@@ -251,14 +253,23 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         file_fingerprint = ngs_count_hex_str + content_fingerprint
         fingerprints["halo1"] = file_fingerprint
 
-    # Select windows from the content to find snippet similarities
+    # Select windows from the content to compute snippet fingerprints
     windows = ngrams(words, window_length)
-    selected_windows = select_ngrams(windows)
-    selected_windows_bytes = [[g.encode("utf-8") for g in window] for window in selected_windows]
-    selected_windows_bytes = [b"".join(window) for window in selected_windows_bytes]
-    snippets = [
-        BitAverageHaloHash(window).hexdigest().decode("utf-8") for window in selected_windows_bytes
+    selected_windows = list(select_ngrams(windows, with_pos=True))
+    # TODO: consider using itertools.chain.from_iterable()
+    selected_windows_bytes = [
+        (pos, [g.encode("utf-8") for g in window]) for pos, window in selected_windows
     ]
+    selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
+    snippets = []
+    for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
+        s = {
+            "position": pos,
+            "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
+        }
+        if include_ngrams:
+            s["ngrams"] = list(window)
+        snippets.append(s)
     if snippets:
         fingerprints["snippets"] = snippets
 
