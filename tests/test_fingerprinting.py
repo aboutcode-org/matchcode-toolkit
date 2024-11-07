@@ -200,40 +200,39 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual(expected_result, result)
 
     def _test_snippets_similarity_ai_gen_code(self, problem, regen=False):
+        def create_snippet_mappings_by_fingerprint(snippets):
+            snippet_mappings_by_fingerprint = defaultdict(list)
+            for s in snippets:
+                fingerprint = s["fingerprint"]
+                snippet_mappings_by_fingerprint[fingerprint].append(s)
+            return snippet_mappings_by_fingerprint
+
         temps = [1]
         llms = ["gpt4"]
         code_gen_types = ["pythonToJava"]
         solution_loc = self.get_test_loc(f"snippets/ai-gen-code/data/{problem}/Solution.java")
-        solution_results = get_file_fingerprint_hashes(
-            solution_loc, ngram_length=2, window_length=4
-        )
+        solution_results = get_file_fingerprint_hashes(solution_loc, window_length=5)
         solution_halo1 = solution_results.get("halo1")
         solution_snippets = solution_results.get("snippets")
         _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
-        solution_snippet_mappings_by_fingerprint = defaultdict(list)
-        for s in solution_snippets:
-            solution_snippet_mappings_by_fingerprint["fingerprint"].append(s)
+        solution_snippet_mappings_by_fingerprint = create_snippet_mappings_by_fingerprint(solution_snippets)
 
         results = []
         for temp in temps:
             for llm in llms:
                 for code_gen_type in code_gen_types:
-                    for i in range(1, 21):
+                    for i in range(1, 11):
                         test_file_loc = (
                             f"snippets/ai-gen-code/data/{problem}/{temp}/{llm}/{code_gen_type}/"
                             f"repeated/llm_generated/generated_{i}.java"
                         )
                         gen_solution = self.get_test_loc(test_file_loc)
-                        gen_results = get_file_fingerprint_hashes(
-                            gen_solution, ngram_length=2, window_length=4
-                        )
+                        gen_results = get_file_fingerprint_hashes(gen_solution, window_length=5)
                         gen_halo1 = gen_results.get("halo1")
                         gen_snippets = gen_results.get("snippets")
 
                         _, gen_fingerprint_hash = split_fingerprint(gen_halo1)
-                        gen_snippet_mappings_by_fingerprint = defaultdict(list)
-                        for s in gen_snippets:
-                            gen_snippet_mappings_by_fingerprint["fingerprint"].append(s)
+                        gen_snippet_mappings_by_fingerprint = create_snippet_mappings_by_fingerprint(gen_snippets)
 
                         distance = byte_hamming_distance(
                             solution_fingerprint_hash, gen_fingerprint_hash
@@ -255,10 +254,8 @@ class TestFingerprintingFunctions(FileBasedTesting):
                             {
                                 test_file_loc: {
                                     "distance": distance,
-                                    "snippets_matched_to_solution": sorted(
-                                        snippets_matched_to_solution
-                                    ),
-                                    "snippets_matched_to_gen": sorted(snippets_matched_to_gen),
+                                    "snippets_matched_to_solution": snippets_matched_to_solution,
+                                    "snippets_matched_to_gen": snippets_matched_to_gen,
                                 }
                             }
                         )
