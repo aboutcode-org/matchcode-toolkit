@@ -236,7 +236,7 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         "snippets": [],
     }
 
-    # tokenize content intow words
+    # tokenize content into words
     words = list(tokenizer(content))
 
     # Create a file fingerprint from the number of elements in the content hash
@@ -254,16 +254,21 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
 
     # Select windows from the content to compute snippet fingerprints
     windows = ngrams(words, window_length)
-    selected_windows = select_ngrams(windows, with_pos=True)
+    selected_windows = list(select_ngrams(windows, with_pos=True))
     # TODO: consider using itertools.chain.from_iterable()
     selected_windows_bytes = [
         (pos, [g.encode("utf-8") for g in window]) for pos, window in selected_windows
     ]
     selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
-    snippets = [
-        (pos, BitAverageHaloHash(window).hexdigest().decode("utf-8"))
-        for pos, window in selected_windows_bytes
-    ]
+    snippets = []
+    for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
+        snippets.append(
+            {
+                "position": pos,
+                "fingerprint": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
+                "ngrams": list(window),
+            }
+        )
     if snippets:
         fingerprints["snippets"] = snippets
 

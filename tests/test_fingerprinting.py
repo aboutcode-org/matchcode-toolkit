@@ -8,6 +8,7 @@
 #
 
 import os
+from collections import defaultdict
 
 from commoncode.resource import VirtualCodebase
 from commoncode.testcase import FileBasedTesting
@@ -178,11 +179,23 @@ class TestFingerprintingFunctions(FileBasedTesting):
         test_file2 = self.get_test_loc("snippets/zutil.c")
         results1 = get_file_fingerprint_hashes(test_file1)
         results2 = get_file_fingerprint_hashes(test_file2)
-        result1 = results1.get("snippets")
-        result2 = results2.get("snippets")
-        pos_snippet_by_snippets1 = {snippet: (pos, snippet) for pos, snippet in result1}
-        pos_snippet_by_snippet2 = {snippet: (pos, snippet) for pos, snippet in result2}
-        result = pos_snippet_by_snippets1.keys() & pos_snippet_by_snippet2.keys()
+        solution_snippets = results1.get("snippets")
+        gen_snippets = results2.get("snippets")
+
+        solution_snippet_mappings_by_fingerprint = defaultdict(list)
+        for s in solution_snippets:
+            fp = s["fingerprint"]
+            solution_snippet_mappings_by_fingerprint[fp].append(s)
+
+        gen_snippet_mappings_by_fingerprint = defaultdict(list)
+        for s in gen_snippets:
+            fp = s["fingerprint"]
+            gen_snippet_mappings_by_fingerprint[fp].append(s)
+
+        result = (
+            solution_snippet_mappings_by_fingerprint.keys()
+            & gen_snippet_mappings_by_fingerprint.keys()
+        )
         expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
         self.assertEqual(expected_result, result)
 
@@ -197,9 +210,10 @@ class TestFingerprintingFunctions(FileBasedTesting):
         solution_halo1 = solution_results.get("halo1")
         solution_snippets = solution_results.get("snippets")
         _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
-        pos_sol_snippet_by_snippets = {
-            snippet: (pos, snippet) for pos, snippet in solution_snippets
-        }
+        solution_snippet_mappings_by_fingerprint = defaultdict(list)
+        for s in solution_snippets:
+            solution_snippet_mappings_by_fingerprint["fingerprint"].append(s)
+
         results = []
         for temp in temps:
             for llm in llms:
@@ -217,20 +231,24 @@ class TestFingerprintingFunctions(FileBasedTesting):
                         gen_snippets = gen_results.get("snippets")
 
                         _, gen_fingerprint_hash = split_fingerprint(gen_halo1)
-                        pos_gen_snippet_by_snippets = {
-                            snippet: (pos, snippet) for pos, snippet in gen_snippets
-                        }
+                        gen_snippet_mappings_by_fingerprint = defaultdict(list)
+                        for s in gen_snippets:
+                            gen_snippet_mappings_by_fingerprint["fingerprint"].append(s)
+
                         distance = byte_hamming_distance(
                             solution_fingerprint_hash, gen_fingerprint_hash
                         )
-                        snippet_results = (
-                            pos_sol_snippet_by_snippets.keys() & pos_gen_snippet_by_snippets.keys()
+                        fingerprint_results = (
+                            solution_snippet_mappings_by_fingerprint.keys()
+                            & gen_snippet_mappings_by_fingerprint.keys()
                         )
                         snippets_matched_to_solution = [
-                            pos_sol_snippet_by_snippets[snippet] for snippet in snippet_results
+                            solution_snippet_mappings_by_fingerprint[fingerprint]
+                            for fingerprint in fingerprint_results
                         ]
                         snippets_matched_to_gen = [
-                            pos_gen_snippet_by_snippets[snippet] for snippet in snippet_results
+                            gen_snippet_mappings_by_fingerprint[fingerprint]
+                            for fingerprint in fingerprint_results
                         ]
 
                         results.append(
