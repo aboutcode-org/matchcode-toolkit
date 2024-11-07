@@ -34,7 +34,7 @@ jeepney==0.8.0
 jinja2==3.1.3
 jsonstreams==0.6.0
 keyring==24.3.0
-license-expression==30.2.0
+license-expression==30.4.0
 lxml==4.9.4
 markdown-it-py==3.0.0
 markupsafe==2.1.5
@@ -60,7 +60,7 @@ publicsuffix2==2.20191221
 pyahocorasick==2.0.0
 pycodestyle==2.11.1
 pycparser==2.21
-pygmars==0.8.0
+pygmars==0.9.0
 pygments==2.17.2
 pymaven-patch==0.3.0
 pyparsing==3.1.1
@@ -71,10 +71,10 @@ readme-renderer==42.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.7.0
-scancode-toolkit==32.0.8
+scancode-toolkit @ git+https://github.com/nexB/scancode-toolkit.git@15b76ea4f86327f11dd509d674cc7dab6fa52b5b
 secretstorage==3.3.3
 six==1.16.0
-spdx-tools==0.7.0rc0
+spdx-tools==0.8.2
 toml==0.10.2
 twine==5.0.0
 typecode==30.0.1
