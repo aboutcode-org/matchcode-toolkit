@@ -265,7 +265,7 @@ def create_file_fingerprints(content, ngram_length=8, window_length=64):
         snippets.append(
             {
                 "position": pos,
-                "fingerprint": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
+                "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
                 "ngrams": list(window),
             }
         )

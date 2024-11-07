@@ -173,6 +173,14 @@ class TestFingerprintingFunctions(FileBasedTesting):
 
         self.assertEqual(3, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
 
+    @classmethod
+    def _create_snippet_mappings_by_snippets(cls, snippets):
+        snippet_mappings_by_snippet = defaultdict(list)
+        for s in snippets:
+            snippet = s["snippet"]
+            snippet_mappings_by_snippet[snippet].append(s)
+        return snippet_mappings_by_snippet
+
     def test_snippets_similarity(self):
         # 1 function from adler32.c has been added to zutil.c
         test_file1 = self.get_test_loc("snippets/adler32.c")
@@ -182,30 +190,24 @@ class TestFingerprintingFunctions(FileBasedTesting):
         solution_snippets = results1.get("snippets")
         gen_snippets = results2.get("snippets")
 
-        solution_snippet_mappings_by_fingerprint = defaultdict(list)
-        for s in solution_snippets:
-            fp = s["fingerprint"]
-            solution_snippet_mappings_by_fingerprint[fp].append(s)
-
-        gen_snippet_mappings_by_fingerprint = defaultdict(list)
-        for s in gen_snippets:
-            fp = s["fingerprint"]
-            gen_snippet_mappings_by_fingerprint[fp].append(s)
+        solution_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            solution_snippets
+        )
+        gen_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(gen_snippets)
 
         result = (
-            solution_snippet_mappings_by_fingerprint.keys()
-            & gen_snippet_mappings_by_fingerprint.keys()
+            solution_snippet_mappings_by_snippets.keys() & gen_snippet_mappings_by_snippets.keys()
         )
         expected_result = {"16e774a453769c012ca1e7f3685b4111", "498885acf844eda1f65af9e746deaff7"}
         self.assertEqual(expected_result, result)
 
     def _test_snippets_similarity_ai_gen_code(self, problem, regen=False):
-        def create_snippet_mappings_by_fingerprint(snippets):
-            snippet_mappings_by_fingerprint = defaultdict(list)
+        def create_snippet_mappings_by_snippets(snippets):
+            snippet_mappings_by_snippet = defaultdict(list)
             for s in snippets:
-                fingerprint = s["fingerprint"]
-                snippet_mappings_by_fingerprint[fingerprint].append(s)
-            return snippet_mappings_by_fingerprint
+                snippet = s["snippet"]
+                snippet_mappings_by_snippet[snippet].append(s)
+            return snippet_mappings_by_snippet
 
         temps = [1]
         llms = ["gpt4"]
@@ -215,7 +217,9 @@ class TestFingerprintingFunctions(FileBasedTesting):
         solution_halo1 = solution_results.get("halo1")
         solution_snippets = solution_results.get("snippets")
         _, solution_fingerprint_hash = split_fingerprint(solution_halo1)
-        solution_snippet_mappings_by_fingerprint = create_snippet_mappings_by_fingerprint(solution_snippets)
+        solution_snippet_mappings_by_snippets = create_snippet_mappings_by_snippets(
+            solution_snippets
+        )
 
         results = []
         for temp in temps:
@@ -232,22 +236,23 @@ class TestFingerprintingFunctions(FileBasedTesting):
                         gen_snippets = gen_results.get("snippets")
 
                         _, gen_fingerprint_hash = split_fingerprint(gen_halo1)
-                        gen_snippet_mappings_by_fingerprint = create_snippet_mappings_by_fingerprint(gen_snippets)
+                        gen_snippet_mappings_by_snippets = create_snippet_mappings_by_snippets(
+                            gen_snippets
+                        )
 
                         distance = byte_hamming_distance(
                             solution_fingerprint_hash, gen_fingerprint_hash
                         )
-                        fingerprint_results = (
-                            solution_snippet_mappings_by_fingerprint.keys()
-                            & gen_snippet_mappings_by_fingerprint.keys()
+                        snippet_results = (
+                            solution_snippet_mappings_by_snippets.keys()
+                            & gen_snippet_mappings_by_snippets.keys()
                         )
                         snippets_matched_to_solution = [
-                            solution_snippet_mappings_by_fingerprint[fingerprint]
-                            for fingerprint in fingerprint_results
+                            solution_snippet_mappings_by_snippets[snippet]
+                            for snippet in snippet_results
                         ]
                         snippets_matched_to_gen = [
-                            gen_snippet_mappings_by_fingerprint[fingerprint]
-                            for fingerprint in fingerprint_results
+                            gen_snippet_mappings_by_snippets[snippet] for snippet in snippet_results
                         ]
 
                         results.append(

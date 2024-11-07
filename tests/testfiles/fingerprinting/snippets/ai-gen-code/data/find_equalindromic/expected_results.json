@@ -5,21 +5,21 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "position": 108,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
             "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
+              "scanner",
+              "system",
+              "in",
+              "string",
+              "input"
             ]
           }
         ],
         [
           {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -31,47 +31,8 @@
         ],
         [
           {
-            "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
-            "ngrams": [
-              "scanner",
-              "scanner",
-              "new",
-              "scanner",
-              "system"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 104,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
-            "ngrams": [
-              "scanner",
-              "new",
-              "scanner",
-              "system",
-              "in"
-            ]
-          }
-        ],
-        [
-          {
             "position": 109,
-            "fingerprint": "31927ebecdd97daf8b05651f4da93001",
+            "snippet": "31927ebecdd97daf8b05651f4da93001",
             "ngrams": [
               "system",
               "in",
@@ -84,7 +45,7 @@
         [
           {
             "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "snippet": "192db57be98b44e25d50582641df6323",
             "ngrams": [
               "nums",
               "int",
@@ -96,62 +57,8 @@
         ],
         [
           {
-            "position": 108,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
-            "ngrams": [
-              "scanner",
-              "system",
-              "in",
-              "string",
-              "input"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 161,
-            "fingerprint": "2aa38fe3837fca4092766a9ff66abc08",
-            "ngrams": [
-              "length",
-              "for",
-              "int",
-              "i",
-              "0"
-            ]
-          }
-        ]
-      ],
-      "snippets_matched_to_gen": [
-        [
-          {
-            "position": 136,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 137,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
-            "ngrams": [
-              "static",
-              "void",
-              "main",
-              "string",
-              "args"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 142,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "position": 105,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -163,21 +70,21 @@
         ],
         [
           {
-            "position": 141,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "position": 161,
+            "snippet": "2aa38fe3837fca4092766a9ff66abc08",
             "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
+              "length",
+              "for",
+              "int",
+              "i",
+              "0"
             ]
           }
         ],
         [
           {
-            "position": 143,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "position": 106,
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -189,8 +96,62 @@
         ],
         [
           {
+            "position": 104,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ]
+      ],
+      "snippets_matched_to_gen": [
+        [
+          {
+            "position": 145,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
+            "ngrams": [
+              "scanner",
+              "system",
+              "in",
+              "string",
+              "input"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 137,
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
+            "ngrams": [
+              "static",
+              "void",
+              "main",
+              "string",
+              "args"
+            ]
+          }
+        ],
+        [
+          {
             "position": 146,
-            "fingerprint": "31927ebecdd97daf8b05651f4da93001",
+            "snippet": "31927ebecdd97daf8b05651f4da93001",
             "ngrams": [
               "system",
               "in",
@@ -203,7 +164,7 @@
         [
           {
             "position": 27,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "snippet": "192db57be98b44e25d50582641df6323",
             "ngrams": [
               "nums",
               "int",
@@ -215,27 +176,66 @@
         ],
         [
           {
-            "position": 145,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
+            "position": 142,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
-              "system",
-              "in",
-              "string",
-              "input"
+              "scanner",
+              "new",
+              "scanner",
+              "system"
             ]
           }
         ],
         [
           {
             "position": 161,
-            "fingerprint": "2aa38fe3837fca4092766a9ff66abc08",
+            "snippet": "2aa38fe3837fca4092766a9ff66abc08",
             "ngrams": [
               "length",
               "for",
               "int",
               "i",
               "0"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 143,
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
+            "ngrams": [
+              "scanner",
+              "new",
+              "scanner",
+              "system",
+              "in"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 141,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 136,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
             ]
           }
         ]
@@ -248,21 +248,21 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "position": 108,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
             "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
+              "scanner",
+              "system",
+              "in",
+              "string",
+              "input"
             ]
           }
         ],
         [
           {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -274,8 +274,21 @@
         ],
         [
           {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
             "position": 176,
-            "fingerprint": "e11a3c59747e25deea9e37e9d22092a4",
+            "snippet": "e11a3c59747e25deea9e37e9d22092a4",
             "ngrams": [
               "trim",
               "create",
@@ -288,7 +301,7 @@
         [
           {
             "position": 200,
-            "fingerprint": "01180fd4e8d0ad1aa9a5aefca401bdb0",
+            "snippet": "01180fd4e8d0ad1aa9a5aefca401bdb0",
             "ngrams": [
               "result",
               "system",
@@ -297,11 +310,13 @@
               "cost"
             ]
           }
-        ],
+        ]
+      ],
+      "snippets_matched_to_gen": [
         [
           {
-            "position": 108,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
+            "position": 155,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
             "ngrams": [
               "scanner",
               "system",
@@ -310,26 +325,11 @@
               "input"
             ]
           }
-        ]
-      ],
-      "snippets_matched_to_gen": [
-        [
-          {
-            "position": 137,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
         ],
         [
           {
             "position": 138,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -341,8 +341,21 @@
         ],
         [
           {
+            "position": 137,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
             "position": 200,
-            "fingerprint": "e11a3c59747e25deea9e37e9d22092a4",
+            "snippet": "e11a3c59747e25deea9e37e9d22092a4",
             "ngrams": [
               "trim",
               "create",
@@ -355,26 +368,13 @@
         [
           {
             "position": 227,
-            "fingerprint": "01180fd4e8d0ad1aa9a5aefca401bdb0",
+            "snippet": "01180fd4e8d0ad1aa9a5aefca401bdb0",
             "ngrams": [
               "result",
               "system",
               "out",
               "println",
               "cost"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 155,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
-            "ngrams": [
-              "scanner",
-              "system",
-              "in",
-              "string",
-              "input"
             ]
           }
         ]
@@ -387,21 +387,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -413,8 +400,21 @@
         ],
         [
           {
+            "position": 14,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -426,21 +426,8 @@
         ],
         [
           {
-            "position": 104,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -452,14 +439,27 @@
         ],
         [
           {
-            "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "position": 104,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
             "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
             ]
           }
         ]
@@ -467,21 +467,8 @@
       "snippets_matched_to_gen": [
         [
           {
-            "position": 129,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
             "position": 130,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -493,8 +480,21 @@
         ],
         [
           {
+            "position": 26,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 135,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -506,21 +506,8 @@
         ],
         [
           {
-            "position": 134,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 136,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -532,14 +519,27 @@
         ],
         [
           {
-            "position": 26,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "position": 134,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
             "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 129,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
             ]
           }
         ]
@@ -552,21 +552,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -578,8 +565,21 @@
         ],
         [
           {
+            "position": 14,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -592,7 +592,7 @@
         [
           {
             "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -604,23 +604,8 @@
         ],
         [
           {
-            "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
-            "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
-            ]
-          }
-        ]
-      ],
-      "snippets_matched_to_gen": [
-        [
-          {
-            "position": 146,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -629,11 +614,13 @@
               "string"
             ]
           }
-        ],
+        ]
+      ],
+      "snippets_matched_to_gen": [
         [
           {
             "position": 147,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -645,8 +632,21 @@
         ],
         [
           {
+            "position": 43,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 156,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -659,7 +659,7 @@
         [
           {
             "position": 157,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -671,14 +671,14 @@
         ],
         [
           {
-            "position": 43,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "position": 146,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
             ]
           }
         ]
@@ -691,21 +691,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
-            "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
-            ]
-          }
-        ],
-        [
-          {
             "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -717,8 +704,21 @@
         ],
         [
           {
+            "position": 14,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -732,21 +732,8 @@
       "snippets_matched_to_gen": [
         [
           {
-            "position": 27,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
-            "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
-            ]
-          }
-        ],
-        [
-          {
             "position": 129,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -758,8 +745,21 @@
         ],
         [
           {
+            "position": 27,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 130,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -779,7 +779,7 @@
         [
           {
             "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -792,7 +792,7 @@
         [
           {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -807,7 +807,7 @@
         [
           {
             "position": 144,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -820,7 +820,7 @@
         [
           {
             "position": 145,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -839,21 +839,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
-            "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
-            ]
-          }
-        ],
-        [
-          {
             "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -865,8 +852,21 @@
         ],
         [
           {
+            "position": 14,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -880,21 +880,8 @@
       "snippets_matched_to_gen": [
         [
           {
-            "position": 111,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
-            "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
-            ]
-          }
-        ],
-        [
-          {
             "position": 130,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
             "ngrams": [
               "public",
               "static",
@@ -906,8 +893,21 @@
         ],
         [
           {
+            "position": 111,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
             "position": 131,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -926,21 +926,21 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "position": 108,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
             "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
+              "scanner",
+              "system",
+              "in",
+              "string",
+              "input"
             ]
           }
         ],
         [
           {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -952,60 +952,8 @@
         ],
         [
           {
-            "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
-            "ngrams": [
-              "scanner",
-              "scanner",
-              "new",
-              "scanner",
-              "system"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 202,
-            "fingerprint": "ffe06b10a93029e086175178963d664d",
-            "ngrams": [
-              "out",
-              "println",
-              "cost",
-              "scanner",
-              "close"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 104,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
-            "ngrams": [
-              "scanner",
-              "new",
-              "scanner",
-              "system",
-              "in"
-            ]
-          }
-        ],
-        [
-          {
             "position": 109,
-            "fingerprint": "31927ebecdd97daf8b05651f4da93001",
+            "snippet": "31927ebecdd97daf8b05651f4da93001",
             "ngrams": [
               "system",
               "in",
@@ -1018,7 +966,7 @@
         [
           {
             "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "snippet": "192db57be98b44e25d50582641df6323",
             "ngrams": [
               "nums",
               "int",
@@ -1030,49 +978,8 @@
         ],
         [
           {
-            "position": 108,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
-            "ngrams": [
-              "scanner",
-              "system",
-              "in",
-              "string",
-              "input"
-            ]
-          }
-        ]
-      ],
-      "snippets_matched_to_gen": [
-        [
-          {
-            "position": 156,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 157,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
-            "ngrams": [
-              "static",
-              "void",
-              "main",
-              "string",
-              "args"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 162,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "position": 105,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -1084,34 +991,8 @@
         ],
         [
           {
-            "position": 192,
-            "fingerprint": "ffe06b10a93029e086175178963d664d",
-            "ngrams": [
-              "out",
-              "println",
-              "cost",
-              "scanner",
-              "close"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 161,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 163,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "position": 106,
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -1123,8 +1004,75 @@
         ],
         [
           {
+            "position": 104,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 202,
+            "snippet": "ffe06b10a93029e086175178963d664d",
+            "ngrams": [
+              "out",
+              "println",
+              "cost",
+              "scanner",
+              "close"
+            ]
+          }
+        ]
+      ],
+      "snippets_matched_to_gen": [
+        [
+          {
+            "position": 165,
+            "snippet": "981eaf162dd03611d61884821acfcb79",
+            "ngrams": [
+              "scanner",
+              "system",
+              "in",
+              "string",
+              "input"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 157,
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
+            "ngrams": [
+              "static",
+              "void",
+              "main",
+              "string",
+              "args"
+            ]
+          }
+        ],
+        [
+          {
             "position": 166,
-            "fingerprint": "31927ebecdd97daf8b05651f4da93001",
+            "snippet": "31927ebecdd97daf8b05651f4da93001",
             "ngrams": [
               "system",
               "in",
@@ -1137,7 +1085,7 @@
         [
           {
             "position": 28,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "snippet": "192db57be98b44e25d50582641df6323",
             "ngrams": [
               "nums",
               "int",
@@ -1149,14 +1097,66 @@
         ],
         [
           {
-            "position": 165,
-            "fingerprint": "981eaf162dd03611d61884821acfcb79",
+            "position": 162,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
+              "scanner",
+              "new",
+              "scanner",
+              "system"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 163,
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
+            "ngrams": [
+              "scanner",
+              "new",
+              "scanner",
               "system",
-              "in",
-              "string",
-              "input"
+              "in"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 161,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 156,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 192,
+            "snippet": "ffe06b10a93029e086175178963d664d",
+            "ngrams": [
+              "out",
+              "println",
+              "cost",
+              "scanner",
+              "close"
             ]
           }
         ]
@@ -1169,21 +1169,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
             "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -1196,7 +1183,7 @@
         [
           {
             "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -1208,21 +1195,8 @@
         ],
         [
           {
-            "position": 104,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -1234,8 +1208,34 @@
         ],
         [
           {
+            "position": 104,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
             "position": 200,
-            "fingerprint": "01180fd4e8d0ad1aa9a5aefca401bdb0",
+            "snippet": "01180fd4e8d0ad1aa9a5aefca401bdb0",
             "ngrams": [
               "result",
               "system",
@@ -1249,21 +1249,8 @@
       "snippets_matched_to_gen": [
         [
           {
-            "position": 124,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
             "position": 125,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
               "static",
               "void",
@@ -1276,7 +1263,7 @@
         [
           {
             "position": 130,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
             "ngrams": [
               "scanner",
               "scanner",
@@ -1288,21 +1275,8 @@
         ],
         [
           {
-            "position": 129,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
-            "ngrams": [
-              "args",
-              "scanner",
-              "scanner",
-              "new",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 131,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -1314,8 +1288,34 @@
         ],
         [
           {
+            "position": 129,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "ngrams": [
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 124,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
             "position": 195,
-            "fingerprint": "01180fd4e8d0ad1aa9a5aefca401bdb0",
+            "snippet": "01180fd4e8d0ad1aa9a5aefca401bdb0",
             "ngrams": [
               "result",
               "system",
@@ -1334,60 +1334,8 @@
       "snippets_matched_to_solution": [
         [
           {
-            "position": 99,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 100,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
-            "ngrams": [
-              "static",
-              "void",
-              "main",
-              "string",
-              "args"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 105,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
-            "ngrams": [
-              "scanner",
-              "scanner",
-              "new",
-              "scanner",
-              "system"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 3,
-            "fingerprint": "3df9aa53d2a073281986ed411da7be63",
-            "ngrams": [
-              "arrays",
-              "import",
-              "java",
-              "util",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 6,
-            "fingerprint": "776b49c30f325c6d5e2e9f4c1154fb6b",
+            "snippet": "776b49c30f325c6d5e2e9f4c1154fb6b",
             "ngrams": [
               "util",
               "scanner",
@@ -1399,21 +1347,47 @@
         ],
         [
           {
-            "position": 104,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "position": 100,
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
-              "args",
+              "static",
+              "void",
+              "main",
+              "string",
+              "args"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 14,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 105,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "ngrams": [
               "scanner",
               "scanner",
               "new",
-              "scanner"
+              "scanner",
+              "system"
             ]
           }
         ],
         [
           {
             "position": 106,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -1425,14 +1399,40 @@
         ],
         [
           {
-            "position": 14,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "position": 104,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
             "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 99,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 3,
+            "snippet": "3df9aa53d2a073281986ed411da7be63",
+            "ngrams": [
+              "arrays",
+              "import",
+              "java",
+              "util",
+              "scanner"
             ]
           }
         ]
@@ -1440,60 +1440,8 @@
       "snippets_matched_to_gen": [
         [
           {
-            "position": 137,
-            "fingerprint": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
-            "ngrams": [
-              "public",
-              "static",
-              "void",
-              "main",
-              "string"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 138,
-            "fingerprint": "4c148a8ddc11d8987da06cc645d1125c",
-            "ngrams": [
-              "static",
-              "void",
-              "main",
-              "string",
-              "args"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 143,
-            "fingerprint": "18c1a62ad0c0678a939cd8af93e36fe1",
-            "ngrams": [
-              "scanner",
-              "scanner",
-              "new",
-              "scanner",
-              "system"
-            ]
-          }
-        ],
-        [
-          {
-            "position": 14,
-            "fingerprint": "3df9aa53d2a073281986ed411da7be63",
-            "ngrams": [
-              "arrays",
-              "import",
-              "java",
-              "util",
-              "scanner"
-            ]
-          }
-        ],
-        [
-          {
             "position": 17,
-            "fingerprint": "776b49c30f325c6d5e2e9f4c1154fb6b",
+            "snippet": "776b49c30f325c6d5e2e9f4c1154fb6b",
             "ngrams": [
               "util",
               "scanner",
@@ -1505,21 +1453,47 @@
         ],
         [
           {
-            "position": 142,
-            "fingerprint": "40d3448ca03dff1bc27a4ba8431f2db5",
+            "position": 138,
+            "snippet": "4c148a8ddc11d8987da06cc645d1125c",
             "ngrams": [
-              "args",
+              "static",
+              "void",
+              "main",
+              "string",
+              "args"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 28,
+            "snippet": "192db57be98b44e25d50582641df6323",
+            "ngrams": [
+              "nums",
+              "int",
+              "n",
+              "nums",
+              "length"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 143,
+            "snippet": "18c1a62ad0c0678a939cd8af93e36fe1",
+            "ngrams": [
               "scanner",
               "scanner",
               "new",
-              "scanner"
+              "scanner",
+              "system"
             ]
           }
         ],
         [
           {
             "position": 144,
-            "fingerprint": "f7488624fa925a7c079b4f04351c05d7",
+            "snippet": "f7488624fa925a7c079b4f04351c05d7",
             "ngrams": [
               "scanner",
               "new",
@@ -1531,14 +1505,40 @@
         ],
         [
           {
-            "position": 28,
-            "fingerprint": "192db57be98b44e25d50582641df6323",
+            "position": 142,
+            "snippet": "40d3448ca03dff1bc27a4ba8431f2db5",
             "ngrams": [
-              "nums",
-              "int",
-              "n",
-              "nums",
-              "length"
+              "args",
+              "scanner",
+              "scanner",
+              "new",
+              "scanner"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 137,
+            "snippet": "372ab81c3cfcaa0c46d36a8cab3b4bd2",
+            "ngrams": [
+              "public",
+              "static",
+              "void",
+              "main",
+              "string"
+            ]
+          }
+        ],
+        [
+          {
+            "position": 14,
+            "snippet": "3df9aa53d2a073281986ed411da7be63",
+            "ngrams": [
+              "arrays",
+              "import",
+              "java",
+              "util",
+              "scanner"
             ]
           }
         ]
