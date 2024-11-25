@@ -17,7 +17,7 @@
 # ScanCode.io should be considered or used as legal advice. Consult an Attorney
 # for any legal advice.
 #
-# ScanCode.io is a free software code scanning tool from nexB Inc. and others.
+# ScanCode.io is a free software code scanning tool from AboutCode, nexB Inc. and others.
 # Visit https://github.com/aboutcode-org/scancode.io for support and download.
 
 from scanpipe.pipelines.scan_single_package import ScanSinglePackage

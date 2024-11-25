@@ -1,15 +1,16 @@
 #
-# Copyright (c) nexB Inc. and others. All rights reserved.
-# purldb is a trademark of nexB Inc.
+# Copyright (c) AboutCode, nexB Inc. and others. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/aboutcode-org/purldb for support or download.
+# See https://github.com/aboutcode-org/matchcode-toolkit for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
 import binascii
 import re
 
+from matchcode_toolkit.chunking import ngrams
+from matchcode_toolkit.chunking import select_ngrams
 from matchcode_toolkit.halohash import BitAverageHaloHash
 
 # A collection of directory fingerprints that we want to avoid
@@ -229,8 +230,6 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
     """
     Return a mapping of halo1 and snippet hashes from content string
     """
-    from licensedcode.tokenize import ngrams
-    from licensedcode.tokenize import select_ngrams
 
     fingerprints = {
         "halo1": "",
