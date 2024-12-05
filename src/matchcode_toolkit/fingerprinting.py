@@ -10,7 +10,7 @@
 import binascii
 import re
 
-from matchcode_toolkit.halohash import BitAverageHaloHash
+from samecode.halohash import BitAverageHaloHash
 
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [

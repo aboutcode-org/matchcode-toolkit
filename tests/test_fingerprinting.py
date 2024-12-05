@@ -22,7 +22,7 @@ from matchcode_toolkit.fingerprinting import create_halohash_chunks
 from matchcode_toolkit.fingerprinting import create_structure_fingerprint
 from matchcode_toolkit.fingerprinting import get_file_fingerprint_hashes
 from matchcode_toolkit.fingerprinting import split_fingerprint
-from matchcode_toolkit.halohash import byte_hamming_distance
+from samecode.halohash import byte_hamming_distance
 
 
 class Resource:
