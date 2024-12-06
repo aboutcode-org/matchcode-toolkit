@@ -100,7 +100,7 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual(chunk4, expected_chunk4)
 
     def test_compute_codebase_directory_fingerprints(self):
-        scan_loc = self.get_test_loc("abbrev-1.0.3-i.json")
+        scan_loc = self.get_test_loc("directory_fingerprinting/abbrev-1.0.3-i.json")
         vc = VirtualCodebase(location=scan_loc)
         vc = compute_codebase_directory_fingerprints(vc)
         directory_content = vc.root.extra_data["directory_content"]
@@ -111,7 +111,7 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual(expected_directory_structure, directory_structure)
 
     def test_do_not_compute_fingerprint_for_empty_dirs(self):
-        scan_loc = self.get_test_loc("test.json")
+        scan_loc = self.get_test_loc("directory_fingerprinting/test.json")
         vc = VirtualCodebase(location=scan_loc)
         vc = compute_codebase_directory_fingerprints(vc)
         directory_content = vc.root.extra_data["directory_content"]
@@ -130,8 +130,8 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual({}, empty_dir_2.extra_data)
 
     def test_get_file_fingerprint_hashes_one_line_removed(self):
-        test_file1 = self.get_test_loc("inflate.c")
-        test_file2 = self.get_test_loc("inflate-mod.c")
+        test_file1 = self.get_test_loc("directory_fingerprinting/inflate.c")
+        test_file2 = self.get_test_loc("directory_fingerprinting/inflate-mod.c")
         result1 = get_file_fingerprint_hashes(test_file1)
         result2 = get_file_fingerprint_hashes(test_file2)
         result1 = result1.get("halo1")
@@ -152,8 +152,8 @@ class TestFingerprintingFunctions(FileBasedTesting):
         self.assertEqual(2, byte_hamming_distance(result1_fingerprint, result2_fingerprint))
 
     def test_get_file_fingerprint_hashes_one_line_added(self):
-        test_file1 = self.get_test_loc("inflate.c")
-        test_file2 = self.get_test_loc("inflate-mod2.c")
+        test_file1 = self.get_test_loc("directory_fingerprinting/inflate.c")
+        test_file2 = self.get_test_loc("directory_fingerprinting/inflate-mod2.c")
         result1 = get_file_fingerprint_hashes(test_file1)
         result2 = get_file_fingerprint_hashes(test_file2)
         result1 = result1.get("halo1")
@@ -232,5 +232,5 @@ class TestFingerprintingFunctions(FileBasedTesting):
                     "snippet_matched_to_results2": sorted_results2,
                 }
             )
-        expected_results_loc = self.get_test_loc("snippets/snippet-similarity-expected.json")
+        expected_results_loc = self.get_test_loc("snippet-similarity-expected.json")
         check_against_expected_json_file(results, expected_results_loc, regen=regen)
