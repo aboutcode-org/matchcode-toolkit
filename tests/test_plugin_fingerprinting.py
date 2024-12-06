@@ -22,15 +22,15 @@ These tests spawn new process as if launched from the command line.
 
 
 class TestPluginFingerprinting(FileBasedTesting):
-    test_data_dir = os.path.join(os.path.dirname(__file__), "testfiles")
+    test_data_dir = os.path.join(os.path.dirname(__file__), "testfiles/fingerprinting")
 
     def test_plugin_fingerprinting_api_works(self):
-        test_loc = self.get_test_loc("fingerprinting/inflate.c")
+        test_loc = self.get_test_loc("directory_fingerprinting/inflate.c")
         detections = list(get_file_fingerprint_hashes(location=test_loc))
         assert detections
 
     def test_fingerprinting_plugin_works(self):
-        test_dir = self.get_test_loc("fingerprinting", copy=True)
+        test_dir = self.get_test_loc("directory_fingerprinting", copy=True)
         result_file = self.get_temp_file("json")
         args = [
             "--info",
@@ -41,11 +41,11 @@ class TestPluginFingerprinting(FileBasedTesting):
             test_dir,
         ]
         run_scan_click(args)
-        test_loc = self.get_test_loc("fingerprinting-expected.json")
+        test_loc = self.get_test_loc("directory_fingerprinting-expected.json")
         check_json_scan(
             test_loc,
             result_file,
             remove_file_date=True,
             check_headers=False,
-            regen=True,
+            regen=REGEN_TEST_FIXTURES,
         )
