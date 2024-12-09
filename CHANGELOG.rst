@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v7.0.0
+------
+
+*2024-12-09* -- Remove Halohash from matchcode-toolkit and use samecode in its place. Halohash and related tests have been moved to samecode.
+
 v6.0.1
 ------
 
