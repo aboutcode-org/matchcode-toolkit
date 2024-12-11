@@ -234,3 +234,29 @@ class TestFingerprintingFunctions(FileBasedTesting):
             )
         expected_results_loc = self.get_test_loc("snippet-similarity-expected.json")
         check_against_expected_json_file(results, expected_results_loc, regen=regen)
+
+    def test_snippets_similarity_2(self, regen=False):
+        # index-modified.js is index.js with a function removed
+        test_file1 = self.get_test_loc("snippets/index.js")
+        test_file2 = self.get_test_loc("snippets/index-modified.js")
+        results1 = get_file_fingerprint_hashes(test_file1, include_ngrams=True)
+        results2 = get_file_fingerprint_hashes(test_file2, include_ngrams=True)
+        results1_snippets = results1.get("snippets")
+        results2_snippets = results2.get("snippets")
+
+        results1_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            results1_snippets
+        )
+        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(results2_snippets)
+
+        matching_snippets = (
+            results1_snippet_mappings_by_snippets.keys() & results2_snippet_mappings_by_snippets.keys()
+        )
+
+        # jaccard coefficient
+        jc = len(matching_snippets) / ((len(results1_snippets) + len(results2_snippets)) / 2)
+
+        assert jc == 0.9666666666666667
+        assert len(results1_snippets) == 61
+        assert len(results2_snippets) == 59
+        assert len(matching_snippets) == 58
