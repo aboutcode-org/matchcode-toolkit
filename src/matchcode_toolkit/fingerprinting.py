@@ -11,6 +11,8 @@ import binascii
 import re
 
 from samecode.halohash import BitAverageHaloHash
+from licensedcode.tokenize import query_lines
+
 
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [
@@ -164,7 +166,7 @@ def create_halohash_chunks(bah128):
 query_pattern = "[^_\\W]+"
 word_splitter = re.compile(query_pattern, re.UNICODE).findall
 
-
+# TODO: return line numbers from where the token was taken
 def _tokenizer(text):
     """
     Return an list of tokens from a unicode text.
@@ -260,13 +262,14 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
     selected_windows = list(select_ngrams(windows, with_pos=True))
     # TODO: consider using itertools.chain.from_iterable()
     selected_windows_bytes = [
-        (pos, [g.encode("utf-8") for g in window]) for pos, window in selected_windows
+        (int(pos), [g.encode("utf-8") for g in window]) for pos, window in selected_windows
     ]
     selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
     snippets = []
     for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
         s = {
-            "position": pos,
+            "qstart": pos,
+            "qend": pos + window_length - 1,
             "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
         }
         if include_ngrams:
@@ -276,3 +279,22 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
         fingerprints["snippets"] = snippets
 
     return fingerprints
+
+
+def get_line_by_pos(content):
+    """
+    Return a list of lines numbers whose indices correspond to a token position
+    in `content`.
+
+    For example, given line_by_pos[0] = 1, this means that the token at position
+    0 in `content` is on line 1.
+    """
+    line_number_and_lines = query_lines(query_string=content)
+    line_by_pos = []
+    pos = 0
+    for line_number, line in line_number_and_lines:
+        tokens = tokenizer(line)
+        for _ in tokens:
+            line_by_pos[pos] = line_number
+            pos += 1
+    return line_by_pos
