@@ -283,14 +283,14 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
 
 def get_line_by_pos(content):
     """
-    Return a list of lines numbers whose indices correspond to a token position
+    Return a mapping of lines numbers whose indices correspond to a token position
     in `content`.
 
     For example, given line_by_pos[0] = 1, this means that the token at position
     0 in `content` is on line 1.
     """
     line_number_and_lines = query_lines(query_string=content)
-    line_by_pos = []
+    line_by_pos = {}
     pos = 0
     for line_number, line in line_number_and_lines:
         tokens = tokenizer(line)
