@@ -194,7 +194,9 @@ def tokenizer(text):
     return _tokenizer(text.lower())
 
 
-def get_file_fingerprint_hashes(location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs):
+def get_file_fingerprint_hashes(
+    location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs
+):
     """
     Return a mapping of fingerprint hashes for the file at `location`
 

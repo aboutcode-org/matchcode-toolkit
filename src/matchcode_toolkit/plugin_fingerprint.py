@@ -8,7 +8,6 @@
 #
 
 import attr
-
 from commoncode.cliutils import SCAN_GROUP
 from commoncode.cliutils import PluggableCommandLineOption
 from plugincode.scan import ScanPlugin
