@@ -19,11 +19,6 @@ class TreeSitterWheelNotInstalled(Exception):
 
 
 TS_LANGUAGE_CONF = {
-    "Bash": {
-        "wheel": "tree_sitter_bash",
-        "identifiers": ["identifier"],
-        "comments": ["comment"],
-    },
     "C": {
         "wheel": "tree_sitter_c",
         "identifiers": ["identifier"],
