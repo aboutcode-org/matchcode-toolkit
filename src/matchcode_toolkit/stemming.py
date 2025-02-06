@@ -118,7 +118,14 @@ def apply_mutation(text, start_point, end_point, replacement):
     start_index = sum(len(line) + 1 for line in lines[:start_row]) + start_col
     end_index = sum(len(line) + 1 for line in lines[:end_row]) + end_col
 
-    return text[:start_index] + replacement + text[end_index:]
+    modified_text = text[:start_index] + replacement + text[end_index:]
+
+    modified_lines = modified_text.splitlines()
+    # Remove empty comment lines.
+    if not replacement and modified_lines[start_row].strip() == "":
+        del modified_lines[start_row]
+
+    return "\n".join(modified_lines)
 
 
 def get_stem_code(location):
