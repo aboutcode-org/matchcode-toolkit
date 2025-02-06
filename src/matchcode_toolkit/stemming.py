@@ -37,7 +37,7 @@ TS_LANGUAGE_CONF = {
     "Java": {
         "wheel": "tree_sitter_java",
         "identifiers": ["identifier"],
-        "comments": ["comment"],
+        "comments": ["comment", "block_comment", "line_comment"],
     },
     "JavaScript": {
         "wheel": "tree_sitter_javascript",
@@ -52,7 +52,7 @@ TS_LANGUAGE_CONF = {
     "Rust": {
         "wheel": "tree_sitter_rust",
         "identifiers": ["identifier"],
-        "comments": ["comment"],
+        "comments": ["comment", "block_comment", "line_comment"],
     },
 }
 
