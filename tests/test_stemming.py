@@ -15,7 +15,7 @@ from commoncode.testcase import FileBasedTesting
 from matchcode_toolkit import stemming
 
 
-def check_against_expected_code_file(results, expected_file, regen=True):
+def check_against_expected_code_file(results, expected_file, regen=False):
     """
     Check that the ``results`` data are the same as the data in the
     ``expected_file``.

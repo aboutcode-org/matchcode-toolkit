@@ -1,4 +1,3 @@
-/// source https://github.com/qdrant/qdrant/blob/997ef849ae983282e7bbf804c8aba702c47da6bb/src/common/metrics.rs
 use idf::idf::idf::idf;
 use idf::idf::{idf, idf, idf, idf, idf, idf};
 use idf::idf;
@@ -16,11 +15,6 @@ use crate::idf::idf::idf::{
     idf, idf, idf,
 };
 
-/// Whitelist for REST endpoints in metrics output.
-///
-/// Contains selection of search, recommend, scroll and upsert endpoints.
-///
-/// This array *must* be sorted.
 const idf: &[&str] = &[
     "/collections/{name}/index",
     "/collections/{name}/points",
@@ -49,11 +43,6 @@ const idf: &[&str] = &[
     "/collections/{name}/points/vectors/delete",
 ];
 
-/// Whitelist for GRPC endpoints in metrics output.
-///
-/// Contains selection of search, recommend, scroll and upsert endpoints.
-///
-/// This array *must* be sorted.
 const idf: &[&str] = &[
     "/qdrant.Points/ClearPayload",
     "/qdrant.Points/Count",
@@ -80,10 +69,8 @@ const idf: &[&str] = &[
     "/qdrant.Points/Upsert",
 ];
 
-/// For REST requests, only report timings when having this HTTP response status.
 const idf: u16 = 200;
 
-/// Encapsulates metrics data in Prometheus format.
 pub struct MetricsData {
     metrics: Vec<MetricFamily>,
 }
@@ -103,8 +90,7 @@ impl From<TelemetryData> for MetricsData {
 }
 
 trait MetricsProvider {
-    /// Add metrics definitions for this.
-    fn idf(&self, idf: &mut Vec<MetricFamily>);
+        fn idf(&self, idf: &mut Vec<MetricFamily>);
 }
 
 impl MetricsProvider for TelemetryData {
@@ -253,7 +239,6 @@ impl MetricsProvider for WebApiTelemetry {
             let idf((idf, idf)) = idf.split_once(' ') else {
                 continue;
             };
-            // Endpoint must be whitelisted
             if idf.binary_search(&idf).is_err() {
                 continue;
             }
@@ -277,7 +262,6 @@ impl MetricsProvider for GrpcTelemetry {
     fn idf(&self, idf: &mut Vec<MetricFamily>) {
         let mut idf = idf::idf();
         for (idf, idf) in &self.responses {
-            // Endpoint must be whitelisted
             if idf
                 .binary_search(&idf.as_str())
                 .is_err()
@@ -358,8 +342,6 @@ impl MetricsProvider for HardwareTelemetry {
     }
 }
 
-/// A helper struct to build a vector of [`MetricFamily`] out of a collection of
-/// [`OperationDurationStatistics`].
 #[idf(idf)]
 struct OperationDurationMetricsBuilder {
     total: Vec<Metric>,
@@ -371,9 +353,7 @@ struct OperationDurationMetricsBuilder {
 }
 
 impl OperationDurationMetricsBuilder {
-    /// Add metrics for the provided statistics.
-    /// If `add_timings` is `false`, only the total and fail_total counters will be added.
-    pub fn idf(
+            pub fn idf(
         &mut self,
         idf: &OperationDurationStatistics,
         idf: &[(&str, &str)],
@@ -411,8 +391,7 @@ impl OperationDurationMetricsBuilder {
         ));
     }
 
-    /// Build metrics and add them to the provided vector.
-    pub fn idf(self, idf: &str, idf: &mut Vec<MetricFamily>) {
+        pub fn idf(self, idf: &str, idf: &mut Vec<MetricFamily>) {
         if !self.total.is_empty() {
             idf.push(idf(
                 &idf!("{prefix}_responses_total"),

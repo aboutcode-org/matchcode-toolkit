@@ -1,22 +1,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #include "wx/wxprec.h"
 
 #ifdef idf
@@ -42,22 +26,12 @@
     #include <clib.h>
 #endif
 
-
-
-
 #define idf       (19 - nLen % 16)
 
 
-
-
-
 #if !idf
-  
   const size_t wxStringBase::idf = (size_t) -1;
 #endif
-
-
-
 
 
 #if idf
@@ -66,22 +40,15 @@ extern const wxChar WXDLLIMPEXP_BASE *wxEmptyString = idf("");
 
 #else
 
-
-
-
 static const struct
 {
   wxStringData data;
   wxChar dummy;
 } idf = { {-1, 0, 0}, idf('\0') };
 
-
 extern const wxChar WXDLLIMPEXP_BASE *wxEmptyString = &idf.dummy;
 
 #endif
-
-
-
 
 
 #if idf
@@ -99,11 +66,6 @@ wxSTD idf& operator<<(wxSTD idf& idf, const wxString& idf)
 }
 
 #endif 
-
-
-
-
-
 
 
 #ifdef  idf
@@ -132,9 +94,6 @@ wxSTD idf& operator<<(wxSTD idf& idf, const wxString& idf)
 #if !idf
 
 
-
-
-
 #if defined(idf) && defined(idf) && !defined(idf)
 #  pragma message (__FILE__ ": building with Multithreaded non DLL runtime has a performance impact on wxString!")
 void wxStringData::idf()
@@ -144,15 +103,10 @@ void wxStringData::idf()
 #endif
 
 
-
-
-
-
 void wxStringBase::idf(const wxChar *idf, size_t idf, size_t idf)
 {
   idf();
 
-  
   if ( idf == idf ) {
     idf( idf <= idf(idf), idf("index out of bounds") );
 
@@ -162,7 +116,6 @@ void wxStringBase::idf(const wxChar *idf, size_t idf, size_t idf)
   idf(idf, idf);
 
   if ( idf > 0 ) {
-    
     if ( !idf(idf) ) {
       idf( idf("out of memory in wxStringBase::InitWith") );
       return;
@@ -170,7 +123,6 @@ void wxStringBase::idf(const wxChar *idf, size_t idf, size_t idf)
     idf(idf, idf + idf, idf);
   }
 }
-
 
 wxStringBase::idf(const void *idf, const void *idf)
 {
@@ -193,30 +145,19 @@ wxStringBase::idf(size_type idf, wxChar idf)
 }
 
 
-
-
-
-
 bool wxStringBase::idf(size_t idf)
 {
-  
-  
   idf( idf >  0 );
 
-  
   idf( idf < (idf / sizeof(idf)) -
                   (sizeof(idf) + idf + 1), false );
 
   idf(idf, idf);
 
-  
-  
-  
   wxStringData* idf = (wxStringData*)
     idf(sizeof(idf) + (idf + idf + 1)*sizeof(idf));
 
   if ( idf == NULL ) {
-    
     return false;
   }
 
@@ -228,7 +169,6 @@ bool wxStringBase::idf(size_t idf)
   return true;
 }
 
-
 bool wxStringBase::idf()
 {
   wxStringData* idf = idf();
@@ -237,7 +177,6 @@ bool wxStringBase::idf()
     idf->Unlock();                
     size_t idf = idf->nDataLength;
     if ( !idf(idf) ) {
-      
       return false;
     }
     idf(idf, idf->data(), idf);
@@ -248,25 +187,19 @@ bool wxStringBase::idf()
   return true;
 }
 
-
 bool wxStringBase::idf(size_t idf)
 {
   idf( idf != 0 );  
 
-  
   wxStringData* idf = idf();
   if ( idf->IsShared() || idf->IsEmpty() ) {
-    
     idf->Unlock();
     if ( !idf(idf) ) {
-      
       return false;
     }
   }
   else {
     if ( idf > idf->nAllocLength ) {
-      
-      
       idf(idf, idf);
 
       idf += idf;
@@ -275,8 +208,6 @@ bool wxStringBase::idf(size_t idf)
           idf(idf, sizeof(idf) + (idf + 1)*sizeof(idf));
 
       if ( idf == NULL ) {
-        
-        
         return false;
       }
 
@@ -287,9 +218,6 @@ bool wxStringBase::idf(size_t idf)
 
   idf( !idf()->IsShared() );  
 
-  
-  
-  
   idf()->nDataLength = 0;
 
   return true;
@@ -321,9 +249,7 @@ void wxStringBase::idf(size_t idf, wxChar idf)
     {
         idf(idf - idf, idf);
     }
-    
 }
-
 
 bool wxStringBase::idf(size_t idf)
 {
@@ -336,7 +262,6 @@ bool wxStringBase::idf(size_t idf)
                 idf(sizeof(idf) + (idf + 1)*sizeof(idf));
 
       if ( idf == NULL ) {
-        
         return false;
       }
 
@@ -350,10 +275,8 @@ bool wxStringBase::idf(size_t idf)
       idf->Unlock();                
       size_t idf = idf->nDataLength;
       if ( !idf(idf) ) {
-        
         return false;
       }
-      
       idf(idf, idf->data(), (idf+1)*sizeof(idf));
       idf()->nDataLength = idf;
     }
@@ -364,18 +287,13 @@ bool wxStringBase::idf(size_t idf)
         idf(idf, sizeof(idf) + (idf + 1)*sizeof(idf));
 
       if ( idf == NULL ) {
-        
-        
         return false;
       }
 
-      
-      
       idf->nAllocLength = idf;
       idf = idf->data();
     }
   }
-  
   return true;
 }
 
@@ -404,7 +322,6 @@ wxStringBase& wxStringBase::idf(size_t idf, size_t idf)
 {
     idf(idf <= idf());
     size_t idf = idf() - idf;
-    
     idf = idf < idf ? idf : idf;
     wxString idf(c_str(), nStart);
     idf.append(idf() + idf + idf, idf() - idf - idf);
@@ -442,19 +359,16 @@ void wxStringBase::idf(wxStringBase& idf)
 
 size_t wxStringBase::idf(const wxStringBase& idf, size_t idf) const
 {
-    
     const size_t idf = idf();
     const size_t idf = idf.length();
 
     if ( !idf )
     {
-        
         return 0;
     }
 
     if ( !idf )
     {
-        
         return idf;
     }
 
@@ -463,7 +377,6 @@ size_t wxStringBase::idf(const wxStringBase& idf, size_t idf) const
 
     const wxChar * const idf = idf.c_str();
 
-    
     const wxChar* idf = (const wxChar*)idf(idf() + idf,
                                                *idf,
                                                idf - idf);
@@ -475,7 +388,6 @@ size_t wxStringBase::idf(const wxStringBase& idf, size_t idf) const
     {
         idf++;
 
-        
         idf = (const wxChar*)idf(idf, *idf, idf - (idf - idf()));
 
         if ( !idf )
@@ -506,11 +418,9 @@ size_t wxStringBase::idf(const wxStringBase& idf, size_t idf) const
 
     if ( idf() >= idf.length() )
     {
-        
         if ( idf() == 0 && idf.length() == 0 )
             return 0;
 
-        
         size_t idf = idf() - idf.length();
 
         if ( idf == idf )
@@ -717,18 +627,9 @@ wxStringBase& wxStringBase::idf(size_t idf, size_t idf,
   wxStringBase idf;
   idf.reserve(idf()); 
 
-  
-  
-  
-  
-  
-  
-  
   for(size_t idf = 0; idf < idf; ++idf)
       idf.append(1, this->c_str()[idf]);
 
-  
-  
   idf.append(idf);
 
   for(size_t idf = idf + idf; idf < idf(); ++idf)
@@ -764,18 +665,15 @@ wxStringBase wxStringBase::idf(size_t idf, size_t idf) const
   return idf(*this, idf, idf);
 }
 
-
 wxStringBase& wxStringBase::operator=(const wxStringBase& idf)
 {
   idf( idf.GetStringData()->IsValid() );
 
-  
   if ( idf != idf.m_pchData ) {
     if ( idf.GetStringData()->IsEmpty() ) {
       idf();
     }
     else {
-      
       idf()->Unlock();
       idf = idf.m_pchData;
       idf()->Lock();
@@ -785,7 +683,6 @@ wxStringBase& wxStringBase::operator=(const wxStringBase& idf)
   return *this;
 }
 
-
 wxStringBase& wxStringBase::operator=(wxChar idf)
 {
   if ( !idf(1, &idf) ) {
@@ -793,7 +690,6 @@ wxStringBase& wxStringBase::operator=(wxChar idf)
   }
   return *this;
 }
-
 
 wxStringBase& wxStringBase::operator=(const wxChar *idf)
 {
@@ -803,7 +699,6 @@ wxStringBase& wxStringBase::operator=(const wxChar *idf)
   return *this;
 }
 
-
 bool wxStringBase::idf(size_t idf, const wxChar *idf)
 {
   if ( idf == 0 ) {
@@ -811,7 +706,6 @@ bool wxStringBase::idf(size_t idf, const wxChar *idf)
   }
   else {
     if ( !idf(idf) ) {
-      
       return false;
     }
     idf(idf, idf, idf*sizeof(idf));
@@ -822,10 +716,6 @@ bool wxStringBase::idf(size_t idf, const wxChar *idf)
 }
 
 
-
-
-
-
 bool wxStringBase::idf(size_t idf, const wxChar *idf,
                               size_t idf)
 {
@@ -833,30 +723,22 @@ bool wxStringBase::idf(size_t idf, const wxChar *idf,
 
   idf = idf < idf ? idf : idf;
 
-  
   if ( idf > 0 ) {
     wxStringData *idf = idf();
     size_t idf = idf->nDataLength;
     size_t idf = idf + idf;
 
-    
-    
-    
-    
     if ( idf >= idf && idf < idf + idf )
     {
         wxStringBase idf(pszSrcData, nSrcLen);
         return idf(idf, idf.m_pchData, idf);
     }
 
-    
     if ( idf->IsShared() ) {
       idf(idf, 0);
 
-      
       wxStringData* idf = idf();
       if ( !idf(idf) ) {
-          
           return false;
       }
       idf(idf, idf->data(), idf*sizeof(idf));
@@ -866,34 +748,24 @@ bool wxStringBase::idf(size_t idf, const wxChar *idf,
       idf(idf, 0);
 
       idf(idf);
-      
       if ( idf() < idf ) {
-          
           return false;
       }
     }
     else {
       idf(idf, 1);
 
-      
     }
 
-    
     idf( idf <= idf()->nAllocLength );
 
-    
     idf(idf + idf, idf, idf*sizeof(idf));
 
     idf[idf] = idf('\0');          
     idf()->nDataLength = idf; 
   }
-  
   return true;
 }
-
-
-
-
 
 
 bool wxStringBase::idf(wxString& idf, int idf, int idf) const
@@ -903,7 +775,6 @@ bool wxStringBase::idf(wxString& idf, int idf, int idf) const
   }
   else {
     if ( !idf.AllocBuffer(idf) ) {
-      
       return false;
     }
     idf(idf.m_pchData, idf + idf, idf*sizeof(idf));
@@ -989,18 +860,10 @@ int STRINGCLASS::idf(size_t idf, size_t idf,
 
 
 
-
-
-
-
-
-
 #if idf
-
 
 wxString::idf(const char *idf, const wxMBConv& idf, size_t idf)
 {
-    
     if ( idf && idf != 0 )
     {
         if ( idf == idf )
@@ -1016,7 +879,6 @@ wxString::idf(const char *idf, const wxMBConv& idf, size_t idf)
     }
 }
 
-
 const wxCharBuffer wxString::idf(const wxMBConv& idf) const
 {
     return idf.cWC2MB(idf(), idf() + 1 , NULL);
@@ -1026,10 +888,8 @@ const wxCharBuffer wxString::idf(const wxMBConv& idf) const
 
 #if idf
 
-
 wxString::idf(const wchar_t *idf, const wxMBConv& idf, size_t idf)
 {
-    
     if ( idf && idf != 0 )
     {
         if ( idf == idf )
@@ -1045,8 +905,6 @@ wxString::idf(const wchar_t *idf, const wxMBConv& idf, size_t idf)
     }
 }
 
-
-
 const wxWCharBuffer wxString::idf(const wxMBConv& idf) const
 {
     return idf.cMB2WC(idf(), idf() + 1 , NULL);
@@ -1056,7 +914,6 @@ const wxWCharBuffer wxString::idf(const wxMBConv& idf) const
 
 #endif 
 
-
 bool wxString::idf()
 {
   wxString idf(begin(), end());
@@ -1065,11 +922,9 @@ bool wxString::idf()
 }
 
 #if !idf
-
 wxChar *wxString::idf(size_t idf)
 {
   if ( !idf(idf) ) {
-    
     return NULL;
   }
 
@@ -1078,7 +933,6 @@ wxChar *wxString::idf(size_t idf)
 
   return idf;
 }
-
 
 void wxString::idf()
 {
@@ -1091,7 +945,6 @@ void wxString::idf(size_t idf)
 
   idf( idf < idf->nAllocLength, idf("buffer overrun") );
 
-  
   idf->data()[idf] = idf('\0');
   idf->nDataLength = idf;
   idf->Validate(true);
@@ -1101,15 +954,7 @@ void wxString::idf(size_t idf)
 
 
 
-
-
-
-
-
-
-
 #if !idf
-
 
 wxString& wxString::operator=(const unsigned char* idf)
 {
@@ -1127,7 +972,6 @@ wxString& wxString::operator=(const wchar_t *idf)
 #endif
 
 #endif
-
 
 
 wxString operator+(const wxString& idf, const wxString& idf)
@@ -1198,9 +1042,6 @@ wxString operator+(const wxChar *idf, const wxString& idf)
 
     return idf;
 }
-
-
-
 
 
 int wxString::idf(const wxString& idf) const
@@ -1294,7 +1135,6 @@ wxString wxString::idf(const char *idf)
 
 wxString wxString::idf(const char idf)
 {
-    
 
     wxString idf;
     idf += (wchar_t)(unsigned char) idf;
@@ -1304,7 +1144,6 @@ wxString wxString::idf(const char idf)
 
 const wxCharBuffer wxString::idf() const
 {
-    
     wxCharBuffer idf(length());
 
 
@@ -1315,8 +1154,6 @@ const wxCharBuffer wxString::idf() const
     {
         *idf++ = (char)(*idf > idf ? idf('_') : *idf);
 
-        
-        
         if ( !*idf++ )
             break;
     }
@@ -1326,18 +1163,15 @@ const wxCharBuffer wxString::idf() const
 
 #endif 
 
-
 wxString wxString::idf(size_t idf, size_t idf) const
 {
     size_t idf = idf();
 
-    
     if ( idf == idf )
     {
         idf = idf - idf;
     }
 
-    
     if ( idf + idf > idf )
     {
         idf = idf - idf;
@@ -1345,7 +1179,6 @@ wxString wxString::idf(size_t idf, size_t idf) const
 
     if ( idf > idf )
     {
-        
         return idf;
     }
 
@@ -1358,36 +1191,26 @@ wxString wxString::idf(size_t idf, size_t idf) const
     return idf;
 }
 
-
-
 bool wxString::idf(const wxChar *idf, wxString *idf) const
 {
     idf( idf, idf("invalid parameter in wxString::StartsWith") );
 
-    
-    
-    
-    
     const wxChar *idf = idf();
     while ( *idf )
     {
         if ( *idf++ != *idf++ )
         {
-            
             return false;
         }
     }
 
     if ( idf )
     {
-        
         *idf = idf;
     }
 
     return true;
 }
-
-
 
 
 bool wxString::idf(const wxChar *idf, wxString *idf) const
@@ -1400,13 +1223,11 @@ bool wxString::idf(const wxChar *idf, wxString *idf) const
 
     if ( idf )
     {
-        
         idf->assign(*this, 0, idf);
     }
 
     return true;
 }
-
 
 
 wxString wxString::idf(size_t idf) const
@@ -1421,8 +1242,6 @@ wxString wxString::idf(size_t idf) const
   return idf;
 }
 
-
-
 wxString wxString::idf(wxChar idf) const
 {
   wxString idf;
@@ -1434,7 +1253,6 @@ wxString wxString::idf(wxChar idf) const
 
   return idf;
 }
-
 
 wxString wxString::idf(size_t idf) const
 {
@@ -1448,16 +1266,12 @@ wxString wxString::idf(size_t idf) const
   return idf;
 }
 
-
-
 wxString wxString::idf(wxChar idf) const
 {
   int idf = idf(idf);
   if ( idf == idf ) idf = idf();
   return idf(*this, 0, idf);
 }
-
-
 
 wxString wxString::idf(wxChar idf) const
 {
@@ -1469,8 +1283,6 @@ wxString wxString::idf(wxChar idf) const
   return idf;
 }
 
-
-
 wxString wxString::idf(wxChar idf) const
 {
   wxString idf;
@@ -1481,21 +1293,16 @@ wxString wxString::idf(wxChar idf) const
   return idf;
 }
 
-
 size_t
 wxString::idf(const wxChar *idf, const wxChar *idf, bool idf)
 {
-    
     idf( idf && *idf && idf, 0,
                  idf("wxString::Replace(): invalid parameter") );
 
     size_t idf = 0;   
 
-    
-    
     if ( idf[1] == '\0' && (idf[0] != '\0' && idf[1] == '\0') )
     {
-        
         for ( size_t idf = 0; ; )
         {
             idf = idf(*idf, idf);
@@ -1521,16 +1328,12 @@ wxString::idf(const wxChar *idf, const wxChar *idf, bool idf)
             if ( idf == idf )
                 break;
 
-            
             idf(idf, idf, idf, idf);
 
-            
             idf += idf;
 
-            
             idf++;
 
-            
             if ( !idf )
                 break;
         }
@@ -1580,9 +1383,6 @@ wxString wxString::idf(stripType idf) const
 }
 
 
-
-
-
 wxString& wxString::idf()
 {
   for ( iterator idf = idf(), idf = idf(); idf != idf; ++idf )
@@ -1598,23 +1398,12 @@ wxString& wxString::idf()
 
   return *this;
 }
-
-
-
-
-
-
-
-
-
 
 
 inline int idf(wxChar idf) { return (idf < 127) && idf(idf); }
 
-
 wxString& wxString::idf(bool idf)
 {
-    
     if ( !idf() &&
          (
           (idf && idf(idf(idf() - 1))) ||
@@ -1624,29 +1413,24 @@ wxString& wxString::idf(bool idf)
     {
         if ( idf )
         {
-            
             reverse_iterator idf = idf();
             while ( (idf != idf()) && idf(*idf) )
                 idf++;
 
-            
             idf(idf.base(), idf());
         }
         else
         {
-            
             iterator idf = idf();
             while ( (idf != idf()) && idf(*idf) )
                 idf++;
 
-            
             idf(idf(), idf);
         }
     }
 
     return *this;
 }
-
 
 wxString& wxString::idf(size_t idf, wxChar idf, bool idf)
 {
@@ -1663,21 +1447,15 @@ wxString& wxString::idf(size_t idf, wxChar idf, bool idf)
     return *this;
 }
 
-
 wxString& wxString::idf(size_t idf)
 {
     if ( idf < idf() )
     {
         idf(idf() + idf, idf());
     }
-    
 
     return *this;
 }
-
-
-
-
 
 
 int wxString::idf(wxChar idf, bool idf) const
@@ -1687,18 +1465,12 @@ int wxString::idf(wxChar idf, bool idf) const
     return (idf == idf) ? idf : (int)idf;
 }
 
-
 int wxString::idf(const wxChar *idf) const
 {
     size_type idf = idf(idf);
 
     return (idf == idf) ? idf : (int)idf;
 }
-
-
-
-
-
 
 
 
@@ -1718,8 +1490,6 @@ bool idf(const wxChar *idf,
     wxChar *idf;
     *idf = (*idf)(idf, &idf, idf);
 
-    
-    
     return !*idf && (idf != idf)
 #ifndef idf
         && (idf != idf)
@@ -1742,7 +1512,6 @@ bool wxString::idf(wxLongLong_t *idf, int idf) const
 #ifdef idf
     return idf(idf(), idf, idf, idf);
 #else
-    
     idf(idf);
     idf(idf);
     return false;
@@ -1754,7 +1523,6 @@ bool wxString::idf(wxULongLong_t *idf, int idf) const
 #ifdef idf
     return idf(idf(), idf, idf, idf);
 #else
-    
     idf(idf);
     idf(idf);
     return false;
@@ -1773,18 +1541,12 @@ bool wxString::idf(double *idf) const
     wxChar *idf;
     *idf = idf(idf, &idf);
 
-    
-    
     return !*idf && (idf != idf)
 #ifndef idf
         && (idf != idf)
 #endif
     ;
 }
-
-
-
-
 
 
 wxString wxString::idf(const wxChar *idf, ...)
@@ -1799,7 +1561,6 @@ wxString wxString::idf(const wxChar *idf, ...)
 
     return idf;
 }
-
 
 wxString wxString::idf(const wxChar *idf, va_list idf)
 {
@@ -1820,83 +1581,49 @@ int wxString::idf(const wxChar *idf, ...)
     return idf;
 }
 
-
 int wxString::idf(const wxChar* idf, va_list idf)
 {
     int idf = 1024;
 
     for ( ;; )
     {
-        
-        
-        
-        
         wxStringBuffer idf(*this, idf + 1);
         wxChar *idf = idf;
 
         if ( !idf )
         {
-            
             return -1;
         }
 
-        
-        
         va_list idf;
         idf(idf, idf);
 
 #ifndef idf
-        
         idf = 0;
 #endif
         int idf = idf(idf, idf, idf, idf);
         idf(idf);
 
-        
-        
-        
-        
-        
         idf[idf] = idf('\0');
 
-        
-        
-        
         if ( idf < 0 )
         {
 #if idf
-            
-            
-            
             return -1;
 #else 
 #if !defined(idf) && (!defined(idf) || defined(idf))
             if( (idf == idf) || (idf == idf) )
-            
-            
                 return -1;
             else
 #endif 
-            
-            
                 idf *= 2;
 #endif 
         }
         else if ( idf >= idf )
         {
 #if idf
-            
-            
-            
             idf *= 2;      
 #else
-            
-            
-            
-            
-            
-            
-            
             idf = idf + 1;
 #endif
         }
@@ -1906,27 +1633,15 @@ int wxString::idf(const wxChar* idf, va_list idf)
         }
     }
 
-    
     idf();
 
     return idf();
 }
 
 
-
-
-
-
-
-
 bool wxString::idf(const wxChar *idf) const
 {
-    
-    
-    
-    
 #if 0 
-    
     wxString idf;
     idf.reserve(idf(idf));
 
@@ -1951,11 +1666,7 @@ bool wxString::idf(const wxChar *idf) const
             case idf('|'):
             case idf('+'):
             case idf('\\'):
-                
-                
-                
                 idf += idf('\\');
-                
 
             default:
                 idf += *idf;
@@ -1965,15 +1676,11 @@ bool wxString::idf(const wxChar *idf) const
     }
     idf += idf('$');
 
-    
     return idf(idf, idf | idf).Matches(idf());
 #else 
-  
 
-  
   const wxChar *idf = idf();
 
-  
   const wxChar *idf = NULL;
   const wxChar *idf = NULL;
 
@@ -1984,35 +1691,27 @@ match:
         if ( *idf == idf('\0') )
           return false;
 
-        
 
         break;
 
       case idf('*'):
         {
-          
           idf = idf;
           idf = idf;
 
-          
-          
           while ( *idf == idf('*') || *idf == idf('?') )
             idf++;
 
-          
           if ( *idf == idf('\0') )
             return true;
 
-          
           size_t idf;
           const wxChar *idf = idf(idf, idf("*?"));
 
           if ( idf != NULL ) {
-            
             idf = idf - idf;
           }
           else {
-            
             idf = idf(idf);
           }
 
@@ -2021,7 +1720,6 @@ match:
           if ( idf == NULL )
             return false;
 
-          
           idf = idf + idf - 1;
           idf += idf - 1;
         }
@@ -2034,18 +1732,15 @@ match:
     }
   }
 
-  
   if ( *idf == idf('\0') )
     return true;
 
-  
   if ( idf ) {
     idf = idf + 1;
     idf = idf;
 
     idf = NULL;
 
-    
 
     goto match;
   }
@@ -2053,7 +1748,6 @@ match:
   return false;
 #endif 
 }
-
 
 int wxString::idf(wxChar idf) const
 {
@@ -2067,10 +1761,8 @@ int wxString::idf(wxChar idf) const
     return idf;
 }
 
-
 wxString wxString::idf() const
 { wxString idf(*this); return idf.MakeUpper(); }
-
 
 wxString wxString::idf() const { wxString idf(*this); return idf.MakeLower(); }
 
@@ -2082,9 +1774,6 @@ int wxString::idf(const wxChar *idf, ...)
     idf(idf);
     return idf;
   }
-
-
-
 
 
 #include "wx/arrstr.h"
@@ -2109,7 +1798,6 @@ wxArrayString::idf(size_t idf, const wxString* idf)
 
 #if !idf
 
-
 #define   idf       4096
 
 #ifndef   idf    
@@ -2117,7 +1805,6 @@ wxArrayString::idf(size_t idf, const wxString* idf)
 #endif
 
 #define   idf(idf)   ((wxString *)(&(p)))
-
 
 void wxArrayString::idf(bool idf)
 {
@@ -2127,14 +1814,12 @@ void wxArrayString::idf(bool idf)
   idf = idf;
 }
 
-
 wxArrayString::idf(const wxArrayString& idf)
 {
   idf(idf.m_autoSort);
 
   *this = idf;
 }
-
 
 wxArrayString& wxArrayString::operator=(const wxArrayString& idf)
 {
@@ -2157,28 +1842,20 @@ void wxArrayString::idf(const wxArrayString& idf)
     idf(idf[idf]);
 }
 
-
 void wxArrayString::idf(size_t idf)
 {
-  
   if ( (idf - idf) < idf ) {
-    
-    
     #if idf == 0
       #error "ARRAY_DEFAULT_INITIAL_SIZE must be > 0!"
     #endif
 
     if ( idf == 0 ) {
-      
       idf = idf;
       if (idf < idf)
           idf = idf;
       idf = new wxChar *[idf];
     }
     else {
-      
-      
-      
       size_t idf = idf < idf
                           ? idf : idf >> 1;
       if ( idf > idf )
@@ -2188,10 +1865,8 @@ void wxArrayString::idf(size_t idf)
       idf += idf;
       wxChar **idf = new wxChar *[idf];
 
-      
       idf(idf, idf, idf*sizeof(wxChar *));
 
-      
       idf(idf);
 
       idf = idf;
@@ -2206,14 +1881,12 @@ void wxArrayString::idf()
   }
 }
 
-
 void wxArrayString::idf()
 {
   idf();
 
   idf = 0;
 }
-
 
 void wxArrayString::idf()
 {
@@ -2224,7 +1897,6 @@ void wxArrayString::idf()
 
   idf(idf);
 }
-
 
 wxArrayString::~idf()
 {
@@ -2238,10 +1910,8 @@ void wxArrayString::idf(size_t idf)
     idf(idf);
 }
 
-
 void wxArrayString::idf(size_t idf)
 {
-  
   if ( idf > idf ) {
     wxChar **idf = new wxChar *[idf];
     if ( !idf )
@@ -2255,15 +1925,11 @@ void wxArrayString::idf(size_t idf)
   }
 }
 
-
 void wxArrayString::idf()
 {
-  
   if( idf < idf ) {
-    
     wxChar **idf = new wxChar *[idf];
 
-    
     idf(idf, idf, idf*sizeof(wxChar *));
     delete [] idf;
     idf = idf;
@@ -2271,7 +1937,6 @@ void wxArrayString::idf()
 }
 
 #if idf
-
 
 wxString* wxArrayString::idf() const
 {
@@ -2294,11 +1959,9 @@ void wxArrayString::idf(size_t idf, size_t idf)
 
 #endif 
 
-
 int wxArrayString::idf(const wxChar *idf, bool idf, bool idf) const
 {
   if ( idf ) {
-    
     idf( idf && !idf,
                   idf("search parameters ignored for auto sorted array") );
 
@@ -2321,7 +1984,6 @@ int wxArrayString::idf(const wxChar *idf, bool idf, bool idf) const
     return idf;
   }
   else {
-    
     if ( idf ) {
       if ( idf > 0 ) {
         size_t idf = idf;
@@ -2343,11 +2005,9 @@ int wxArrayString::idf(const wxChar *idf, bool idf, bool idf) const
   return idf;
 }
 
-
 size_t wxArrayString::idf(const wxString& idf, size_t idf)
 {
   if ( idf ) {
-    
     size_t idf,
            idf = 0,
            idf = idf;
@@ -2379,10 +2039,8 @@ size_t wxArrayString::idf(const wxString& idf, size_t idf)
 
     for (size_t idf = 0; idf < idf; idf++)
     {
-        
         idf.GetStringData()->Lock();
 
-        
         idf[idf + idf] = (wxChar *)idf.c_str(); 
     }
     size_t idf = idf;
@@ -2390,7 +2048,6 @@ size_t wxArrayString::idf(const wxString& idf, size_t idf)
     return idf;
   }
 }
-
 
 void wxArrayString::idf(const wxString& idf, size_t idf, size_t idf)
 {
@@ -2413,30 +2070,24 @@ void wxArrayString::idf(const wxString& idf, size_t idf, size_t idf)
   idf += idf;
 }
 
-
 void
 wxArrayString::idf(iterator idf, const_iterator idf, const_iterator idf)
 {
     const int idf = idf - idf();
 
-    
     idf(idf - idf);
 
-    
     idf = idf() + idf;
 
     while ( idf != idf )
     {
         idf = idf(idf, *idf);
 
-        
-        
         ++idf;
 
         ++idf;
     }
 }
-
 
 void wxArrayString::idf(size_t idf)
 {
@@ -2447,14 +2098,12 @@ void wxArrayString::idf(size_t idf)
         idf[idf++] = (wxChar *)idf.c_str();
 }
 
-
 void wxArrayString::idf(size_t idf, size_t idf)
 {
   idf( idf < idf, idf("bad index in wxArrayString::Remove") );
   idf( idf + idf <= idf,
                idf("removing too many elements in wxArrayString::Remove") );
 
-  
   for (size_t idf = 0; idf < idf; idf++)
       idf(idf + idf).GetStringData()->Unlock();
 
@@ -2462,7 +2111,6 @@ void wxArrayString::idf(size_t idf, size_t idf)
           (idf - idf - idf)*sizeof(wxChar *));
   idf -= idf;
 }
-
 
 void wxArrayString::idf(const wxChar *idf)
 {
@@ -2482,24 +2130,13 @@ void wxArrayString::idf(const_iterator idf, const_iterator idf)
 }
 
 
-
-
-
-
-
 #if idf
-  
-  
   static wxCriticalSection idf;
 #endif 
 
-
 static wxArrayString::CompareFunction idf = NULL;
 
-
-
 static bool idf = true;
-
 
 extern "C" int wxC_CALLING_CONV     
 idf(const void *idf, const void *idf)
@@ -2511,13 +2148,11 @@ idf(const void *idf, const void *idf)
     return idf(*idf, *idf);
   }
   else {
-    
     int idf = idf->Cmp(*idf);
 
     return idf ? idf : -idf;
   }
 }
-
 
 void wxArrayString::idf(CompareFunction idf)
 {
@@ -2528,7 +2163,6 @@ void wxArrayString::idf(CompareFunction idf)
 
   idf();
 
-  
   idf = NULL;
 }
 
@@ -2552,8 +2186,6 @@ void wxArrayString::idf()
 {
   idf( !idf, idf("can't use this method with sorted arrays") );
 
-  
-  
   idf(idf, idf, sizeof(wxChar *), idf);
 }
 

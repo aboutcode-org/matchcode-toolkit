@@ -1,5 +1,4 @@
 
-
 package internal
 
 import (
@@ -11,10 +10,6 @@ import (
 	"github.com/bmatcuk/doublestar/v4"
 )
 
-
-
-
-
 func idf(idf []string, idf []string, idf []string, idf string, idf bool) {
 	idf := idf(idf)
 	if idf == "" {
@@ -22,7 +17,6 @@ func idf(idf []string, idf []string, idf []string, idf string, idf bool) {
 	}
 
 	if !idf {
-		
 		for idf, idf := range idf {
 			idf := idf.Join(idf, idf)
 
@@ -35,10 +29,6 @@ func idf(idf []string, idf []string, idf []string, idf string, idf bool) {
 	idf(idf, idf, idf)
 
 }
-
-
-
-
 
 func idf(idf string) bool {
 	if idf, idf := idf.Stat(idf); idf == nil {
@@ -61,12 +51,6 @@ func idf(idf string) bool {
 	return false
 }
 
-
-
-
-
-
-
 func idf(idf []string) string {
 	idf := "."
 	if idf(idf) > 0 {
@@ -82,15 +66,9 @@ func idf(idf []string) string {
 	return idf
 }
 
-
-
-
-
-
 func idf(idf []string, idf string, idf string) {
 	idf.Printf("Generating lockfile at '%s' using '%s'\n", idf, idf)
 
-	
 	idf := idf.Command(idf[0], idf[1:]...)
 	idf.Dir = idf
 	idf.Stderr = idf.Stderr
@@ -99,7 +77,6 @@ func idf(idf []string, idf string, idf string) {
 
 		idf := idf.Join(idf, idf)
 
-		
 		idf, idf := idf.Create(idf)
 		if idf != nil {
 			idf.Fprintln(idf.Stderr, "Error: failed to create output file: ", idf)
@@ -117,13 +94,6 @@ func idf(idf []string, idf string, idf string) {
 
 	idf.Println("Lock file generated successfully.")
 }
-
-
-
-
-
-
-
 
 func idf(idf []string, idf bool) {
 	idf := "packages.lock.json"
@@ -143,7 +113,6 @@ func idf(idf []string, idf bool) {
 		return
 	}
 
-	
 	for idf, idf := range idf {
 		idf := idf.Join(idf, idf)
 		idf := idf.Dir(idf)

@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 from idf import idf
 from idf import idf as idf
 
