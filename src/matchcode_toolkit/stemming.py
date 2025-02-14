@@ -59,7 +59,7 @@ TS_LANGUAGE_CONF = {
 
 def get_parser(location):
     """
-    Get the appropriate tree-sitter parser and string identifier for
+    Get the appropriate tree-sitter parser and grammar config for
     file at location.
     """
     file_type = Type(location)
@@ -108,27 +108,34 @@ def traverse(node, language_info, mutation_index):
         traverse(child, language_info, mutation_index)
 
 
-def apply_mutation(text, start_point, end_point, replacement):
+def apply_mutation(text, start_point, end_point, replacement, successive_line_count):
+    """Mutate tokens between start and end points with replacement string."""
+
     start_row, start_col = start_point
     end_row, end_col = end_point
 
-    lines = text.splitlines()
-
-    # Compute the start and end indices, +1 for newline.
-    start_index = sum(len(line) + 1 for line in lines[:start_row]) + start_col
-    end_index = sum(len(line) + 1 for line in lines[:end_row]) + end_col
+    # Compute 1D mutation position from 2D coordinates
+    start_index = successive_line_count[start_row] + start_col
+    end_index = successive_line_count[end_row] + end_col
 
     modified_text = text[:start_index] + replacement + text[end_index:]
+    modified_lines = modified_text.splitlines(keepends=True)
 
-    modified_lines = modified_text.splitlines()
     # Remove empty comment lines.
     if not replacement and modified_lines[start_row].strip() == "":
         del modified_lines[start_row]
 
-    return "\n".join(modified_lines)
+    return "".join(modified_lines)
 
 
 def get_stem_code(location):
+    """
+    Return the stemmed code for the code file at the specified `location`.
+
+    Parse the code using tree-sitter, create a mutation index for tokens that
+    need to be replaced or removed, and apply these mutations bottom-up to
+    generate the stemmed code.
+    """
     parser_result = get_parser(location)
     if not parser_result:
         return
@@ -143,11 +150,17 @@ def get_stem_code(location):
     # Apply mutations bottom-up
     mutations = dict(sorted(mutations.items(), reverse=True))
     text = source.decode()
+    cur_count = 0
+    lines = text.splitlines(keepends=True)
+    successive_line_count = [cur_count := cur_count + len(line) for line in lines]
+    successive_line_count.insert(0, 0)
+
     for value in mutations.values():
         text = apply_mutation(
             text=text,
             end_point=value["end_point"],
             start_point=value["start_point"],
             replacement=("idf" if value["type"] == "identifier" else ""),
+            successive_line_count=successive_line_count,
         )
     return text
