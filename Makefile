@@ -19,11 +19,11 @@ dev:
 
 isort:
 	@echo "-> Apply isort changes to ensure proper imports ordering"
-	${VENV}/bin/isort --sl -l 100 src tests setup.py
+	${VENV}/bin/isort --sl -l 100 src tests setup.py --skip="tests/testfiles/"
 
 black:
 	@echo "-> Apply black code formatter"
-	${VENV}/bin/black -l 100 src tests setup.py
+	${VENV}/bin/black -l 100 src tests setup.py --exclude="tests/testfiles/"
 
 doc8:
 	@echo "-> Run doc8 validation"
@@ -33,11 +33,11 @@ valid: isort black
 
 check:
 	@echo "-> Run pycodestyle (PEP8) validation"
-	@${ACTIVATE} pycodestyle --max-line-length=100 --exclude=.eggs,venv,lib,thirdparty,docs,migrations,settings.py,.cache .
+	@${ACTIVATE} pycodestyle --max-line-length=100 --exclude=.eggs,venv,lib,thirdparty,docs,migrations,settings.py,.cache,tests/testfiles/stemming/ .
 	@echo "-> Run isort imports ordering validation"
-	@${ACTIVATE} isort --sl --check-only -l 100 setup.py src tests .
+	@${ACTIVATE} isort --sl --check-only -l 100 setup.py src tests . --skip="tests/testfiles/"
 	@echo "-> Run black validation"
-	@${ACTIVATE} black --check --check -l 100 src tests setup.py
+	@${ACTIVATE} black --check --check -l 100 src tests setup.py --exclude="tests/testfiles/"
 
 clean:
 	@echo "-> Clean the Python env"

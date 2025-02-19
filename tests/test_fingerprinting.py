@@ -13,6 +13,7 @@ from collections import defaultdict
 from commoncode.resource import VirtualCodebase
 from commoncode.testcase import FileBasedTesting
 from commoncode.testcase import check_against_expected_json_file
+from samecode.halohash import byte_hamming_distance
 
 from matchcode_toolkit.fingerprinting import _create_directory_fingerprint
 from matchcode_toolkit.fingerprinting import _get_resource_subpath
@@ -22,7 +23,6 @@ from matchcode_toolkit.fingerprinting import create_halohash_chunks
 from matchcode_toolkit.fingerprinting import create_structure_fingerprint
 from matchcode_toolkit.fingerprinting import get_file_fingerprint_hashes
 from matchcode_toolkit.fingerprinting import split_fingerprint
-from samecode.halohash import byte_hamming_distance
 
 
 class Resource:
@@ -193,10 +193,13 @@ class TestFingerprintingFunctions(FileBasedTesting):
         results1_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
             results1_snippets
         )
-        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(results2_snippets)
+        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            results2_snippets
+        )
 
         matching_snippets = (
-            results1_snippet_mappings_by_snippets.keys() & results2_snippet_mappings_by_snippets.keys()
+            results1_snippet_mappings_by_snippets.keys()
+            & results2_snippet_mappings_by_snippets.keys()
         )
         expected_matching_snippets = {
             "33b1d50de7e1701bd4beb706bf25970e",
@@ -247,10 +250,13 @@ class TestFingerprintingFunctions(FileBasedTesting):
         results1_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
             results1_snippets
         )
-        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(results2_snippets)
+        results2_snippet_mappings_by_snippets = self._create_snippet_mappings_by_snippets(
+            results2_snippets
+        )
 
         matching_snippets = (
-            results1_snippet_mappings_by_snippets.keys() & results2_snippet_mappings_by_snippets.keys()
+            results1_snippet_mappings_by_snippets.keys()
+            & results2_snippet_mappings_by_snippets.keys()
         )
 
         # jaccard coefficient
