@@ -10,9 +10,8 @@
 import binascii
 import re
 
-from samecode.halohash import BitAverageHaloHash
 from licensedcode.tokenize import query_lines
-
+from samecode.halohash import BitAverageHaloHash
 
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [
@@ -20,6 +19,8 @@ IGNORED_DIRECTORY_FINGERPRINTS = [
     # an empty directory.
     "0000000000000000000000000000000000000000",
 ]
+
+SNIPPET_WINDOW_LENGTH = 16
 
 
 def _create_directory_fingerprint(inputs):
@@ -166,6 +167,7 @@ def create_halohash_chunks(bah128):
 query_pattern = "[^_\\W]+"
 word_splitter = re.compile(query_pattern, re.UNICODE).findall
 
+
 # TODO: return line numbers from where the token was taken
 def _tokenizer(text):
     """
@@ -197,7 +199,7 @@ def tokenizer(text):
 
 
 def get_file_fingerprint_hashes(
-    location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs
+    location, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False, **kwargs
 ):
     """
     Return a mapping of fingerprint hashes for the file at `location`
@@ -229,7 +231,9 @@ def get_file_fingerprint_hashes(
     )
 
 
-def create_file_fingerprints(content, ngram_length=5, window_length=16, include_ngrams=False):
+def create_file_fingerprints(
+    content, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False
+):
     """
     Return a mapping of halo1 and snippet hashes from content string
     """
