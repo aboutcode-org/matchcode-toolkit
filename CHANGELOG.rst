@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v7.1.0
+------
+
+*2025-02-20* -- Add code stemming functionality. Add ``line_by_pos`` function to help with displaying snippet matches. Expose SNIPPET_WINDOW_LENGTH for use in other places.
+
 v7.0.0
 ------
 

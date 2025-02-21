@@ -10,6 +10,7 @@
 import binascii
 import re
 
+from licensedcode.tokenize import query_lines
 from samecode.halohash import BitAverageHaloHash
 
 # A collection of directory fingerprints that we want to avoid
@@ -18,6 +19,8 @@ IGNORED_DIRECTORY_FINGERPRINTS = [
     # an empty directory.
     "0000000000000000000000000000000000000000",
 ]
+
+SNIPPET_WINDOW_LENGTH = 16
 
 
 def _create_directory_fingerprint(inputs):
@@ -165,6 +168,7 @@ query_pattern = "[^_\\W]+"
 word_splitter = re.compile(query_pattern, re.UNICODE).findall
 
 
+# TODO: return line numbers from where the token was taken
 def _tokenizer(text):
     """
     Return an list of tokens from a unicode text.
@@ -195,7 +199,7 @@ def tokenizer(text):
 
 
 def get_file_fingerprint_hashes(
-    location, ngram_length=5, window_length=16, include_ngrams=False, **kwargs
+    location, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False, **kwargs
 ):
     """
     Return a mapping of fingerprint hashes for the file at `location`
@@ -227,7 +231,9 @@ def get_file_fingerprint_hashes(
     )
 
 
-def create_file_fingerprints(content, ngram_length=5, window_length=16, include_ngrams=False):
+def create_file_fingerprints(
+    content, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False
+):
     """
     Return a mapping of halo1 and snippet hashes from content string
     """
@@ -260,7 +266,7 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
     selected_windows = list(select_ngrams(windows, with_pos=True))
     # TODO: consider using itertools.chain.from_iterable()
     selected_windows_bytes = [
-        (pos, [g.encode("utf-8") for g in window]) for pos, window in selected_windows
+        (int(pos), [g.encode("utf-8") for g in window]) for pos, window in selected_windows
     ]
     selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
     snippets = []
@@ -276,3 +282,22 @@ def create_file_fingerprints(content, ngram_length=5, window_length=16, include_
         fingerprints["snippets"] = snippets
 
     return fingerprints
+
+
+def get_line_by_pos(content):
+    """
+    Return a mapping of lines numbers whose indices correspond to a token position
+    in `content`.
+
+    For example, given line_by_pos[0] = 1, this means that the token at position
+    0 in `content` is on line 1.
+    """
+    line_number_and_lines = query_lines(query_string=content)
+    line_by_pos = {}
+    pos = 0
+    for line_number, line in line_number_and_lines:
+        tokens = tokenizer(line)
+        for _ in tokens:
+            line_by_pos[pos] = line_number
+            pos += 1
+    return line_by_pos
