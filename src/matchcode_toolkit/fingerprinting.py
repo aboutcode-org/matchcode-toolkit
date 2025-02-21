@@ -272,8 +272,7 @@ def create_file_fingerprints(
     snippets = []
     for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
         s = {
-            "start_pos": pos,
-            "end_pos": pos + window_length - 1,
+            "position": pos,
             "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
         }
         if include_ngrams:

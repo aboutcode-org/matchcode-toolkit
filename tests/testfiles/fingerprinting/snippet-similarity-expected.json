@@ -3,8 +3,7 @@
     "snippet": "0057152e3b1795b6befd36a4412c21a5",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 501,
-        "end_pos": 516,
+        "position": 501,
         "snippet": "0057152e3b1795b6befd36a4412c21a5",
         "ngrams": [
           "return",
@@ -28,8 +27,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 811,
-        "end_pos": 826,
+        "position": 811,
         "snippet": "0057152e3b1795b6befd36a4412c21a5",
         "ngrams": [
           "return",
@@ -56,8 +54,7 @@
     "snippet": "07a7b1300fb58b5f9b9b3e56df23e003",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 538,
-        "end_pos": 553,
+        "position": 538,
         "snippet": "07a7b1300fb58b5f9b9b3e56df23e003",
         "ngrams": [
           "sum2",
@@ -81,8 +78,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 848,
-        "end_pos": 863,
+        "position": 848,
         "snippet": "07a7b1300fb58b5f9b9b3e56df23e003",
         "ngrams": [
           "sum2",
@@ -109,8 +105,7 @@
     "snippet": "0dcb44bfa9a7c7e310ea9d4a921b777b",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 519,
-        "end_pos": 534,
+        "position": 519,
         "snippet": "0dcb44bfa9a7c7e310ea9d4a921b777b",
         "ngrams": [
           "is",
@@ -134,8 +129,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 829,
-        "end_pos": 844,
+        "position": 829,
         "snippet": "0dcb44bfa9a7c7e310ea9d4a921b777b",
         "ngrams": [
           "is",
@@ -162,8 +156,7 @@
     "snippet": "2b74fe7dde58dfa20bf75a6b4e589a10",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 480,
-        "end_pos": 495,
+        "position": 480,
         "snippet": "2b74fe7dde58dfa20bf75a6b4e589a10",
         "ngrams": [
           "adler2",
@@ -187,8 +180,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 790,
-        "end_pos": 805,
+        "position": 790,
         "snippet": "2b74fe7dde58dfa20bf75a6b4e589a10",
         "ngrams": [
           "adler2",
@@ -215,8 +207,7 @@
     "snippet": "310e6e530d4bda6977774b34515101ab",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 477,
-        "end_pos": 492,
+        "position": 477,
         "snippet": "310e6e530d4bda6977774b34515101ab",
         "ngrams": [
           "adler32",
@@ -240,8 +231,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 787,
-        "end_pos": 802,
+        "position": 787,
         "snippet": "310e6e530d4bda6977774b34515101ab",
         "ngrams": [
           "adler32",
@@ -268,8 +258,7 @@
     "snippet": "33b1d50de7e1701bd4beb706bf25970e",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 560,
-        "end_pos": 575,
+        "position": 560,
         "snippet": "33b1d50de7e1701bd4beb706bf25970e",
         "ngrams": [
           "sum1",
@@ -293,8 +282,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 870,
-        "end_pos": 885,
+        "position": 870,
         "snippet": "33b1d50de7e1701bd4beb706bf25970e",
         "ngrams": [
           "sum1",
@@ -321,8 +309,7 @@
     "snippet": "3c866b47965d9cc62c4640e3ae132d2b",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 527,
-        "end_pos": 542,
+        "position": 527,
         "snippet": "3c866b47965d9cc62c4640e3ae132d2b",
         "ngrams": [
           "mod63",
@@ -346,8 +333,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 837,
-        "end_pos": 852,
+        "position": 837,
         "snippet": "3c866b47965d9cc62c4640e3ae132d2b",
         "ngrams": [
           "mod63",
@@ -374,8 +360,7 @@
     "snippet": "5af889295c942ecb75189c86df62e201",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 485,
-        "end_pos": 500,
+        "position": 485,
         "snippet": "5af889295c942ecb75189c86df62e201",
         "ngrams": [
           "adler2",
@@ -399,8 +384,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 795,
-        "end_pos": 810,
+        "position": 795,
         "snippet": "5af889295c942ecb75189c86df62e201",
         "ngrams": [
           "adler2",
@@ -427,8 +411,7 @@
     "snippet": "72a86996522cfb9f83cf388d8010b7ab",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 553,
-        "end_pos": 568,
+        "position": 553,
         "snippet": "72a86996522cfb9f83cf388d8010b7ab",
         "ngrams": [
           "16",
@@ -452,8 +435,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 863,
-        "end_pos": 878,
+        "position": 863,
         "snippet": "72a86996522cfb9f83cf388d8010b7ab",
         "ngrams": [
           "16",
@@ -480,8 +462,7 @@
     "snippet": "8571422ee6dec38705bcdb8c12496473",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 533,
-        "end_pos": 548,
+        "position": 533,
         "snippet": "8571422ee6dec38705bcdb8c12496473",
         "ngrams": [
           "unsigned",
@@ -505,8 +486,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 843,
-        "end_pos": 858,
+        "position": 843,
         "snippet": "8571422ee6dec38705bcdb8c12496473",
         "ngrams": [
           "unsigned",
@@ -533,8 +513,7 @@
     "snippet": "9bc102ceddabba9c1dc31140500e6c6c",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 556,
-        "end_pos": 571,
+        "position": 556,
         "snippet": "9bc102ceddabba9c1dc31140500e6c6c",
         "ngrams": [
           "rem",
@@ -558,8 +537,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 866,
-        "end_pos": 881,
+        "position": 866,
         "snippet": "9bc102ceddabba9c1dc31140500e6c6c",
         "ngrams": [
           "rem",
@@ -586,8 +564,7 @@
     "snippet": "b9db06731d27c61a56600e74d145e814",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 550,
-        "end_pos": 565,
+        "position": 550,
         "snippet": "b9db06731d27c61a56600e74d145e814",
         "ngrams": [
           "16",
@@ -611,8 +588,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 860,
-        "end_pos": 875,
+        "position": 860,
         "snippet": "b9db06731d27c61a56600e74d145e814",
         "ngrams": [
           "16",
@@ -639,8 +615,7 @@
     "snippet": "ba34fbe4e05f3f28641958ecc5eb9af9",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 516,
-        "end_pos": 531,
+        "position": 516,
         "snippet": "ba34fbe4e05f3f28641958ecc5eb9af9",
         "ngrams": [
           "of",
@@ -664,8 +639,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 826,
-        "end_pos": 841,
+        "position": 826,
         "snippet": "ba34fbe4e05f3f28641958ecc5eb9af9",
         "ngrams": [
           "of",
@@ -692,8 +666,7 @@
     "snippet": "c09e0b1020b5265ccac6d03439dff2dc",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 566,
-        "end_pos": 581,
+        "position": 566,
         "snippet": "c09e0b1020b5265ccac6d03439dff2dc",
         "ngrams": [
           "base",
@@ -717,8 +690,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 876,
-        "end_pos": 891,
+        "position": 876,
         "snippet": "c09e0b1020b5265ccac6d03439dff2dc",
         "ngrams": [
           "base",
@@ -745,8 +717,7 @@
     "snippet": "cac65171e0f01c57e1af7a5b99929d12",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 542,
-        "end_pos": 557,
+        "position": 542,
         "snippet": "cac65171e0f01c57e1af7a5b99929d12",
         "ngrams": [
           "sum2",
@@ -770,8 +741,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 852,
-        "end_pos": 867,
+        "position": 852,
         "snippet": "cac65171e0f01c57e1af7a5b99929d12",
         "ngrams": [
           "sum2",
@@ -798,8 +768,7 @@
     "snippet": "cd50d59e9cd0df93ef6b8dfbf0f7d311",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 500,
-        "end_pos": 515,
+        "position": 500,
         "snippet": "cd50d59e9cd0df93ef6b8dfbf0f7d311",
         "ngrams": [
           "len",
@@ -823,8 +792,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 810,
-        "end_pos": 825,
+        "position": 810,
         "snippet": "cd50d59e9cd0df93ef6b8dfbf0f7d311",
         "ngrams": [
           "len",
@@ -851,8 +819,7 @@
     "snippet": "d45f0d54c32b2d884919665c65c65638",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 523,
-        "end_pos": 538,
+        "position": 523,
         "snippet": "d45f0d54c32b2d884919665c65c65638",
         "ngrams": [
           "exercise",
@@ -876,8 +843,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 833,
-        "end_pos": 848,
+        "position": 833,
         "snippet": "d45f0d54c32b2d884919665c65c65638",
         "ngrams": [
           "exercise",
@@ -904,8 +870,7 @@
     "snippet": "de43d78e467331cc3bcbf87fdb3c90c3",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 548,
-        "end_pos": 563,
+        "position": 548,
         "snippet": "de43d78e467331cc3bcbf87fdb3c90c3",
         "ngrams": [
           "sum2",
@@ -929,8 +894,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 858,
-        "end_pos": 873,
+        "position": 858,
         "snippet": "de43d78e467331cc3bcbf87fdb3c90c3",
         "ngrams": [
           "sum2",
@@ -957,8 +921,7 @@
     "snippet": "ecbedbeebd47e4a24210bfb8419c9f8e",
     "snippet_matched_to_results1": [
       {
-        "start_pos": 562,
-        "end_pos": 577,
+        "position": 562,
         "snippet": "ecbedbeebd47e4a24210bfb8419c9f8e",
         "ngrams": [
           "if",
@@ -982,8 +945,7 @@
     ],
     "snippet_matched_to_results2": [
       {
-        "start_pos": 872,
-        "end_pos": 887,
+        "position": 872,
         "snippet": "ecbedbeebd47e4a24210bfb8419c9f8e",
         "ngrams": [
           "if",
