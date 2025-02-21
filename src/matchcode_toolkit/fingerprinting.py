@@ -13,6 +13,8 @@ import re
 from licensedcode.tokenize import query_lines
 from samecode.halohash import BitAverageHaloHash
 
+from matchcode_toolkit.stemming import get_stem_code
+
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [
     # This is both the directory content and directory structure fingerprint for
@@ -222,23 +224,52 @@ def get_file_fingerprint_hashes(
 
     with open(location) as f:
         content = f.read()
+    stemmed_content = get_stem_code(location)
 
     return create_file_fingerprints(
         content,
+        stemmed_content=stemmed_content,
         ngram_length=ngram_length,
         window_length=window_length,
         include_ngrams=include_ngrams,
     )
 
 
+def compute_snippet_fingerprints(words, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False):
+    from licensedcode.tokenize import ngrams
+    from licensedcode.tokenize import select_ngrams
+
+    # Select windows from the content to compute snippet fingerprints
+    windows = ngrams(words, window_length)
+    selected_windows = list(select_ngrams(windows, with_pos=True))
+    # TODO: consider using itertools.chain.from_iterable()
+    selected_windows_bytes = [
+        (int(pos), [g.encode("utf-8") for g in window]) for pos, window in selected_windows
+    ]
+    selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
+    snippets = []
+    for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
+        s = {
+            "position": pos,
+            "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
+        }
+        if include_ngrams:
+            s["ngrams"] = list(window)
+        snippets.append(s)
+    return snippets
+
+
 def create_file_fingerprints(
-    content, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False
+    content,
+    stemmed_content=None,
+    ngram_length=5,
+    window_length=SNIPPET_WINDOW_LENGTH,
+    include_ngrams=False,
 ):
     """
     Return a mapping of halo1 and snippet hashes from content string
     """
     from licensedcode.tokenize import ngrams
-    from licensedcode.tokenize import select_ngrams
 
     fingerprints = {
         "halo1": "",
@@ -261,25 +292,15 @@ def create_file_fingerprints(
         file_fingerprint = ngs_count_hex_str + content_fingerprint
         fingerprints["halo1"] = file_fingerprint
 
-    # Select windows from the content to compute snippet fingerprints
-    windows = ngrams(words, window_length)
-    selected_windows = list(select_ngrams(windows, with_pos=True))
-    # TODO: consider using itertools.chain.from_iterable()
-    selected_windows_bytes = [
-        (int(pos), [g.encode("utf-8") for g in window]) for pos, window in selected_windows
-    ]
-    selected_windows_bytes = [(pos, b"".join(window)) for pos, window in selected_windows_bytes]
-    snippets = []
-    for (pos, window_bytes), (_, window) in zip(selected_windows_bytes, selected_windows):
-        s = {
-            "position": pos,
-            "snippet": BitAverageHaloHash(window_bytes).hexdigest().decode("utf-8"),
-        }
-        if include_ngrams:
-            s["ngrams"] = list(window)
-        snippets.append(s)
+    snippets = compute_snippet_fingerprints(words, window_length=window_length)
     if snippets:
         fingerprints["snippets"] = snippets
+
+    if stemmed_content:
+        stemmed_words = list(tokenizer(stemmed_content))
+        stemmed_snippets = compute_snippet_fingerprints(stemmed_words, window_length=window_length)
+        if stemmed_snippets:
+            fingerprints["stemmed_snippets"] = stemmed_snippets
 
     return fingerprints
 
