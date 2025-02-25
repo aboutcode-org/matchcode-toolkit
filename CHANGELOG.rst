@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v7.2.1
+------
+
+*2025-02-25* -- Update ScanAndFingerprintPackage pipeline to use the ``fingerprint_codebase`` step from the FingerprintCodebase pipeline.
+
 v7.2.0
 ------
 
