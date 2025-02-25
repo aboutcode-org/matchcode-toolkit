@@ -226,14 +226,14 @@ def get_file_fingerprint_hashes(
         content = f.read()
 
     return create_file_fingerprints(
-        content,
+        content=content,
         ngram_length=ngram_length,
         window_length=window_length,
         include_ngrams=include_ngrams,
     )
 
 
-def get_stem_file_fingerprint_hashes(
+def get_stemmed_file_fingerprint_hashes(
     location,
     ngram_length=5,
     window_length=16,
@@ -241,7 +241,7 @@ def get_stem_file_fingerprint_hashes(
     **kwargs,
 ):
     """
-    Return a mapping of stem code fingerprint hashes for the file at `location`
+    Return a mapping of stemmed code fingerprint hashes for the file at `location`
 
     The `halo1` hash is the hex digest of the fingerprint of the file.
     `halo1` is empty if the file is empty.
@@ -262,7 +262,7 @@ def get_stem_file_fingerprint_hashes(
     stemmed_content = get_stem_code(location=location)
 
     return create_file_fingerprints(
-        stemmed_content,
+        stemmed_content=stemmed_content,
         ngram_length=ngram_length,
         window_length=window_length,
         include_ngrams=include_ngrams,
@@ -270,20 +270,37 @@ def get_stem_file_fingerprint_hashes(
 
 
 def create_file_fingerprints(
-    content, ngram_length=5, window_length=SNIPPET_WINDOW_LENGTH, include_ngrams=False
+    content=None,
+    stemmed_content=None,
+    ngram_length=5,
+    window_length=SNIPPET_WINDOW_LENGTH,
+    include_ngrams=False,
 ):
     """
-    Return a mapping of halo1 and snippet hashes from content string
+    Return a mapping of halo1 and snippet hashes from `content` or `stemmed_content`, not both.
     """
     from licensedcode.tokenize import ngrams
     from licensedcode.tokenize import select_ngrams
 
+    if content and stemmed_content:
+        raise Exception(
+            "create_file_fingerprints only accepts an input of `content` or `stemmed_content`, not both."
+        )
+
+    if stemmed_content:
+        halo1_key = "stemmed_halo1"
+        snippets_key = "stemmed_snippets"
+    else:
+        halo1_key = "halo1"
+        snippets_key = "snippets"
+
     fingerprints = {
-        "halo1": "",
-        "snippets": [],
+        halo1_key: "",
+        snippets_key: [],
     }
 
     # tokenize content into words
+    content = content or stemmed_content
     words = list(tokenizer(content))
 
     # Create a file fingerprint from the number of elements in the content hash
@@ -297,7 +314,7 @@ def create_file_fingerprints(
         content_fingerprint = content_hash.hexdigest().decode("utf-8")
         ngs_count_hex_str = "%08x" % ngs_count
         file_fingerprint = ngs_count_hex_str + content_fingerprint
-        fingerprints["halo1"] = file_fingerprint
+        fingerprints[halo1_key] = file_fingerprint
 
     # Select windows from the content to compute snippet fingerprints
     windows = ngrams(words, window_length)
@@ -317,7 +334,7 @@ def create_file_fingerprints(
             s["ngrams"] = list(window)
         snippets.append(s)
     if snippets:
-        fingerprints["snippets"] = snippets
+        fingerprints[snippets_key] = snippets
 
     return fingerprints
 
