@@ -23,8 +23,10 @@
 from scanpipe.pipelines.scan_single_package import ScanSinglePackage
 from scanpipe.pipes import matchcode
 
+from matchcode_toolkit.pipelines.fingerprint_codebase import FingerprintCodebase
 
-class ScanAndFingerprintPackage(ScanSinglePackage):
+
+class ScanAndFingerprintPackage(FingerprintCodebase, ScanSinglePackage):
     """
     Scan a single package file or package archive with ScanCode-toolkit, then
     calculate the directory fingerprints of the codebase.
@@ -55,9 +57,3 @@ class ScanAndFingerprintPackage(ScanSinglePackage):
         "--classify",
         "--summary",
     ]
-
-    def fingerprint_codebase(self):
-        """
-        Compute directory fingerprints for matching purposes
-        """
-        matchcode.fingerprint_codebase_directories(self.project)
