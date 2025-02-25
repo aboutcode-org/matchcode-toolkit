@@ -13,6 +13,8 @@ import re
 from licensedcode.tokenize import query_lines
 from samecode.halohash import BitAverageHaloHash
 
+from matchcode_toolkit.stemming import get_stem_code
+
 # A collection of directory fingerprints that we want to avoid
 IGNORED_DIRECTORY_FINGERPRINTS = [
     # This is both the directory content and directory structure fingerprint for
@@ -225,6 +227,42 @@ def get_file_fingerprint_hashes(
 
     return create_file_fingerprints(
         content,
+        ngram_length=ngram_length,
+        window_length=window_length,
+        include_ngrams=include_ngrams,
+    )
+
+
+def get_stem_file_fingerprint_hashes(
+    location,
+    ngram_length=5,
+    window_length=16,
+    include_ngrams=False,
+    **kwargs,
+):
+    """
+    Return a mapping of stem code fingerprint hashes for the file at `location`
+
+    The `halo1` hash is the hex digest of the fingerprint of the file.
+    `halo1` is empty if the file is empty.
+
+    - We start by breaking the file into words (tokens)
+    - We compute ngrams over the list of tokens
+
+    Return an empty mapping if `location` is not a text file
+    """
+    from commoncode import filetype
+    from typecode.contenttype import get_type
+
+    # Do not process `location` if it's not a text file
+    ft = get_type(location)
+    if not (filetype.is_file(location) and ft.is_text):
+        return {}
+
+    stemmed_content = get_stem_code(location=location)
+
+    return create_file_fingerprints(
+        stemmed_content,
         ngram_length=ngram_length,
         window_length=window_length,
         include_ngrams=include_ngrams,
