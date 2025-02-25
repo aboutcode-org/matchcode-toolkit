@@ -34,7 +34,10 @@ class FingerprintCodebase(Pipeline):
 
     @classmethod
     def steps(cls):
-        return (cls.fingerprint_codebase,)
+        return (
+            cls.fingerprint_codebase,
+            cls.fingerprint_stem_codebase_resources,
+        )
 
     def fingerprint_codebase(self):
         """
@@ -42,3 +45,7 @@ class FingerprintCodebase(Pipeline):
         """
         matchcode.fingerprint_codebase_directories(self.project)
         matchcode.fingerprint_codebase_resources(self.project)
+
+    def fingerprint_stem_codebase_resources(self):
+        """Compute stem code fingerprint for resources"""
+        matchcode.fingerprint_stem_codebase_resources(self.project)
