@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v7.2.0
+------
+
+*2025-02-25* -- Add functions and pipeline to create file fingerprints from stemmed code files.
+
 v7.1.0
 ------
 
