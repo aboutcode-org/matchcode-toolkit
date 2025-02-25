@@ -34,10 +34,7 @@ class FingerprintCodebase(Pipeline):
 
     @classmethod
     def steps(cls):
-        return (
-            cls.fingerprint_codebase,
-            cls.fingerprint_stem_codebase_resources,
-        )
+        return (cls.fingerprint_codebase,)
 
     def fingerprint_codebase(self):
         """
