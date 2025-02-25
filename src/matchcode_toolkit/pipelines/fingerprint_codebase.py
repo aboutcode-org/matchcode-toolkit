@@ -42,3 +42,4 @@ class FingerprintCodebase(Pipeline):
         """
         matchcode.fingerprint_codebase_directories(self.project)
         matchcode.fingerprint_codebase_resources(self.project)
+        matchcode.fingerprint_stemmed_codebase_resources(self.project)
