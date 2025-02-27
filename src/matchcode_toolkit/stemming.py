@@ -149,7 +149,8 @@ def get_stem_code(location):
 
     # Apply mutations bottom-up
     mutations = dict(sorted(mutations.items(), reverse=True))
-    text = source.decode()
+    # Ensure the text always ends with a newline character.
+    text = source.decode().rstrip("\n") + "\n"
     cur_count = 0
     lines = text.splitlines(keepends=True)
     successive_line_count = [cur_count := cur_count + len(line) for line in lines]

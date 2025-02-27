@@ -78,3 +78,9 @@ class TestFingerprintingFunctions(FileBasedTesting):
         expected_file_location = self.test_data_dir / "rust/metrics-stemmeds.rs"
         results = stemming.get_stem_code(location=str(file_location))
         check_against_expected_code_file(results, expected_file_location)
+
+    def test_javascript_code_stemming_endwith_no_newline(self):
+        file_location = self.test_data_dir / "javascript/main.js"
+        expected_file_location = self.test_data_dir / "javascript/main-stemmed.js"
+        results = stemming.get_stem_code(location=str(file_location))
+        check_against_expected_code_file(results, expected_file_location)
