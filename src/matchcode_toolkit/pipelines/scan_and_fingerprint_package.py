@@ -21,7 +21,6 @@
 # Visit https://github.com/aboutcode-org/scancode.io for support and download.
 
 from scanpipe.pipelines.scan_single_package import ScanSinglePackage
-from scanpipe.pipes import matchcode
 
 from matchcode_toolkit.pipelines.fingerprint_codebase import FingerprintCodebase
 

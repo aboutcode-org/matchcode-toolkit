@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v7.2.2
+------
+
+*2025-02-27* -- Fix error encountered when stemming a file missing a newline character.
+
 v7.2.1
 ------
 
